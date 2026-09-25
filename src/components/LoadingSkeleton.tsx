@@ -19,3 +19,11 @@ export const MascotSkeleton = () => (
     <i />
   </div>
 );
+
+  export const InlineSkeleton = () => (
+    <div className="inline-skeleton" aria-label="Loading section" role="status">
+      <span />
+      <span />
+      <span />
+    </div>
+  );

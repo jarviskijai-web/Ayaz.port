@@ -1,3 +1,4 @@
+import { AppSkeleton, InlineSkeleton } from "./components/LoadingSkeleton";
 import React, { lazy, Suspense } from "react";
 import "./App.css";
 
@@ -5,7 +6,6 @@ const CharacterModel = lazy(() => import("./components/Character"));
 const MainContainer = lazy(() => import("./components/MainContainer"));
 import { LoadingProvider } from "./context/LoadingProvider";
 import MobileExperience from "./components/MobileExperience";
-import { AppSkeleton } from "./components/LoadingSkeleton";
 
 const useMobileViewport = () => {
   const [isMobile, setIsMobile] = React.useState(() => window.innerWidth <= 768);
@@ -41,7 +41,7 @@ const App = () => {
       <LoadingProvider>
         <Suspense fallback={<AppSkeleton />}>
           <MainContainer>
-            <Suspense fallback={<AppSkeleton />}>
+            <Suspense fallback={<InlineSkeleton />}>
               <CharacterModel />
             </Suspense>
           </MainContainer>

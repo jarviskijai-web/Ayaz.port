@@ -1,3 +1,4 @@
+import { InlineSkeleton } from "./LoadingSkeleton";
 import { lazy, PropsWithChildren, Suspense, useEffect, useState } from "react";
 import About from "./About";
 import Connect from "./Connect";
@@ -10,7 +11,6 @@ import SocialIcons from "./SocialIcons";
 import WhatIDo from "./WhatIDo";
 import Work from "./Work";
 import setSplitText from "./utils/splitText";
-import { AppSkeleton } from "./LoadingSkeleton";
 
 const TechStack = lazy(() => import("./TechStack"));
 
@@ -49,7 +49,7 @@ const MainContainer = ({ children }: PropsWithChildren) => {
             <Career />
             <Work />
             {isDesktopView && (
-              <Suspense fallback={<AppSkeleton />}>
+              <Suspense fallback={<InlineSkeleton />}>
                 <TechStack />
               </Suspense>
             )}
