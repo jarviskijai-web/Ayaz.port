@@ -1,49 +1,53 @@
-import { useEffect, useState } from 'react';
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
-import LegacyDesktopApp from "./legacy/App";
-import './App.css';
-import CustomCursor from './components/CustomCursor';
+import React, { lazy, Suspense } from "react";
+import "./App.css";
 
-const queryClient = new QueryClient();
+const CharacterModel = lazy(() => import("./components/Character"));
+const MainContainer = lazy(() => import("./components/MainContainer"));
+import { LoadingProvider } from "./context/LoadingProvider";
+import MobileExperience from "./components/MobileExperience";
+import { AppSkeleton } from "./components/LoadingSkeleton";
 
-const App = () => {
-  const [isDesktop, setIsDesktop] = useState(() => {
-    if (typeof window === 'undefined') return false;
-    return window.innerWidth >= 1024;
-  });
+const useMobileViewport = () => {
+  const [isMobile, setIsMobile] = React.useState(() => window.innerWidth <= 768);
 
-  useEffect(() => {
-    const handleResize = () => {
-      setIsDesktop(window.innerWidth >= 1024);
-    };
-
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+  React.useEffect(() => {
+    const media = window.matchMedia("(max-width: 768px)");
+    const syncViewport = () => setIsMobile(media.matches);
+    syncViewport();
+    media.addEventListener("change", syncViewport);
+    return () => media.removeEventListener("change", syncViewport);
   }, []);
 
+  return isMobile;
+};
+
+const App = () => {
+  const isMobile = useMobileViewport();
+
+  if (isMobile) {
+    return (
+      <LoadingProvider>
+        <Suspense fallback={<AppSkeleton />}>
+          <MobileExperience>
+            <CharacterModel />
+          </MobileExperience>
+        </Suspense>
+      </LoadingProvider>
+    );
+  }
+
   return (
-    <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <div className="w-full overflow-x-hidden">
-          <Toaster />
-          <Sonner />
-          <Router>
-            {!isDesktop && <CustomCursor />}
-            <Routes>
-              <Route path="/" element={isDesktop ? <LegacyDesktopApp /> : <Index />} />
-              <Route path="*" element={<NotFound />} />
-            </Routes>
-          </Router>
-        </div>
-      </TooltipProvider>
-    </QueryClientProvider>
+    <>
+      <LoadingProvider>
+        <Suspense fallback={<AppSkeleton />}>
+          <MainContainer>
+            <Suspense fallback={<AppSkeleton />}>
+              <CharacterModel />
+            </Suspense>
+          </MainContainer>
+        </Suspense>
+      </LoadingProvider>
+    </>
   );
 };
 

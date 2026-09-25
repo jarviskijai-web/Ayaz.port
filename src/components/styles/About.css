@@ -1,0 +1,290 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Syne:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Caveat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&display=swap');
+
+.about-section {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  place-items: center;
+  position: relative;
+  opacity: 1;
+  height: auto;
+  width: var(--cWidth);
+  margin: auto;
+}
+
+.about-me {
+  padding: 50px 0px;
+  padding-bottom: 0;
+  width: 500px;
+  max-width: calc(100% - 15px);
+}
+
+/* ===== Card — matches Uiverse reference exactly ===== */
+.about-card {
+  position: relative;
+  background-color: #000;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  padding: 0;
+  gap: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.about-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  left: -5px;
+  margin: auto;
+  width: calc(100% + 10px);
+  height: calc(100% + 10px);
+  border-radius: 10px;
+  background: linear-gradient(-45deg, #e81cff 0%, #40c9ff 100%);
+  z-index: -10;
+  pointer-events: none;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.about-card::after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(-45deg, #fc00ff 0%, #00dbde 100%);
+  transform: translate3d(0, 0, 0) scale(0.95);
+  filter: blur(20px);
+}
+
+.about-card:hover::after {
+  filter: blur(30px);
+}
+
+.about-card:hover::before {
+  transform: rotate(-3deg) scaleX(1.03) scaleY(1.06);
+}
+
+/* --- Left Label Column --- */
+.about-label-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  padding: 24px 22px;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.about-label-line {
+  display: block;
+  width: 1.5px;
+  height: 18px;
+  background: linear-gradient(180deg, transparent, #e81cff, transparent);
+  border-radius: 1px;
+}
+
+/* "About" — elegant cursive serif */
+.about-heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.4);
+  white-space: nowrap;
+  text-transform: lowercase;
+}
+
+/* "Me" — bold modern geometric */
+.about-heading-accent {
+  font-family: 'Syne', sans-serif !important;
+  font-style: normal !important;
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  background: linear-gradient(135deg, #e81cff, #40c9ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* --- Right Content Column --- */
+.about-content-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  padding: 22px 26px;
+  position: relative;
+  z-index: 1;
+}
+
+/* Body — premium clean sans */
+.about-para {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 300 !important;
+  line-height: 1.85 !important;
+  letter-spacing: 0.2px !important;
+  color: rgba(255, 255, 255, 0.6);
+  margin: 0;
+}
+
+/* Highlighted keywords — editorial italic serif */
+.about-highlight {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-weight: 600;
+  color: #e81cff;
+  letter-spacing: 0.5px;
+}
+
+/* Accent tagline — playful handwritten */
+.about-accent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Caveat', cursive !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  letter-spacing: 1px !important;
+  text-transform: none;
+  color: #e81cff;
+  line-height: 1.4 !important;
+  margin: 0;
+}
+
+.about-accent-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #e81cff;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px rgba(232, 28, 255, 0.6);
+}
+
+/* ===== Responsive ===== */
+@media only screen and (max-width: 767px) {
+  .about-section {
+    width: 100%;
+    padding: 72px 0 28px;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .about-me {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
+
+  .about-card {
+    flex-direction: column;
+    align-items: stretch;
+    background: rgba(10, 10, 12, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 18px 50px rgba(0, 0, 0, 0.19);
+  }
+
+  .about-card::before,
+  .about-card::after {
+    display: none;
+  }
+
+  .about-label-col {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+    border-right: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 16px 18px 14px;
+    width: 100%;
+    box-sizing: border-box;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+  }
+
+  .about-label-line {
+    width: 18px;
+    height: 1.5px;
+    background: linear-gradient(90deg, transparent, #e81cff, transparent);
+  }
+
+  .about-heading {
+    font-size: 18px;
+    letter-spacing: 2px;
+    margin: 0;
+  }
+
+  .about-heading-accent {
+    font-size: 18px;
+    letter-spacing: 0.2em;
+  }
+
+  .about-content-col {
+    gap: 16px;
+    padding: 18px 18px 20px;
+  }
+
+  .about-para {
+    font-size: 15px !important;
+    line-height: 1.8 !important;
+    letter-spacing: 0.02em !important;
+    color: rgba(255, 255, 255, 0.76);
+  }
+
+  .about-highlight {
+    color: #f4d5ff;
+  }
+
+  .about-accent {
+    font-size: 26px !important;
+    line-height: 1.1 !important;
+    letter-spacing: 0.04em !important;
+    color: #ffb7ff;
+    padding-top: 4px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .about-section {
+    justify-content: center;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .about-me {
+    width: 500px;
+    max-width: calc(100% - 70px);
+    transform: translateY(0%);
+  }
+  .about-section {
+    opacity: 1;
+  }
+}
+
+@media only screen and (min-width: 1025px) {
+  .about-section {
+    width: var(--cWidth);
+    justify-content: right;
+    max-width: 1920px;
+    height: var(--vh);
+    padding: 0px;
+    opacity: 1;
+  }
+  .about-me {
+    padding: 0px;
+    width: 50%;
+  }
+}
