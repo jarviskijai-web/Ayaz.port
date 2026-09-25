@@ -86,8 +86,8 @@ const CustomCursor: React.FC = () => {
     top: `${position.y}px`,
     opacity: isVisible ? 1 : 0,
     transform: isClicking ? 'scale(0.8) translate(-50%, -50%)' : isHovering ? 'scale(1.5) translate(-50%, -50%)' : 'scale(1) translate(-50%, -50%)',
-    backgroundColor: isHovering ? 'rgba(147, 51, 234, 0.2)' : 'rgba(147, 51, 234, 0.3)',
-    boxShadow: isHovering ? '0 0 10px rgba(147, 51, 234, 0.5)' : 'none',
+    backgroundColor: isHovering ? 'rgba(212, 175, 117, 0.22)' : 'rgba(212, 175, 117, 0.28)',
+    boxShadow: isHovering ? '0 0 10px rgba(212, 175, 117, 0.45)' : 'none',
   };
 
   // Dot cursor styles
@@ -96,7 +96,7 @@ const CustomCursor: React.FC = () => {
     top: `${position.y}px`,
     opacity: isVisible ? 1 : 0,
     transform: `translate(-50%, -50%) ${isClicking ? 'scale(0.5)' : 'scale(1)'}`,
-    boxShadow: '0 0 5px rgba(147, 51, 234, 0.8)'
+    boxShadow: '0 0 5px rgba(212, 175, 117, 0.8)'
   };
 
   return (
@@ -111,7 +111,7 @@ const CustomCursor: React.FC = () => {
             top: `${point.y}px`,
             opacity: isVisible ? (point.opacity * (1 - index * 0.15)) : 0,
             transform: `translate(-50%, -50%) scale(${1 - index * 0.15})`,
-            backgroundColor: 'rgba(147, 51, 234, 0.2)',
+            backgroundColor: 'rgba(212, 175, 117, 0.18)',
             position: 'fixed',
             width: '15px',
             height: '15px',

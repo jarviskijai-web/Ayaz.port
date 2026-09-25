@@ -51,13 +51,13 @@ const TypewriterEffect: React.FC<TypewriterEffectProps> = ({
 
   return (
     <div className="font-mono">
-      <span className="bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
+      <span className="bg-gradient-to-r from-[#d4af75] to-[#b88938] bg-clip-text text-transparent">
         {currentText}
       </span>
       <motion.span
         animate={{ opacity: [1, 0] }}
         transition={{ duration: 0.5, repeat: Infinity, repeatType: "reverse" }}
-        className="text-purple-400 ml-1"
+        className="text-[#d4af75] ml-1"
       >
         |
       </motion.span>

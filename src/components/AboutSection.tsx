@@ -122,7 +122,7 @@ const AboutSection = () => {
                 >
                   {/* Background Glow Effects */}
                   <motion.div
-                    className="absolute -inset-8 bg-gradient-to-r from-purple-900 to-purple-700 rounded-3xl opacity-20 blur-3xl"
+                    className="absolute -inset-8 bg-gradient-to-r from-[#d4af75]/30 to-[#b88938]/20 rounded-3xl opacity-20 blur-3xl"
                     animate={{
                       scale: [1, 1.2, 1],
                       opacity: [0.2, 0.4, 0.2]
@@ -136,9 +136,9 @@ const AboutSection = () => {
                   
                   {/* Developer at Desk Image */}
                   <motion.div
-                    className="relative w-80 h-80 rounded-2xl overflow-hidden border-4 border-purple-800/50 shadow-2xl shadow-purple-900/40"
+                    className="relative w-80 h-80 rounded-2xl overflow-hidden border-4 border-[#d4af75]/40 shadow-2xl shadow-[#b88938]/20"
                     style={{
-                      background: "linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(88, 28, 135, 0.2))"
+                      background: "linear-gradient(135deg, rgba(212, 175, 117, 0.12), rgba(184, 137, 56, 0.18))"
                     }}
                   >
                     <img
@@ -146,11 +146,11 @@ const AboutSection = () => {
                       alt="Developer workspace"
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-purple-900/40 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0b0b0b]/60 to-transparent" />
                     
                     {/* Floating Icons */}
                     <motion.div
-                      className="absolute top-4 right-4 w-12 h-12 bg-purple-800 rounded-full flex items-center justify-center"
+                      className="absolute top-4 right-4 w-12 h-12 bg-[#d4af75] rounded-full flex items-center justify-center"
                       animate={{
                         y: [0, -10, 0],
                         rotate: [0, 10, 0]
@@ -180,12 +180,12 @@ const AboutSection = () => {
                     whileHover={{ 
                       scale: 1.08, 
                       y: -8,
-                      boxShadow: "0 20px 40px rgba(147, 51, 234, 0.3)"
+                      boxShadow: "0 20px 40px rgba(212, 175, 117, 0.24)"
                     }}
                     transition={{ duration: 0.3 }}
                   >
                     <div className="flex justify-center mb-3">
-                      <div className="p-3 bg-purple-600 rounded-lg shadow-md">
+                      <div className="p-3 bg-[#d4af75] rounded-lg shadow-md">
                         <item.icon className="w-6 h-6 text-white" />
                       </div>
                     </div>

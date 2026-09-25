@@ -245,7 +245,7 @@
 }
 
 h2.landing-info-h2 {
-  color: #14b8a6;
+  color: #d4af75;
   font-size: clamp(2.2rem, 2rem + 1.5vw, 4.8rem);
   width: clamp(12rem, 30vw, 28rem);
   max-width: 100%;
@@ -388,7 +388,7 @@ h2.landing-info-h2 {
     aspect-ratio: 1;
     margin: 0 auto;
     border-radius: 32px;
-    background: radial-gradient(circle at 50% 30%, rgba(94, 234, 212, 0.18), rgba(5, 5, 5, 0) 70%);
+    background: radial-gradient(circle at 50% 30%, rgba(212, 175, 117, 0.18), rgba(5, 5, 5, 0) 70%);
     overflow: hidden;
   }
 

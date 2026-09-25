@@ -88,7 +88,7 @@
   position: absolute;
   top: 0;
   left: 0;
-  background-image: linear-gradient(to right, #0fd850 0%, #f9f047 100%);
+  background-image: linear-gradient(to right, #b88938 0%, #f1dfb0 100%);
   transition: .5s ease;
   display: block;
   z-index: -1;
@@ -100,10 +100,10 @@
 }
 
 .nav-pill-btn.is-active {
-  background: rgba(94, 234, 212, 0.18);
-  border: 1px solid rgba(94, 234, 212, 0.5);
-  color: #dffef9;
-  box-shadow: 0 0 0 1px rgba(94, 234, 212, 0.3), 0 8px 22px rgba(0, 0, 0, 0.3);
+  background: rgba(212, 175, 117, 0.14);
+  border: 1px solid rgba(212, 175, 117, 0.45);
+  color: #f7f2e8;
+  box-shadow: 0 0 0 1px rgba(212, 175, 117, 0.25), 0 8px 22px rgba(0, 0, 0, 0.3);
 }
 
 .nav-pill-btn:hover::before {
@@ -116,8 +116,8 @@
 
 /* Specific styling for the connect button in the menu */
 .nav-pill-btn.connect-btn {
-  background-color: rgba(15, 216, 80, 0.1);
-  border: 1px solid rgba(15, 216, 80, 0.2);
+  background-color: rgba(212, 175, 117, 0.08);
+  border: 1px solid rgba(212, 175, 117, 0.18);
 }
 
 @media only screen and (min-width: 500px) {
@@ -272,8 +272,8 @@
   }
 
   .mobile-menu-link.is-active {
-    background: rgba(94, 234, 212, 0.12);
-    border-color: rgba(94, 234, 212, 0.42);
+    background: rgba(212, 175, 117, 0.12);
+    border-color: rgba(212, 175, 117, 0.42);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
   }
 

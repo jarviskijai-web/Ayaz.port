@@ -14,7 +14,7 @@ const FloatingElements = () => {
         return (
           <motion.div
             key={`tech-${i}`}
-            className="absolute w-8 h-8 text-purple-500/30"
+            className="absolute w-8 h-8 text-[#d4af75]/40"
             style={{
               left: `${10 + (i * 8)}%`,
               top: `${20 + (i * 6)}%`,
@@ -41,7 +41,7 @@ const FloatingElements = () => {
       {['React', 'TypeScript', 'Node.js', 'Python', 'MongoDB', 'Express'].map((tech, i) => (
         <motion.div
           key={`code-${i}`}
-          className="absolute text-purple-400/40 font-mono text-sm font-bold bg-purple-900/10 px-3 py-1 rounded-lg border border-purple-500/20"
+          className="absolute text-[#e4c98a]/60 font-mono text-sm font-bold bg-[#20180f]/60 px-3 py-1 rounded-lg border border-[#d4af75]/30"
           style={{
             right: `${5 + i * 15}%`,
             top: `${40 + i * 10}%`,
@@ -66,7 +66,7 @@ const FloatingElements = () => {
       {[...Array(8)].map((_, i) => (
         <motion.div
           key={`shape-${i}`}
-          className={`absolute w-6 h-6 ${i % 3 === 0 ? 'bg-purple-500/30' : i % 3 === 1 ? 'bg-purple-600/30' : 'bg-purple-400/30'} ${i % 2 === 0 ? 'rounded-full' : 'rounded-lg rotate-45'}`}
+          className={`absolute w-6 h-6 ${i % 3 === 0 ? 'bg-[#d4af75]/25' : i % 3 === 1 ? 'bg-[#b88938]/25' : 'bg-[#f1dfb0]/20'} ${i % 2 === 0 ? 'rounded-full' : 'rounded-lg rotate-45'}`}
           style={{
             left: `${Math.random() * 100}%`,
             top: `${Math.random() * 100}%`,
@@ -90,7 +90,7 @@ const FloatingElements = () => {
       {[...Array(15)].map((_, i) => (
         <motion.div
           key={`binary-${i}`}
-          className="absolute text-purple-300/20 font-mono text-xs"
+          className="absolute text-[#f1dfb0]/20 font-mono text-xs"
           style={{
             left: `${5 + i * 6}%`,
             top: '-10%',

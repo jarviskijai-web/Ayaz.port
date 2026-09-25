@@ -197,7 +197,7 @@ const Index = () => {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="relative z-10 py-5 bg-gradient-to-t from-black to-purple-900/20 border-t border-purple-800/30 mt-[-2px]"
+        className="relative z-10 py-5 bg-gradient-to-t from-black to-[#1d1a15]/80 border-t border-[#d4af75]/30 mt-[-2px]"
       >
         <div className="container mx-auto px-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
@@ -206,7 +206,7 @@ const Index = () => {
                 className="text-lg font-medium text-white flex items-center"
                 whileHover={{ scale: 1.05 }}
               >
-                <Code className="w-5 h-5 mr-2 text-purple-400" />
+                <Code className="w-5 h-5 mr-2 text-[#d4af75]" />
                 <span>Ayaz Ahmad</span>
               </motion.div>
               <p className="text-sm text-gray-400 mt-1">
@@ -263,11 +263,11 @@ const Index = () => {
           rotate: showBackToTop ? 360 : 0
         }}
         onClick={scrollToTop}
-        className="fixed bottom-8 right-8 z-50 bg-gradient-to-r from-purple-800 to-purple-900 hover:from-purple-900 hover:to-purple-700 text-white p-4 rounded-full shadow-lg transition-all duration-300 hover:shadow-purple-500/25 cursor-hover"
+        className="fixed bottom-8 right-8 z-50 bg-gradient-to-r from-[#b88938] to-[#d4af75] hover:from-[#d4af75] hover:to-[#b88938] text-[#120d09] p-4 rounded-full shadow-lg transition-all duration-300 hover:shadow-[0_0_25px_rgba(212,175,117,0.45)] cursor-hover"
         whileHover={{ 
           scale: 1.3, 
           rotate: 360,
-          boxShadow: "0 0 30px rgba(147, 51, 234, 0.6)"
+          boxShadow: "0 0 30px rgba(212, 175, 117, 0.5)"
         }}
         whileTap={{ scale: 0.9 }}
         transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -283,12 +283,12 @@ const Index = () => {
             scrollYProgress,
             [0, 0.2, 0.4, 0.6, 0.8, 1],
             [
-              "linear-gradient(180deg, #000000 0%, #1a0033 100%)",
-              "linear-gradient(180deg, #1a0033 0%, #2d1b69 100%)",
-              "linear-gradient(180deg, #2d1b69 0%, #4c1d95 100%)",
-              "linear-gradient(180deg, #4c1d95 0%, #5b21b6 100%)",
-              "linear-gradient(180deg, #5b21b6 0%, #6d28d9 100%)",
-              "linear-gradient(180deg, #6d28d9 0%, #000000 100%)"
+              "linear-gradient(180deg, #050505 0%, #14100c 100%)",
+              "linear-gradient(180deg, #14100c 0%, #20180f 100%)",
+              "linear-gradient(180deg, #20180f 0%, #2d2217 100%)",
+              "linear-gradient(180deg, #2d2217 0%, #3a2b1e 100%)",
+              "linear-gradient(180deg, #3a2b1e 0%, #5a4023 100%)",
+              "linear-gradient(180deg, #5a4023 0%, #050505 100%)"
             ]
           )
         }}

@@ -25,16 +25,16 @@ export function FloatingIcons({
 }: FloatingIconsProps) {
   // Default tech icons if none provided
   const defaultIcons = [
-    { Icon: Code, color: "#4F46E5", size: 28 },
-    { Icon: Terminal, color: "#8B5CF6", size: 32 },
-    { Icon: Database, color: "#EC4899", size: 24 },
-    { Icon: Server, color: "#10B981", size: 30 },
-    { Icon: Globe, color: "#3B82F6", size: 26 },
-    { Icon: Laptop, color: "#F59E0B", size: 28 },
-    { Icon: Braces, color: "#6366F1", size: 32 },
-    { Icon: Cpu, color: "#EF4444", size: 24 },
-    { Icon: GitBranch, color: "#8B5CF6", size: 28 },
-    { Icon: Layers, color: "#0EA5E9", size: 30 }
+    { Icon: Code, color: "#d4af75", size: 28 },
+    { Icon: Terminal, color: "#e4c98a", size: 32 },
+    { Icon: Database, color: "#b88938", size: 24 },
+    { Icon: Server, color: "#f1dfb0", size: 30 },
+    { Icon: Globe, color: "#d4af75", size: 26 },
+    { Icon: Laptop, color: "#e4c98a", size: 28 },
+    { Icon: Braces, color: "#b88938", size: 32 },
+    { Icon: Cpu, color: "#f1dfb0", size: 24 },
+    { Icon: GitBranch, color: "#d4af75", size: 28 },
+    { Icon: Layers, color: "#e4c98a", size: 30 }
   ];
 
   const techIcons = icons || defaultIcons;

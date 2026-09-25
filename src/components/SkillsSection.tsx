@@ -106,7 +106,7 @@ const SkillsSection = () => {
         {[...Array(5)].map((_, i) => (
           <div 
             key={i} 
-            className={`w-2.5 h-2.5 rounded-full ${i < proficiency ? 'bg-purple-500' : 'bg-gray-700'}`}
+            className={`w-2.5 h-2.5 rounded-full ${i < proficiency ? 'bg-[#d4af75]' : 'bg-[#2a2a2a]'}`}
           />
         ))}
       </div>
@@ -134,7 +134,7 @@ const SkillsSection = () => {
         </div>
         <div className="w-full h-1.5 bg-gray-800 rounded-full overflow-hidden">
           <motion.div 
-            className="h-full bg-gradient-to-r from-purple-600 to-purple-400 rounded-full"
+            className="h-full bg-gradient-to-r from-[#d4af75] to-[#b88938] rounded-full"
             initial={{ width: 0 }}
             animate={{ width: `${skill.proficiency * 20}%` }}
             transition={{ duration: 1, delay: index * 0.05 }}
@@ -147,7 +147,7 @@ const SkillsSection = () => {
   return (
     <section id="skills" className="py-20 pb-8 relative overflow-hidden">
       {/* Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-l from-purple-900/20 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-l from-[#d4af75]/10 to-transparent" />
       
       {/* Floating Icons Background */}
       <FloatingIcons 
@@ -155,14 +155,14 @@ const SkillsSection = () => {
         opacity={[0.05, 0.2, 0.05]} 
         speed="slow" 
         icons={[
-          { Icon: Code, color: "#9333EA", size: 28 },
-          { Icon: Database, color: "#A855F7", size: 24 },
-          { Icon: Globe, color: "#8B5CF6", size: 26 },
-          { Icon: Cpu, color: "#A855F7", size: 24 },
-          { Icon: Brain, color: "#9333EA", size: 28 },
-          { Icon: Smartphone, color: "#8B5CF6", size: 24 },
-          { Icon: Bot, color: "#A855F7", size: 28 },
-          { Icon: Zap, color: "#9333EA", size: 26 }
+          { Icon: Code, color: "#d4af75", size: 28 },
+          { Icon: Database, color: "#e4c98a", size: 24 },
+          { Icon: Globe, color: "#b88938", size: 26 },
+          { Icon: Cpu, color: "#e4c98a", size: 24 },
+          { Icon: Brain, color: "#d4af75", size: 28 },
+          { Icon: Smartphone, color: "#b88938", size: 24 },
+          { Icon: Bot, color: "#e4c98a", size: 28 },
+          { Icon: Zap, color: "#d4af75", size: 26 }
         ]}
         className="z-0"
       />
@@ -181,10 +181,10 @@ const SkillsSection = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-purple-400 bg-clip-text text-transparent">
+            <h2 className="text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-white to-[#d4af75] bg-clip-text text-transparent">
               Skills & Technologies
             </h2>
-            <div className="w-32 h-1 bg-gradient-to-r from-purple-900 to-purple-700 mx-auto rounded-full mt-6" />
+            <div className="w-32 h-1 bg-gradient-to-r from-[#b88938] to-[#d4af75] mx-auto rounded-full mt-6" />
           </motion.div>
 
           {/* Skills Grid - Simple 3-column layout */}
@@ -195,10 +195,10 @@ const SkillsSection = () => {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-black rounded-lg border border-purple-800/50 p-6 hover:border-purple-500 transition-all duration-300"
+                className="bg-black rounded-lg border border-[#d4af75]/30 p-6 hover:border-[#d4af75]/70 transition-all duration-300"
               >
                 <div className="flex items-center mb-6">
-                  {React.createElement(category.icon, { className: "w-6 h-6 text-purple-500 mr-3" })}
+                  {React.createElement(category.icon, { className: "w-6 h-6 text-[#d4af75] mr-3" })}
                   <h3 className="text-xl font-bold text-white">{category.title}</h3>
                 </div>
                 <div className="space-y-5">
@@ -215,12 +215,12 @@ const SkillsSection = () => {
             transition={{ duration: 0.8, delay: 0.5 }}
             className="text-center mt-16"
           >
-            <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-purple-900/40 to-purple-800/40 rounded-full border border-purple-800/50 cursor-hover">
-              <Code className="w-5 h-5 text-purple-400" />
-              <span className="text-purple-300 font-semibold">
+            <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#1c1a17]/80 to-[#2d2416]/80 rounded-full border border-[#d4af75]/30 cursor-hover">
+              <Code className="w-5 h-5 text-[#d4af75]" />
+              <span className="text-[#f1dfb0] font-semibold">
                 Passionate Software Engineer • Always Learning • Building the Future
               </span>
-              <Code className="w-5 h-5 text-purple-400" />
+              <Code className="w-5 h-5 text-[#d4af75]" />
             </div>
           </motion.div>
         </motion.div>
