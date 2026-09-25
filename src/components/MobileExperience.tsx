@@ -33,7 +33,7 @@ const projects: Project[] = [
     name: "ARIS ONE",
     type: "AI COMPANION",
     description: "An evolving AI companion built around emotional resonance, proactive interaction, and the meeting point between human feeling and machine logic.",
-    image: "/images/preview1.png",
+    image: "/images/placeholder.webp",
     features: ["Proactive interaction", "Human-centered AI", "Immersive experience"],
     tools: ["React", "Three.js", "AI systems"],
   },
@@ -112,7 +112,7 @@ const MobileExperience = ({ children }: PropsWithChildren) => {
 
       <section className="mobile-section work-section" id="work">
         <div className="work-heading"><div><p className="section-kicker">04 / SELECTED WORK</p><h2>Building<br /><em>digital experiences.</em></h2></div><span className="work-count">03<br />PROJECTS</span></div>
-        <div className="project-list">{projects.map((project, index) => <article className="project" key={project.name}><div className={`project-visual visual-${index}`}><img src={project.image} alt={`${project.name} project visual`} loading="lazy" />{project.name === "REVIX ONE" && <div className="music-mockup"><span className="music-art">R</span><strong>REVIX ONE</strong><small>Late night / 24 tracks</small><div className="music-line" /><div className="music-controls">◀︎ <b>▶</b> ▶︎</div></div>}<span>0{index + 1}</span></div><div className="project-meta"><p className="project-type">— {project.type}</p><h3>{project.name}</h3><p>{project.description}</p><ul>{project.features.map(feature => <li key={feature}>✦ {feature}</li>)}</ul><div className="tag-row">{project.tools.map(tool => <span key={tool}>{tool}</span>)}</div></div></article>)}</div>
+        <div className="project-list">{projects.map((project, index) => <article className="project" key={project.name}><div className={`project-visual visual-${index}`}><img src={project.image} alt={`${project.name} project visual`} loading="lazy" />{project.name === "REVIX ONE" && <div className="music-mockup"><span className="music-art">R</span><strong>REVIX ONE</strong><small>Late night / 24 tracks</small><div className="music-line" /><div className="music-controls">◀︎ <b>▶</b> ▶︎</div></div>}{project.name === "ARIS ONE" && <div className="aris-mockup"><span>ARIS</span><strong>ONE</strong><small>INTELLIGENCE THAT BREATHES</small><i /></div>}<span>0{index + 1}</span></div><div className="project-meta"><p className="project-type">— {project.type}</p><h3>{project.name}</h3><p>{project.description}</p><ul>{project.features.map(feature => <li key={feature}>✦ {feature}</li>)}</ul><div className="tag-row">{project.tools.map(tool => <span key={tool}>{tool}</span>)}</div></div></article>)}</div>
       </section>
 
       <section className="mobile-section skills-section" id="skills">
