@@ -280,18 +280,6 @@
   .mobile-menu-link:active {
     transform: scale(0.99);
   }
-    font-family: 'Syne', sans-serif;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    text-align: left;
-    padding: 0 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    text-decoration: none;
-  }
 
   .nav-pill-btn {
     width: auto;
