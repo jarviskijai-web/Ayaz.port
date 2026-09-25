@@ -1,6 +1,7 @@
 import { PropsWithChildren, useState } from "react";
 import "./styles/MobileExperience.css";
 import "./styles/MobileMascot.css";
+import "./styles/MobileProjectMockups.css";
 
 type Project = {
   name: string;
@@ -16,7 +17,7 @@ const projects: Project[] = [
     name: "GHARONIX",
     type: "PROPERTY PLATFORM",
     description: "A premium property experience shaped around clearer discovery, stronger presentation, and the pace of a real buying decision.",
-    image: "/images/broki.png",
+    image: "https://www.gharonix.com/_next/image?url=%2Fimages%2Fhero-home.jpeg&w=1200&q=80",
     features: ["Property discovery", "Editorial presentation", "Responsive product thinking"],
     tools: ["React", "TypeScript", "Product design"],
   },
@@ -50,7 +51,7 @@ const MobileExperience = ({ children }: PropsWithChildren) => {
   const [copied, setCopied] = useState(false);
 
   const copyEmail = async () => {
-    await navigator.clipboard?.writeText("hello@arisone.in");
+    await navigator.clipboard?.writeText("Rustamparvez785@gmail.com");
     setCopied(true);
     window.setTimeout(() => setCopied(false), 1800);
   };
@@ -105,13 +106,13 @@ const MobileExperience = ({ children }: PropsWithChildren) => {
           <span className="available"><i /> AVAILABLE FOR THE RIGHT BUILD</span>
           <h2>Let&apos;s build<br /><em>something useful.</em></h2>
           <p>Have a product, system, or difficult idea that needs shape? Start a conversation.</p>
-          <div className="contact-actions"><a href="mailto:hello@arisone.in">EMAIL ME <span>↗</span></a><button type="button" onClick={copyEmail}>{copied ? "COPIED" : "COPY EMAIL"} <span>⌘</span></button></div>
+          <div className="contact-actions"><a href="mailto:Rustamparvez785@gmail.com">EMAIL ME <span>↗</span></a><button type="button" onClick={copyEmail}>{copied ? "COPIED" : "COPY EMAIL"} <span>⌘</span></button></div>
         </div>
       </section>
 
       <section className="mobile-section work-section" id="work">
         <div className="work-heading"><div><p className="section-kicker">04 / SELECTED WORK</p><h2>Building<br /><em>digital experiences.</em></h2></div><span className="work-count">03<br />PROJECTS</span></div>
-        <div className="project-list">{projects.map((project, index) => <article className="project" key={project.name}><div className={`project-visual visual-${index}`}><img src={project.image} alt={`${project.name} project visual`} loading="lazy" /><span>0{index + 1}</span></div><div className="project-meta"><p className="project-type">— {project.type}</p><h3>{project.name}</h3><p>{project.description}</p><ul>{project.features.map(feature => <li key={feature}>✦ {feature}</li>)}</ul><div className="tag-row">{project.tools.map(tool => <span key={tool}>{tool}</span>)}</div></div></article>)}</div>
+        <div className="project-list">{projects.map((project, index) => <article className="project" key={project.name}><div className={`project-visual visual-${index}`}><img src={project.image} alt={`${project.name} project visual`} loading="lazy" />{project.name === "REVIX ONE" && <div className="music-mockup"><span className="music-art">R</span><strong>REVIX ONE</strong><small>Late night / 24 tracks</small><div className="music-line" /><div className="music-controls">◀︎ <b>▶</b> ▶︎</div></div>}<span>0{index + 1}</span></div><div className="project-meta"><p className="project-type">— {project.type}</p><h3>{project.name}</h3><p>{project.description}</p><ul>{project.features.map(feature => <li key={feature}>✦ {feature}</li>)}</ul><div className="tag-row">{project.tools.map(tool => <span key={tool}>{tool}</span>)}</div></div></article>)}</div>
       </section>
 
       <section className="mobile-section skills-section" id="skills">
@@ -124,7 +125,7 @@ const MobileExperience = ({ children }: PropsWithChildren) => {
         <div className="mobile-mascot-frame">{children}</div>
       </section>
 
-      <footer className="mobile-footer"><a href="#top" className="footer-name">AYAZ AHMAD<span>.</span></a><div><a href="mailto:hello@arisone.in">EMAIL ↗</a></div><small>© 2026 ARIS ONE / MADE WITH INTENT</small></footer>
+      <footer className="mobile-footer"><a href="#top" className="footer-name">AYAZ AHMAD<span>.</span></a><div><a href="mailto:Rustamparvez785@gmail.com">EMAIL ↗</a></div><small>© 2026 ARIS ONE / MADE WITH INTENT</small></footer>
     </main>
   );
 };

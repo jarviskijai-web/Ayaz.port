@@ -744,6 +744,13 @@
 }
 
 @media only screen and (min-width: 1025px) {
+  .character-container { position: fixed; inset: 0; z-index: 2; pointer-events: none; }
+  .character-model { position: absolute !important; inset: auto 0 42px !important; width: 100% !important; height: 80vh !important; transform: none !important; z-index: 1 !important; }
+  .character-model canvas { width: 100% !important; height: 100% !important; }
+  .landing-intro, .landing-info { z-index: 9 !important; }
+}
+
+@media only screen and (min-width: 1025px) {
   .header {
     padding: 24px 48px !important;
   }
@@ -993,4 +1000,12 @@
     white-space: normal;
     justify-content: center;
   }
+}
+
+@media only screen and (min-width: 1025px) {
+  .character-container { position: fixed; inset: 0; z-index: 2; pointer-events: none; }
+  .character-model { position: absolute !important; left: 50% !important; right: auto !important; bottom: 42px !important; width: 100% !important; height: 80vh !important; transform: translateX(-50%) !important; z-index: 1 !important; }
+  .character-model canvas { width: 100% !important; height: 100% !important; }
+  .landing-intro { position: absolute !important; top: 50% !important; left: auto !important; right: 70% !important; transform: translateY(-50%) !important; z-index: 9 !important; }
+  .landing-info { position: absolute !important; top: 51% !important; right: auto !important; bottom: auto !important; left: 70% !important; transform: translateY(-50%) !important; width: clamp(15rem, 20vw, 28rem) !important; z-index: 9 !important; }
 }

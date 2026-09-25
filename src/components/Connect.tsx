@@ -52,7 +52,7 @@ const Connect = () => {
                 <a href="https://wa.me/917355779499" target="_blank" rel="noreferrer" className="social-button">
                   <FaWhatsapp className="svg" />
                 </a>
-                <a href="mailto:hello@arisone.in" className="social-button">
+                <a href="mailto:Rustamparvez785@gmail.com" className="social-button">
                   <FaEnvelope className="svg" />
                 </a>
               </div>

@@ -52,8 +52,8 @@ const Contact = () => {
 
           <div className="footer-column">
             <h5>DIRECT LINE</h5>
-            <a href="mailto:hello@arisone.in" className="footer-email">
-              hello@arisone.in <MdArrowOutward />
+            <a href="mailto:Rustamparvez785@gmail.com" className="footer-email">
+              Rustamparvez785@gmail.com <MdArrowOutward />
             </a>
             <p className="footer-location">
               <FaGlobe /> GLOBAL / REMOTE
