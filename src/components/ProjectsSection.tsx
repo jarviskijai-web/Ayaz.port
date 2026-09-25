@@ -13,57 +13,57 @@ const ProjectsSection = () => {
 
   const projects = [
     {
-      title: "Smart Job Tracker",
-      description: "AI-powered resume analysis and ATS scoring for optimized job applications.",
-      image: "/local-uploads/100d75c1-a319-414e-bc4d-6d1ced066f12.png",
-      features: ["AI Resume Analysis", "ATS Optimization", "Job Tracking", "Career Insights"],
-      tech: ["React.js", "TypeScript", "AI/ML", "Node.js", "Supabase"],
+      title: "Aris One",
+      description: "The flagship AI companion and product vision built to bridge human emotion with machine logic, designed for meaningful digital experiences.",
+      image: "/local-uploads/1cf7f11d-9199-4e9f-922c-a2b644007ad7.png",
+      features: ["AI product vision", "Human-centered UX", "Digital experience design", "Product strategy"],
+      tech: ["React", "TypeScript", "AI", "Product Design", "Web Apps"],
       detailedTech: {
         frontend: ["React.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-        backend: ["Node.js", "Express.js", "AI/ML Libraries"],
-        database: ["Supabase", "PostgreSQL"]
+        backend: ["Node.js", "Express.js", "AI systems"],
+        database: ["MongoDB", "PostgreSQL"]
       },
       icon: Bot,
       gradient: "from-red-500 to-purple-600"
     },
     {
-      title: "DSA Hub",
-      description: "Interactive platform for Data Structures & Algorithms learning with visual demonstrations.",
+      title: "REVIX ONE",
+      description: "A product-focused concept built around modern digital experiences, scalable systems, and user-first design thinking.",
       image: "/local-uploads/00fdeb91-505c-44ca-86ef-c30ae97301d6.png",
-      features: ["Visual Algorithms", "Interactive Learning", "Practice Problems", "Progress Tracking"],
-      tech: ["React", "TypeScript", "D3.js", "Express.js", "MongoDB"],
+      features: ["Product thinking", "Brand systems", "Modern interfaces", "Scalable UX"],
+      tech: ["React", "Next.js", "UX Design", "API Integration", "Design Systems"],
       detailedTech: {
-        frontend: ["React.js", "TypeScript", "D3.js", "Chart.js"],
-        backend: ["Node.js", "Express.js"],
-        database: ["MongoDB", "Redis"]
+        frontend: ["React.js", "Next.js", "Design systems"],
+        backend: ["Node.js", "REST APIs"],
+        database: ["MongoDB", "Supabase"]
       },
       icon: Zap,
       gradient: "from-blue-500 to-purple-600"
     },
     {
-      title: "Snap URL",
-      description: "URL shortening service with QR code generation and analytics tracking.",
-      image: "/local-uploads/ad7591d1-d66c-4f86-89b7-293c02e57b25.png",
-      features: ["URL Shortening", "QR Codes", "Analytics", "Custom Aliases"],
-      tech: ["React", "Node.js", "Express.js", "No Database"],
+      title: "GHARONIX",
+      description: "A brand and product concept focused on digital experiences that feel community-driven, polished, and thoughtfully crafted.",
+      image: "/local-uploads/62336198-315e-42af-8982-a376076d4933.png",
+      features: ["Brand identity", "Experience design", "Product direction", "Digital storytelling"],
+      tech: ["React", "Frontend", "UI Design", "Product Strategy", "Web Design"],
       detailedTech: {
-        frontend: ["React.js", "JavaScript", "CSS3"],
-        backend: ["Node.js", "Express.js"],
-        database: ["No Database"]
+        frontend: ["React.js", "JavaScript", "CSS3", "UI systems"],
+        backend: ["Node.js", "APIs"],
+        database: ["MongoDB", "Supabase"]
       },
       icon: Link2,
       gradient: "from-purple-500 to-blue-600"
     },
     {
-      title: "Snap URL v2.0",
-      description: "Enhanced URL shortener with modern UI and real-time analytics.",
-      image: "/local-uploads/62336198-315e-42af-8982-a376076d4933.png",
-      features: ["Modern UI/UX", "Real-time Analytics", "Advanced Animations", "Enhanced Performance"],
-      tech: ["Next.js", "JavaScript", "Framer Motion", "QR Library"],
+      title: "Future Blueprint",
+      description: "An ongoing experimental project direction focused on AI experiences, system design, and next-generation interfaces.",
+      image: "/local-uploads/ad7591d1-d66c-4f86-89b7-293c02e57b25.png",
+      features: ["Experimental product work", "AI workflows", "Interface research", "Design prototypes"],
+      tech: ["Next.js", "Product Design", "AI", "Prototype Systems"],
       detailedTech: {
-        frontend: ["Next.js", "JavaScript", "Framer Motion", "Tailwind CSS"],
-        backend: ["Next.js API Routes"],
-        database: ["Local Storage", "QR Library"]
+        frontend: ["Next.js", "TypeScript", "UI prototyping"],
+        backend: ["Node.js", "AI integrations"],
+        database: ["Supabase", "MongoDB"]
       },
       icon: Star,
       gradient: "from-purple-600 to-pink-600"
@@ -263,10 +263,10 @@ const ProjectsSection = () => {
               </span>
               <Star className="w-5 h-5 text-purple-300" />
             </div>
-            <div className="mt-8 inline-flex items-center gap-3 px-5 py-2.5 bg-gradient-to-r from-purple-700/50 to-purple-600/50 rounded-full border border-purple-400/70 hover:bg-purple-600/60 hover:border-purple-400/80 transition-all duration-300 cursor-pointer shadow-lg shadow-purple-900/30" onClick={() => window.open('https://github.com/ksparth12', '_blank')}>
+            <div className="mt-8 inline-flex items-center gap-3 px-5 py-2.5 bg-gradient-to-r from-purple-700/50 to-purple-600/50 rounded-full border border-purple-400/70 hover:bg-purple-600/60 hover:border-purple-400/80 transition-all duration-300 cursor-pointer shadow-lg shadow-purple-900/30" onClick={() => window.open('https://github.com/TheRustamDev', '_blank')}>
               <Github className="w-5 h-5 text-purple-200" />
               <span className="text-white font-medium text-sm">
-                View my GitHub profile for all projects and source code
+                Explore my GitHub for product experiments, prototypes, and source work
               </span>
               <ExternalLink className="w-5 h-5 text-purple-200" />
             </div>

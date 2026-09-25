@@ -207,34 +207,38 @@ const Index = () => {
                 whileHover={{ scale: 1.05 }}
               >
                 <Code className="w-5 h-5 mr-2 text-purple-400" />
-                <span>Parth Sharma</span>
+                <span>Ayaz Ahmad</span>
               </motion.div>
               <p className="text-sm text-gray-400 mt-1">
-                &copy; {new Date().getFullYear()} All rights reserved
+                Founder • Designer • Builder • &copy; {new Date().getFullYear()}
               </p>
             </div>
             
             <div className="flex items-center space-x-8">
-              <motion.button
-                onClick={() => scrollToSection('about')}
+              <motion.a
+                href="https://github.com/TheRustamDev"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center text-gray-300 hover:text-purple-400 transition-colors"
                 whileHover={{ scale: 1.05 }}
               >
                 <img src="/social-icons/github-contact.svg" alt="GitHub" className="w-5 h-5 mr-1.5" />
                 <span className="text-sm">GitHub</span>
-              </motion.button>
+              </motion.a>
               
-              <motion.button
-                onClick={() => scrollToSection('contact')}
+              <motion.a
+                href="mailto:hello@arisone.in"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center text-gray-300 hover:text-purple-400 transition-colors"
                 whileHover={{ scale: 1.05 }}
               >
                 <img src="/social-icons/email-contact.svg" alt="Email" className="w-5 h-5 mr-1.5" />
                 <span className="text-sm">Email</span>
-              </motion.button>
+              </motion.a>
               
               <motion.a
-                href="https://linkedin.com/in/ksparth128"
+                href="https://www.linkedin.com/in/rustam-parvez-5668ab32a?utm_source=share_via&utm_content=profile&utm_medium=member_android"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center text-gray-300 hover:text-purple-400 transition-colors"

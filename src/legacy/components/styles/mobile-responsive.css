@@ -1,0 +1,909 @@
+/**
+ * MOBILE RESPONSIVE STYLES - SOURCE VERSION
+ * Created: 2026-04-29
+ * Purpose: Make portfolio fully responsive for smartphones WITHOUT altering desktop design
+ * 
+ * This file should be imported into main.tsx or App.tsx to ensure
+ * mobile responsiveness is included in all future builds.
+ * 
+ * Strategy:
+ * - All changes wrapped in media queries (mobile ONLY)
+ * - Desktop layout (≥1025px) remains UNTOUCHED ✅
+ * - Only layout, spacing, and text scaling adjusted
+ * - No component logic modified
+ * - Animations preserved (optimized only if critical)
+ */
+
+/* ============================================
+   GLOBAL FIXES - Prevent horizontal overflow
+   ============================================ */
+@media only screen and (max-width: 1024px) {
+  body,
+  html {
+    overflow-x: hidden !important;
+    max-width: 100vw;
+  }
+
+  .main-body {
+    max-width: 100vw;
+    overflow-x: hidden !important;
+  }
+
+  /* Ensure all containers respect viewport */
+  .container-main,
+  .container1 {
+    max-width: 100vw !important;
+  }
+}
+
+@media only screen and (max-width: 1439px) {
+  .landing-intro {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    transform: none;
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    margin: 0 auto 1rem;
+  }
+
+  .landing-info {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    transform: none;
+    width: min(100%, 34rem);
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .landing-info h2,
+  h2.landing-info-h2 {
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    white-space: normal;
+  }
+}
+
+/* ============================================
+   TABLET ADJUSTMENTS (768px - 1024px)
+   ============================================ */
+@media only screen and (max-width: 1024px) {
+  
+  /* --- Landing Section --- */
+  .landing-section {
+    height: auto;
+    min-height: 100vh;
+    padding: 100px 0 50px;
+  }
+
+  .landing-intro {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    transform: none;
+    text-align: center;
+    margin: 0 auto 30px;
+    width: 100%;
+  }
+
+  .landing-intro h1 {
+    font-size: clamp(32px, 6vw, 50px);
+    line-height: 1.1;
+  }
+
+  .landing-intro h2 {
+    font-size: clamp(18px, 3vw, 25px);
+    margin-bottom: 10px;
+  }
+
+  .landing-info {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
+    bottom: auto;
+    transform: none;
+    text-align: center;
+    margin: 30px auto 0;
+    width: 90%;
+  }
+
+  .landing-info h2 {
+    font-size: clamp(28px, 5vw, 45px);
+    line-height: 1.1;
+    margin-top: 10px;
+    margin-left: 0;
+  }
+
+  .landing-info h3 {
+    font-size: clamp(16px, 2.5vw, 22px);
+  }
+
+  h2.landing-info-h2 {
+    font-size: clamp(32px, 5.5vw, 55px);
+  }
+
+  .character-model {
+    height: 60vh;
+    bottom: 50px;
+  }
+}
+
+/* ============================================
+   MOBILE ADJUSTMENTS (≤ 768px)
+   ============================================ */
+@media only screen and (max-width: 768px) {
+  
+  /* --- Global Container Fixes --- */
+  .section-container {
+    width: 100% !important;
+    max-width: var(--cWidth) !important;
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
+
+  body {
+    --cWidth: calc(100% - 32px);
+    --vh: 100svh; /* Use small viewport height for mobile */
+  }
+
+  /* --- Navigation --- */
+  .header {
+    padding: 15px 16px !important;
+    width: 100% !important;
+    max-width: 100vw !important;
+    box-sizing: border-box;
+  }
+
+  .navbar-menu {
+    gap: 10px !important;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-pill-btn {
+    width: 7em !important;
+    height: 2.5em !important;
+    font-size: 11px !important;
+    padding: 0 12px;
+  }
+
+  .navbar-connect {
+    display: none; /* Hide on small mobile to save space */
+  }
+
+  .architect-btn {
+    width: 9em !important;
+    height: 3.5em !important;
+    font-size: 11px !important;
+  }
+
+  /* --- Landing Section --- */
+  .landing-section {
+    height: auto;
+    min-height: 100vh;
+    padding: 80px 0 40px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .landing-container {
+    width: 100% !important;
+    max-width: 100% !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Hide Meet the Architect button on mobile */
+  .landing-action,
+  .hero-buttons .cta-button-secondary {
+    display: none !important;
+  }
+
+  .landing-intro {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    transform: none;
+    text-align: center;
+    margin: 0 auto 10px;
+    width: 100%;
+    z-index: 10;
+    order: 1 !important;
+  }
+
+  .landing-intro h1 {
+    font-size: clamp(28px, 8vw, 40px);
+    line-height: 1.1;
+    letter-spacing: 1px;
+  }
+
+  .landing-intro h2 {
+    font-size: clamp(16px, 4vw, 22px);
+    margin-bottom: 8px;
+  }
+
+  /* Position 3D model between text sections on mobile - use available space */
+  .character-model {
+    height: 50vh !important;
+    bottom: auto !important;
+    position: relative !important;
+    margin: 30px auto 20px !important;
+    display: block !important;
+    z-index: 5 !important;
+    order: 2 !important;
+  }
+
+  .landing-info {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: auto;
+    bottom: auto;
+    transform: none;
+    text-align: center;
+    margin: 20px auto 0;
+    width: 100%;
+    z-index: 10;
+    order: 3 !important;
+  }
+
+  .landing-info h2 {
+    font-size: clamp(24px, 6vw, 36px);
+    line-height: 1.1;
+    margin-top: 8px;
+    margin-left: 0;
+  }
+
+  .landing-info h3 {
+    font-size: clamp(14px, 3.5vw, 20px);
+  }
+
+  h2.landing-info-h2 {
+    font-size: clamp(28px, 7vw, 45px);
+    width: 100%;
+  }
+
+  .character-hover {
+    width: 200px;
+    height: 200px;
+  }
+
+  /* Hide large decorative elements on mobile */
+  .landing-circle1 {
+    width: 200px;
+    height: 200px;
+    filter: blur(40px);
+  }
+
+  .landing-circle2 {
+    display: none;
+  }
+
+  /* --- About Section --- */
+  .about-section {
+    padding: 40px 0;
+    height: auto;
+  }
+
+  .about-me {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .about-card {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+
+  .about-label-col {
+    flex-direction: row !important;
+    border-right: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 16px 20px !important;
+    width: 100% !important;
+  }
+
+  .about-label-line {
+    width: 18px !important;
+    height: 1.5px !important;
+    background: linear-gradient(90deg, transparent, #e81cff, transparent) !important;
+  }
+
+  .about-content-col {
+    padding: 18px 20px !important;
+  }
+
+  .about-heading {
+    font-size: 14px;
+  }
+
+  .about-heading-accent {
+    font-size: 18px;
+  }
+
+  .about-para {
+    font-size: 13px !important;
+    line-height: 1.7 !important;
+  }
+
+  /* --- What I Do Section --- */
+  .whatIDO {
+    flex-direction: column !important;
+    height: auto;
+    padding: 60px 0;
+    align-items: flex-start !important;
+  }
+
+  .what-box {
+    width: 100% !important;
+    max-width: calc(100% - 32px) !important;
+    margin: 0 !important;
+  }
+
+  .what-box h2 {
+    font-size: clamp(36px, 8vw, 55px) !important;
+    line-height: 1.1 !important;
+    margin: 30px 0 !important;
+  }
+
+  .what-box-in {
+    margin-left: 0 !important;
+    height: auto !important;
+  }
+
+  .what-content {
+    width: 100% !important;
+    min-height: auto !important;
+    margin-bottom: 16px;
+  }
+
+  .what-content-in {
+    padding: 20px !important;
+  }
+
+  .what-content h3 {
+    font-size: clamp(22px, 5vw, 28px);
+  }
+
+  .what-content p {
+    font-size: 13px !important;
+    line-height: 1.6 !important;
+  }
+
+  .what-tags {
+    font-size: 11px !important;
+  }
+
+  /* --- Career Section --- */
+  .career-section {
+    padding: 60px 0 50px !important;
+    margin-top: 0 !important;
+    margin-bottom: 50px !important;
+    align-items: flex-start !important;
+  }
+
+  .career-section h2 {
+    font-size: clamp(32px, 7vw, 50px) !important;
+    line-height: 1.1 !important;
+    margin-top: 0 !important;
+    margin-bottom: 40px !important;
+    letter-spacing: -1px !important;
+  }
+
+  .career-info {
+    margin: 0;
+  }
+
+  .career-info-box {
+    flex-direction: column !important;
+    gap: 15px !important;
+    margin-bottom: 50px !important;
+  }
+
+  .career-info-in,
+  .career-info-box p {
+    width: 100% !important;
+    padding-left: 5% !important;
+    box-sizing: border-box;
+  }
+
+  .career-info h3 {
+    font-size: clamp(28px, 6vw, 40px);
+  }
+
+  .career-info h4 {
+    font-size: clamp(20px, 4vw, 28px);
+  }
+
+  .career-info h5 {
+    font-size: clamp(11px, 2.5vw, 14px);
+    margin: 10px 0;
+  }
+
+  .career-timeline {
+    left: 0% !important;
+  }
+
+  .career-dot {
+    left: 0% !important;
+  }
+
+  /* --- Work Section --- */
+  .work-section {
+    padding: 80px 0 !important;
+  }
+
+  .work-heading {
+    font-size: clamp(32px, 7vw, 50px) !important;
+    margin-bottom: 50px !important;
+    letter-spacing: -1px !important;
+  }
+
+  .carousel-track-container {
+    padding: 40px 0 !important;
+  }
+
+  .book {
+    width: 90vw !important;
+    max-width: 340px !important;
+    height: 260px !important;
+  }
+
+  .cover-title {
+    font-size: clamp(24px, 6vw, 32px);
+  }
+
+  .book-title {
+    font-size: clamp(20px, 5vw, 26px);
+  }
+
+  .book-category {
+    font-size: clamp(14px, 3vw, 18px);
+  }
+
+  .book-description {
+    font-size: 12px;
+    max-width: 280px;
+  }
+
+  .book-number {
+    font-size: clamp(40px, 8vw, 60px);
+  }
+
+  .carousel-arrow {
+    display: none !important; /* Hide arrows on mobile - use swipe */
+  }
+
+  .carousel-dots {
+    margin-top: 40px !important;
+  }
+
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+  }
+
+  /* --- Mobile Experience Integration --- */
+  .landing-section,
+  .about-section,
+  .whatIDO,
+  .career-section,
+  .work-section,
+  .connect-section,
+  .footer-final {
+    position: relative;
+    scroll-margin-top: 88px;
+    transition: opacity 0.28s ease, transform 0.28s ease;
+  }
+
+  .landing-section + .about-section,
+  .about-section + .whatIDO,
+  .whatIDO + .career-section,
+  .career-section + .work-section,
+  .work-section + .connect-section,
+  .connect-section + .footer-final {
+    border-top: 1px solid rgba(255, 255, 255, 0.06);
+    padding-top: 64px;
+  }
+
+  .landing-section,
+  .about-section,
+  .whatIDO,
+  .career-section,
+  .work-section,
+  .connect-section,
+  .footer-final {
+    transform: translateZ(0);
+    will-change: opacity, transform;
+  }
+
+  /* --- Connect Section --- */
+  .connect-section {
+    padding: 80px 0 !important;
+  }
+
+  .connect-container {
+    flex-direction: column !important;
+    text-align: center !important;
+    gap: 50px !important;
+  }
+
+  .connect-side.left,
+  .connect-side.right {
+    max-width: 100% !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .connect-heading {
+    font-size: clamp(32px, 7vw, 50px) !important;
+    margin-bottom: 20px !important;
+  }
+
+  .connect-para {
+    font-size: clamp(14px, 3vw, 16px) !important;
+    margin-bottom: 25px !important;
+  }
+
+  .service-nodes li {
+    font-size: clamp(16px, 4vw, 20px);
+    justify-content: center !important;
+  }
+
+  .service-nodes h5 {
+    font-size: clamp(10px, 2.5vw, 12px);
+  }
+
+  .transmission-note {
+    font-size: clamp(16px, 4vw, 20px);
+    margin-top: 30px !important;
+  }
+
+  .parent {
+    width: 90vw !important;
+    max-width: 320px !important;
+    height: 350px !important;
+  }
+
+  .card {
+    border-radius: 20px;
+  }
+
+  .content {
+    padding: 40px 50px 0 30px;
+  }
+
+  .content .title {
+    font-size: clamp(22px, 5vw, 28px);
+  }
+
+  .content .text {
+    font-size: 13px;
+    max-width: 240px;
+  }
+
+  .bottom {
+    padding: 15px 20px;
+  }
+
+  .bottom .social-button {
+    width: 30px;
+    height: 30px;
+  }
+
+  .bottom .social-button .svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .logo .circle {
+    display: none !important; /* Hide decorative circles on mobile */
+  }
+
+  .logo .circle5 {
+    display: grid !important;
+    top: 15px !important;
+    right: 15px !important;
+  }
+
+  /* --- Footer --- */
+  .footer-final {
+    padding: 60px 0 30px !important;
+  }
+
+  .footer-container {
+    gap: 50px !important;
+  }
+
+  .footer-top {
+    flex-direction: column !important;
+    gap: 25px !important;
+    padding-bottom: 30px;
+  }
+
+  .footer-logo {
+    font-size: clamp(24px, 6vw, 32px);
+  }
+
+  .footer-tagline {
+    font-size: clamp(13px, 3vw, 16px);
+    margin-top: 10px;
+  }
+
+  .status-indicator {
+    margin-left: 0 !important;
+    font-size: 10px;
+  }
+
+  .footer-status p {
+    text-align: left !important;
+    font-size: clamp(16px, 4vw, 20px);
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr !important;
+    gap: 35px !important;
+  }
+
+  .footer-column h5 {
+    font-size: 11px;
+    margin-bottom: 8px;
+  }
+
+  .footer-column a {
+    font-size: clamp(16px, 4vw, 20px) !important;
+  }
+
+  .footer-email {
+    font-size: clamp(18px, 4.5vw, 24px) !important;
+  }
+
+  .footer-massive-text h2 {
+    font-size: clamp(48px, 12vw, 100px) !important;
+    letter-spacing: -2px !important;
+  }
+
+  .footer-bottom {
+    flex-direction: column !important;
+    gap: 15px !important;
+    text-align: center !important;
+    padding-top: 25px;
+    font-size: 11px;
+  }
+
+  /* --- Social Icons & Resume Button --- */
+  .icons-section {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .social-icons {
+    left: 0 !important;
+    bottom: 15px !important;
+    gap: 15px !important;
+    padding: 8px;
+  }
+
+  .social-icons span {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  .social-icons a {
+    font-size: 22px !important;
+  }
+
+  .resume-button {
+    transform: none !important;
+    font-size: clamp(14px, 3.5vw, 18px) !important;
+    bottom: 25px !important;
+    right: 10px !important;
+  }
+
+  div.resume-button span {
+    font-size: clamp(16px, 4vw, 20px) !important;
+  }
+
+  /* --- Loading Screen --- */
+  .loading-screen {
+    width: 100vw;
+  }
+
+  .loading-header {
+    padding: 15px 0 !important;
+    width: 100% !important;
+  }
+
+  .loader-title {
+    font-size: 13px;
+  }
+
+  .loading-button {
+    padding: 15px 35px !important;
+    font-size: 14px !important;
+  }
+
+  .loading-wrap {
+    --Lsize: 120px;
+  }
+
+  .loading-marquee {
+    font-size: clamp(32px, 8vw, 60px);
+  }
+}
+
+/* ============================================
+   SMALL PHONES (≤ 480px)
+   ============================================ */
+@media only screen and (max-width: 480px) {
+  
+  body {
+    --cWidth: calc(100% - 24px);
+  }
+
+  .section-container {
+    padding: 0 12px;
+  }
+
+  .header {
+    padding: 12px 12px !important;
+  }
+
+  .navbar-menu {
+    gap: 8px !important;
+  }
+
+  .nav-pill-btn {
+    width: 6em !important;
+    height: 2.2em !important;
+    font-size: 10px !important;
+  }
+
+  /* Further reduce sizes for small screens */
+  .landing-intro h1 {
+    font-size: clamp(24px, 9vw, 32px);
+  }
+
+  .landing-intro h2 {
+    font-size: clamp(14px, 4.5vw, 18px);
+  }
+
+  .landing-info h2 {
+    font-size: clamp(20px, 7vw, 28px);
+  }
+
+  h2.landing-info-h2 {
+    font-size: clamp(24px, 8vw, 36px);
+  }
+
+  .character-model {
+    height: 40vh;
+  }
+
+  .book {
+    height: 240px !important;
+  }
+
+  .about-card:before {
+    left: -3px;
+    width: calc(100% + 6px);
+  }
+
+  .career-section h2 {
+    font-size: clamp(28px, 8vw, 40px) !important;
+  }
+
+  .work-heading {
+    font-size: clamp(28px, 8vw, 40px) !important;
+  }
+
+  .connect-heading {
+    font-size: clamp(28px, 8vw, 40px) !important;
+  }
+
+  .footer-massive-text h2 {
+    font-size: clamp(40px, 14vw, 80px) !important;
+  }
+}
+
+/* ============================================
+   LANDSCAPE MODE (tablets in landscape)
+   ============================================ */
+@media only screen and (max-width: 1024px) and (orientation: landscape) {
+  
+  .character-model {
+    height: 70vh;
+  }
+
+  .landing-section {
+    padding: 60px 0 30px;
+  }
+
+  .career-section {
+    padding: 50px 0 40px !important;
+  }
+
+  .whatIDO {
+    padding: 40px 0;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY & TOUCH TARGETS
+   ============================================ */
+@media only screen and (max-width: 768px) {
+  
+  /* Ensure all interactive elements are tap-friendly */
+  button,
+  a,
+  .nav-pill-btn,
+  .carousel-arrow,
+  .social-button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+/* ============================================
+   PERFORMANCE OPTIMIZATIONS (Mobile Only)
+   ============================================ */
+@media only screen and (max-width: 768px) {
+  
+  /* Simplify heavy animations on mobile */
+  .global-bg-mesh {
+    background-size: 100% 100%; /* Reduce animation complexity */
+  }
+
+  .global-bg-mesh {
+    animation-duration: 60s; /* Slow down to reduce CPU usage */
+  }
+
+  /* Optimize 3D transforms */
+  .card,
+  .parent {
+    perspective: 1000px; /* Reduce perspective calculations */
+  }
+}
+
+/* ============================================
+   FINAL SAFETY CHECKS
+   ============================================ */
+@media only screen and (max-width: 768px) {
+  
+  /* Prevent any element from exceeding viewport */
+  img,
+  video,
+  canvas {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Fix any potential overflow issues */
+  .work-section,
+  .connect-section,
+  .career-section,
+  .about-section,
+  .whatIDO {
+    overflow-x: hidden !important;
+  }
+}

@@ -1,0 +1,563 @@
+.work-section {
+  position: relative;
+  z-index: 1;
+  background-color: transparent !important;
+  padding: 150px 0;
+}
+
+.work-heading {
+  font-family: 'Syne', sans-serif;
+  font-size: 70px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 80px;
+  text-transform: uppercase;
+  letter-spacing: -2px;
+}
+
+.work-container {
+  max-width: 1200px;
+  margin: auto;
+  position: relative;
+}
+
+/* ── Carousel Layout ── */
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.carousel-track-container {
+  overflow: visible; /* Crucial: Allows the 3D flip to swing out without getting cut */
+  width: 100%;
+  padding: 80px 0; /* Extra vertical padding for the shadow/glow */
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform;
+}
+
+.carousel-slide {
+  min-width: 100%;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 2000px;
+}
+
+/* ── Book & Flip Core ── */
+.book {
+  position: relative;
+  width: 480px;
+  height: 320px;
+  perspective: 2000px;
+  transform-style: preserve-3d;
+  transition: transform 0.5s ease;
+}
+
+.neon-card {
+  position: absolute;
+  inset: 0;
+  background: var(--neon-gradient);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+/* The Glow Effect (from Uiverse) */
+.neon-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--neon-gradient);
+  z-index: 1;
+}
+
+.neon-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--neon-gradient);
+  filter: blur(40px);
+  z-index: 0;
+}
+
+.neon-inner-bg {
+  position: absolute;
+  inset: 8px;
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 14px;
+  z-index: 2;
+}
+
+/* ── Cover Specifics ── */
+.cover {
+  z-index: 10;
+  transform-origin: left;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.book:hover .cover {
+  transform: rotateY(-120deg);
+}
+
+.cover-img {
+  position: absolute;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.2;
+  transition: 0.6s ease-in-out;
+  border-radius: 12px;
+}
+
+.book:hover .cover-img {
+  opacity: 0.5;
+  transform: scale(0.9) translateY(-20px);
+}
+
+.neon-content-box {
+  position: absolute;
+  z-index: 4;
+  inset: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+}
+
+.cover-content {
+  /* Removed bottom: 0 to center in between */
+  transform: translateY(0);
+  transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.book:hover .cover-content {
+  transform: translateY(-20px);
+}
+
+.cover-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 36px;
+  font-weight: 800;
+  text-transform: uppercase;
+  margin: 0;
+  line-height: 1;
+  letter-spacing: 1px;
+}
+
+.cover-title span {
+  display: block;
+  font-size: 12px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 300;
+  opacity: 0.5;
+  letter-spacing: 4px;
+  margin-top: 5px;
+}
+
+.cover-hint {
+  font-family: 'Caveat', cursive;
+  font-size: 18px;
+  letter-spacing: 1px;
+  margin-top: 20px;
+  opacity: 0.8;
+  color: var(--accentColor);
+}
+
+/* ── Inner Page Specifics ── */
+.book-content {
+  z-index: 5;
+}
+
+.book-number {
+  position: absolute;
+  top: 25px;
+  right: 30px;
+  font-family: 'Syne', sans-serif;
+  font-size: 60px;
+  font-weight: 900;
+  opacity: 0.1;
+  z-index: 3;
+}
+
+.book-title {
+  font-family: 'Syne', sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 5px;
+}
+
+.book-category {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 18px;
+  color: var(--accentColor);
+  margin-bottom: 15px;
+}
+
+.book-description {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  opacity: 0.7;
+  max-width: 320px;
+}
+
+.neon-icons {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  padding: 0;
+  margin-top: 25px;
+}
+
+.neon-icons li {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.4);
+  transition: 0.3s;
+}
+
+.neon-icons li:hover {
+  color: #fff;
+  transform: translateY(-5px);
+}
+
+.neon-launch-btn {
+  margin-top: 25px;
+  padding: 10px 24px;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50px;
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.neon-launch-btn:hover {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.neon-launch-btn.locked {
+  opacity: 0.5;
+  cursor: wait;
+  border-style: dashed;
+  animation: scanning 2s infinite ease-in-out;
+}
+
+.neon-launch-btn.locked:hover {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: none;
+}
+
+@keyframes scanning {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.7; }
+}
+
+/* ── Navigation ── */
+.carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+}
+
+.carousel-arrow-left { left: -100px; }
+.carousel-arrow-right { right: -100px; }
+
+/* ── Dots ── */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 60px;
+}
+
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  transition: 0.3s;
+}
+
+.carousel-dot-active {
+  background: var(--accentColor);
+  transform: scale(1.5);
+  box-shadow: 0 0 15px var(--accentColor);
+}
+
+/* ── Responsive ── */
+@media only screen and (max-width: 1400px) {
+  .book { width: 400px; height: 280px; }
+  .carousel-arrow-left { left: -50px; }
+  .carousel-arrow-right { right: -50px; }
+}
+
+@media only screen and (max-width: 1024px) {
+  .work-heading { font-size: 50px; }
+  .book { width: 340px; height: 240px; }
+  .carousel-arrow { display: none; }
+  .cover-title { font-size: 24px; }
+  .book-title { font-size: 22px; }
+}
+
+@media only screen and (max-width: 767px) {
+  .work-section {
+    width: 100%;
+    max-width: 100%;
+    padding: 72px 0 28px;
+    overflow: hidden;
+  }
+
+  .work-container {
+    width: 100%;
+    max-width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
+
+  .work-heading {
+    margin: 0 0 20px;
+    text-align: left;
+    font-size: clamp(2.1rem, 7vw, 3.2rem);
+    line-height: 0.96;
+    letter-spacing: -0.08em;
+    text-transform: uppercase;
+  }
+
+  .work-heading span {
+    color: var(--accentColor);
+  }
+
+  .carousel-wrapper {
+    width: 100%;
+  }
+
+  .carousel-track-container {
+    padding: 0;
+    overflow: visible;
+  }
+
+  .carousel-track {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    transform: none !important;
+  }
+
+  .carousel-slide {
+    min-width: 100%;
+    width: 100%;
+    display: block;
+    perspective: none;
+  }
+
+  .book {
+    position: relative;
+    width: 100%;
+    height: auto;
+    min-height: 390px;
+    perspective: none;
+    transform: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-radius: 22px;
+    overflow: hidden;
+    background: rgba(14, 14, 18, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.22);
+  }
+
+  .book:hover .cover {
+    transform: none;
+  }
+
+  .cover,
+  .book-content {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    border-radius: 0;
+    min-height: 0;
+  }
+
+  .cover {
+    height: 210px;
+    z-index: 1;
+    transform: none;
+    box-shadow: none;
+  }
+
+  .cover-img {
+    opacity: 0.9;
+    filter: saturate(1.1) contrast(1.1);
+  }
+
+  .cover-content {
+    justify-content: flex-end;
+    align-items: flex-start;
+    text-align: left;
+    padding: 18px 18px 16px;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0.06), rgba(0,0,0,0.72));
+  }
+
+  .cover-title {
+    font-size: clamp(1.5rem, 5.5vw, 2.2rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .cover-title span {
+    margin-top: 8px;
+    letter-spacing: 0.22em;
+  }
+
+  .cover-hint {
+    display: none;
+  }
+
+  .book-content {
+    display: flex;
+    flex-direction: column;
+    padding: 18px 18px 20px;
+    background: rgba(10, 10, 12, 0.86);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    z-index: 2;
+  }
+
+  .book-number {
+    position: static;
+    font-size: 2.2rem;
+    margin-bottom: 6px;
+    opacity: 0.28;
+  }
+
+  .neon-content-box {
+    position: static;
+    inset: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    color: #fff;
+    width: 100%;
+  }
+
+  .book-title {
+    font-size: clamp(1.3rem, 5vw, 1.8rem);
+    margin: 0 0 4px;
+    line-height: 1.1;
+  }
+
+  .book-category {
+    margin: 0 0 10px;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: #a7f3d0;
+  }
+
+  .book-description {
+    display: block;
+    margin: 0;
+    max-width: none;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    opacity: 0.82;
+    color: rgba(255,255,255,0.8);
+  }
+
+  .neon-icons {
+    margin: 12px 0 0;
+    gap: 10px;
+    opacity: 0.6;
+  }
+
+  .neon-icons li {
+    font-size: 0.9rem;
+  }
+
+  .neon-launch-btn {
+    margin-top: 14px;
+    padding: 10px 16px;
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    width: fit-content;
+    text-decoration: none;
+  }
+
+  .carousel-arrow {
+    display: none;
+  }
+
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 18px;
+    padding-bottom: 4px;
+  }
+
+  .carousel-dot {
+    width: 8px;
+    height: 8px;
+    background: rgba(255,255,255,0.24);
+  }
+
+  .carousel-dot-active {
+    background: var(--accentColor);
+    box-shadow: 0 0 12px rgba(94,234,212,0.75);
+  }
+}
+
+@media only screen and (max-width: 767px) and (prefers-reduced-motion: reduce) {
+  .cover,
+  .book,
+  .carousel-track,
+  .neon-launch-btn,
+  .neon-icons li {
+    transition: none;
+  }
+}

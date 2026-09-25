@@ -170,9 +170,9 @@ const AboutSection = () => {
               {/* Interactive Stats Cards */}
               <div className="grid grid-cols-3 gap-4 mt-8">
                 {[
-                  { icon: Code, label: "Projects", value: "15+", color: "from-purple-900 to-purple-700" },
-                  { icon: Target, label: "Experience", value: "2+ Years", color: "from-purple-800 to-purple-900" },
-                  { icon: Lightbulb, label: "Technologies", value: "20+", color: "from-purple-700 to-purple-800" }
+                  { icon: Code, label: "Projects", value: "3+", color: "from-purple-900 to-purple-700" },
+                  { icon: Target, label: "Focus", value: "AI + Web", color: "from-purple-800 to-purple-900" },
+                  { icon: Lightbulb, label: "Builds", value: "Digital Products", color: "from-purple-700 to-purple-800" }
                 ].map((item, index) => (
                   <motion.div
                     key={item.label}
@@ -210,7 +210,7 @@ const AboutSection = () => {
                   </div>
                   <div>
                     <p className="text-purple-300 text-sm font-medium">Status</p>
-                    <p className="text-white font-semibold text-lg">Final Year Student</p>
+                    <p className="text-white font-semibold text-lg">Founder & Builder</p>
                   </div>
                 </motion.div>
               </div>
@@ -221,7 +221,7 @@ const AboutSection = () => {
                   className="text-xl"
                   whileHover={{ scale: 1.02 }}
                 >
-                  👋 <span className="text-white font-semibold">Hello!</span> I'm <span className="text-purple-400 font-bold">Parth Sharma</span>, a passionate Final-Year Computer Science Student at Chandigarh University, ready to launch my career as a Software Engineer.
+                  👋 <span className="text-white font-semibold">Hello!</span> I'm <span className="text-purple-400 font-bold">Ayaz Ahmad</span>, the founder and architect behind Aris One — building digital experiences that connect human emotion with product vision and technology.
                 </motion.p>
 
                 <motion.div 
@@ -234,7 +234,7 @@ const AboutSection = () => {
                     💻 My Journey
                   </h3>
                   <p className="text-lg">
-                    With a strong foundation in C++, Data Structures & Algorithms (DSA), and Full-Stack Development, I thrive on solving complex problems and building efficient, scalable solutions. My academic journey has equipped me with hands-on experience in both frontend and backend technologies.
+                    I work across product design, web experiences, and AI-first systems — helping founders turn ideas into polished digital products with clarity, depth, and a strong user experience foundation.
                   </p>
                 </motion.div>
 
@@ -250,19 +250,19 @@ const AboutSection = () => {
                   <ul className="space-y-3 text-lg">
                     <li className="flex items-center gap-3">
                       <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
-                      Develop clean, optimized code with a focus on performance and usability
+                      Design and develop digital products with thoughtful UX and modern interfaces
                     </li>
                     <li className="flex items-center gap-3">
                       <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
-                      Build full-stack web applications using modern technologies
+                      Build websites, mobile apps, and AI-driven experiences for real-world impact
                     </li>
                     <li className="flex items-center gap-3">
                       <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
-                      Solve algorithmic challenges to sharpen problem-solving skills
+                      Create scalable product concepts like Aris One, REVIX ONE, and future-ready systems
                     </li>
                     <li className="flex items-center gap-3">
                       <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
-                      Collaborate on projects that bridge theory and real-world impact
+                      Turn strategy into polished, human-centered digital experiences
                     </li>
                   </ul>
                 </motion.div>

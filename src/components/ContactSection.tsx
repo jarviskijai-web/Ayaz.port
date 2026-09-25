@@ -15,28 +15,28 @@ const ContactSection = () => {
     {
       icon: "/social-icons/email-contact.svg",
       label: "Email",
-      value: "Ksparth12@gmail.com",
-      href: "mailto:Ksparth12@gmail.com",
+      value: "hello@arisone.in",
+      href: "mailto:hello@arisone.in",
       gradient: "from-purple-600 to-purple-800"
     },
     {
       icon: "/social-icons/linkedin-contact.svg",
       label: "LinkedIn",
-      value: "ksparth128",
-      href: "https://linkedin.com/in/ksparth128",
+      value: "rustam-parvez",
+      href: "https://www.linkedin.com/in/rustam-parvez-5668ab32a?utm_source=share_via&utm_content=profile&utm_medium=member_android",
       gradient: "from-purple-500 to-purple-700"
     },
     {
       icon: "/social-icons/github-contact.svg",
       label: "GitHub",
-      value: "ksparth12",
-      href: "https://github.com/ksparth12",
+      value: "TheRustamDev",
+      href: "https://github.com/TheRustamDev",
       gradient: "from-purple-700 to-purple-900"
     },
     {
       icon: "/social-icons/location-contact.svg",
       label: "Location",
-      value: "Noida, NCR, India",
+      value: "India",
       href: "#",
       gradient: "from-purple-800 to-purple-600"
     }
@@ -107,7 +107,7 @@ const ContactSection = () => {
                   >
                     <img
                       src="/local-uploads/cd90d756-7a7d-41f9-b6b3-17efe161afc1.png"
-                      alt="Parth Sharma - Professional"
+                      alt="Ayaz Ahmad - Professional"
                       className="w-full h-full object-cover"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-purple-900/30 to-transparent" />
@@ -149,8 +149,7 @@ const ContactSection = () => {
               >
                 <h3 className="text-2xl font-bold text-white mb-4">Ready to Build Something Amazing?</h3>
                 <p className="text-gray-300 leading-relaxed">
-                  Whether you're looking for a passionate developer to join your team, want to discuss a project idea, 
-                  or simply want to connect with a fellow tech enthusiast, I'd love to hear from you!
+                  Whether you're looking for a product-minded builder, a design-led developer, or a collaborator for a new digital vision, I'd love to hear from you.
                 </p>
               </motion.div>
 
@@ -161,7 +160,7 @@ const ContactSection = () => {
               >
                 <Button
                   className="bg-gradient-to-r from-purple-700 to-purple-800 hover:from-purple-800 hover:to-purple-900 text-white px-8 py-3 rounded-full text-lg font-semibold shadow-lg hover:shadow-purple-600/25 transition-all duration-300"
-                  onClick={() => window.open('mailto:Ksparth12@gmail.com', '_blank')}
+                  onClick={() => window.open('mailto:hello@arisone.in', '_blank')}
                 >
                   <img src="/social-icons/email-contact.svg" alt="Email" className="w-5 h-5 mr-2" />
                   Get In Touch

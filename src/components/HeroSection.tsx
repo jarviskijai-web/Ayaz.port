@@ -54,25 +54,25 @@ const HeroSection = () => {
     {
       name: "GitHub",
       icon: "/social-icons/github-contact.svg",
-      url: "https://github.com/ksparth12",
+      url: "https://github.com/TheRustamDev",
       color: "hover:text-white hover:bg-purple-800"
     },
     {
       name: "LinkedIn",
       icon: "/social-icons/linkedin-contact.svg",
-      url: "https://linkedin.com/in/ksparth128",
+      url: "https://www.linkedin.com/in/rustam-parvez-5668ab32a?utm_source=share_via&utm_content=profile&utm_medium=member_android",
       color: "hover:text-white hover:bg-purple-800"
     },
     {
       name: "Email",
       icon: "/social-icons/email-contact.svg",
-      url: "mailto:Ksparth12@gmail.com",
+      url: "mailto:hello@arisone.in",
       color: "hover:text-white hover:bg-purple-800"
     },
     {
-      name: "Location",
+      name: "Instagram",
       icon: "/social-icons/location-contact.svg",
-      url: "#",
+      url: "https://www.instagram.com/rustam_parvez",
       color: "hover:text-white hover:bg-purple-800"
     }
   ];
@@ -122,7 +122,7 @@ const HeroSection = () => {
               transition={{ delay: 0.2, duration: 0.6 }}
               className="text-purple-400 text-lg mb-4"
             >
-              👋 Hello, I'm
+              👋 Hello, I’m
             </motion.div>
 
             {/* Name */}
@@ -132,18 +132,18 @@ const HeroSection = () => {
               transition={{ delay: 0.4, duration: 0.6 }}
               className="text-5xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-purple-300 to-purple-500 bg-clip-text text-transparent"
             >
-              Parth Sharma
+              Ayaz Ahmad
             </motion.h1>
 
             {/* Typewriter Effect */}
             <div className="text-2xl lg:text-3xl mb-6 h-20">
               <TypewriterEffect
                 texts={[
-                  "Software Engineer",
-                  "Full Stack Developer",
-                  "CS Final Year Student",
-                  "Problem Solver",
-                  "Code Enthusiast"
+                  "Founder of Aris One",
+                  "Web & App Developer",
+                  "Product Builder",
+                  "AI & UX Designer",
+                  "Creator of REVIX ONE"
                 ]}
               />
             </div>
@@ -155,7 +155,7 @@ const HeroSection = () => {
               transition={{ delay: 0.8, duration: 0.6 }}
               className="text-gray-300 text-lg mb-8"
             >
-              📍 Noida, NCR | Chandigarh University | Software Engineer
+              📍 India | Founder • Designer • Builder
             </motion.p>
 
             {/* CTA Buttons */}
