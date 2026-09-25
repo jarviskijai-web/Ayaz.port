@@ -27,7 +27,7 @@ const App = () => {
   if (isMobile) {
     return (
       <LoadingProvider>
-        <Suspense fallback={<AppSkeleton />}>
+        <Suspense fallback={<InlineSkeleton />}>
           <MobileExperience>
             <CharacterModel />
           </MobileExperience>
