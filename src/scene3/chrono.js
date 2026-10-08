@@ -63,13 +63,13 @@ export class Chrono {
     this.layout = null;
     this.res = [1, 1];
 
-    // continuous position along the timeline, 0..5. Damped rather than set, so
+    // continuous position along the timeline. Damped rather than set, so
     // the hand has weight and never snaps between years.
-    this.u = 5;
-    this.targetU = 5;
+    this.u = YEARS.length - 1;
+    this.targetU = YEARS.length - 1;
     this.heat = 0;
     this.pointer = { x: 0, y: 0, tx: 0, ty: 0, inside: false };
-    this.active = 5;
+    this.active = YEARS.length - 1;
   }
 
   async load() {

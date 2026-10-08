@@ -6,10 +6,10 @@ Two scenes so far, both WebGL, no frameworks and no build step.
 GIREESH wordmark materialises behind him → chips, arrows and dots snap into
 place → header draws itself in → the composition settles and breathes.
 
-**Scene 2 — the creative universe.** The supplied film, played as the section:
-the visitor scrolls into it, it arrives from black, and a veil breathes over
-the 10-second loop point so the wrap is never seen as a cut. Decoding stops
-whenever the section is off screen.
+**Scene 2 — the creative universe.** A supplied cinematic background plate
+with the existing procedural WebGL2 tool cards composited transparently above
+it. Rendering pauses while the section is off screen or the browser tab is
+hidden.
 
 **Scene 3 — the time machine.** A warm black room → the timeline rail draws
 itself → a giant clock resolves → six year cards arrive → the floor mechanism
@@ -68,60 +68,16 @@ That regenerates `public/media/*` (packed clips, posters, `manifest.json` with
 per-frame subject tracking — the site anchors the man by his *feet*, not by the
 video rectangle, which is why his scale holds while he walks toward camera).
 
-## Scene 2: the film, and the parked procedural version
+## Scene 2: cinematic plate and interactive tiles
 
-The section plays `public/media/universe.mp4` — the reference footage with its
-video stream untouched (audio dropped, faststart). `src/scene2/boot2.js` is the
-whole runtime: entrance, loop-seam veil, visibility-gated decoding.
-
-Everything below describes the PROCEDURAL WebGL room built to the same
-reference (universe.js, cards.js, ribbon.js, particles.js, shaders2.js). It is
-parked, not deleted — restore boot2.js's old implementation to bring back the
-live, pointer-reactive variant.
-
-Everything is one WebGL canvas, pinned with `position: sticky` inside a
-190svh section so there is scroll travel for the camera dolly.
-
-**The twelve cards are reconstructions, not a flat collage.** Each card's
-centre, apparent width and aspect were measured off the supplied artwork; depth
-is then *inferred* from apparent size (a card drawn large in the poster is a
-card near the camera) and the world position is solved so the projection puts it
-back where the poster had it. That is why parallax, the dolly and the hover tilt
-all behave correctly — the depths are physically consistent rather than guessed.
-It also re-fits at any viewport aspect instead of cropping.
-
-**The materialisation is one event.** There is deliberately no per-card stagger
-anywhere: `mat` is a single scalar every card reads. The only per-card variation
-is in *how* each one travels once it already exists, which reads as choreography
-rather than as a queue of fades. The sequence is time-based, triggered when the
-section scrolls into view — tying it to scroll offset would let a fast flick
-skip the moment the brief cares about most, and a slow drag would smear it into
-exactly the one-by-one reveal it is not supposed to be.
-
-**The ribbon is a light-painting, not a shape.** Rebuilt against the supplied
-motion reference: a parametric HEAD travels the room (an orbit around the figure
-with slower incommensurate drifts layered on, so the path never visibly
-repeats), and the strip is rebuilt every frame from the last ~7.5 seconds of
-where the head has been. The trail cools white → salmon → dark red as it ages;
-the length is what lets it close loops and cross itself. Because the trail
-weaves in depth, the strip carries per-vertex world z and is submitted in three
-depth-gated passes — behind the figure, between him and the card shell, and over
-the cards. The head also lights the room: the wall blushes and the floor catches
-a streak beneath it, and the embers near it flare.
-
-**The figure is only a shape.** His silhouette was lifted from the artwork with
-grabCut; his red rim light is generated at runtime from the core's position, so
-he responds to the scene instead of carrying a baked highlight from a
-photograph. That is what stops him reading as a cut-out.
-
-Cost: ~0.3 ms of CPU per frame for 28 quads, 900 embers, and the trail rebuilt
-every frame.
-
-### Tuning scene 2
-
-- `window.__uni` — the live scene (cards, pointer, hovered index).
-- `window.__shot2('name', 9)` — render at t = 9s and save to `shots/`.
-- Beats live in `src/scene2/timeline2.js`; card geometry in `cards.js`.
+The section uses the provided `public/media/universe-background.png` as a
+full-bleed environmental image. The original `src/scene2/tools-3d.html` demo is
+embedded above it in a transparent iframe. It uses Three.js r128, its original
+extruded tile treatment, and the project's existing `public/tools/` logos.
+Tiles sit around the background figure; hover motion affects only the tile
+under the pointer, and tapping a tile opens its tool link. The surrounding
+layout also removes the demo's decorative floating cubes so the figure stays
+clear.
 
 ## Scene 3: how it is put together
 
@@ -225,41 +181,32 @@ his shoulders, the two green closers at his feet.
 - `window.__shot4('name', 9)` — render the environment canvas at t = 9s.
 - Beats in `src/scene4/timeline4.js`; sprite boxes + depths in `layout4.js`.
 
+## Developer Photoshoot gallery
+
+The `#photoshoot` section follows Projects and uses an editorial black-and-red
+gallery treatment. It displays nine original JPEGs from `public/photoshoot/`;
+the source files are copied unchanged, and the red tint is applied with CSS.
+Each photo has a matching caption. The gallery uses eight-photo pagination and
+an image viewer with previous/next and keyboard arrow navigation. Gallery
+content and image paths are defined in `src/scene5/photoshoot.js`.
+
 ## The finale: how it is put together
 
-The closing shot IS the reference (`Footer image.jpg`), split into breathing
-layers by `tools/extract_fin.py`: the smoking man is GrabCut-matted out of
-the artwork (his pose, grade, rim and cigarette are the reference's own
-pixels — the drifting smoke deliberately stays with the background), and
-everything else — the giant wordmark, the red fog — becomes the plate, with
-the man diffusion-filled away and the baked captions blanked so the live DOM
-set can type itself in. Reassembled at rest the frame differs from the
-reference by ≈1/255 mean; both layers share one cover mapping, so they can
-never drift.
-
-**The reveal is staged in the plate shader** (`F6_PLATE`): a dim ember world
-comes up first (uGlow), then the bright content — gated by its own
-luminance — surfaces through the fog and sharpens from a five-tap blur
-(uWord): the title card emerges through smoke rather than fading in. A slow
-breathing pulse, a whisper of drifting live fog and film grain keep the
-photograph from freezing. The man rises in on the front canvas with a few
-pixels of parallax against the plate; a quiet red veil drifts over him.
-The captions, quote and functional row (contact, socials, copyright) hold
-the edges, exactly where the reference puts them.
-
-**Frame 2.** The footer holds a second still: past the settled first frame,
-extra scroll room (the section is 240svh, pinned) slides the supplied image
-in from the LEFT — damped scroll progress through a smootherstep, entering
-blurred and darkened, its leading edge shadowing frame 1, which is nudged
-aside and dimmed beneath; the functional row stays on top throughout. The
-still is `footer 2nd image.jpg` in the project root (the loader also
-accepts `public/fin/frame2.jpg`); replace the file and reload to swap the
-ending — nothing else to wire.
+The closing section is a 240svh pinned sequence. Its first frame uses the
+red-wall portrait (`public/photoshoot/photo-02.jpeg`) on portrait screens; as
+the user scrolls, the mirror selfie (`public/photoshoot/photo-08.jpeg`) slides
+in over it. On wide screens (aspect ratio 1.4:1 or greater), the first frame
+switches to the provided 16:9 Taj Mahal image (`landscape-taj.png`) and the
+second to a correctly oriented 16:9 riverside photo (`landscape-riverside.jpg`).
+Portrait images stay uncropped on phones; landscape images fill wide frames.
+A restrained CSS red tint, the original captions, and the footer row remain
+layered above the images.
 
 ### Tuning the finale
 
-- `window.__finale` — the live scene; `window.__shot6('name', 7)`.
-- Beats in `src/scene6/timeline6.js`; the man's box in `public/fin/fin.json`.
+- `window.__finale` — the live section and its two image frames.
+- Scroll timing and caption timing are managed in `src/scene6/boot6.js` and
+  `src/scene6/timeline6.js`.
 
 ## Layout truth
 
@@ -282,8 +229,8 @@ src/scene/furniture.js     DOM layer wiring (welcome, chips, arrows, dots, rule)
 src/gl/stage.js            draw order + composition parameters
 src/gl/shaders.js          plate / letters / figure / shadow / post GLSL
 src/lib/clip.js            packed-video element, loop-seam dissolve
-src/scene2/boot2.js        scene-2 lifecycle: visibility, pointer, scroll
-src/scene2/universe.js     draw order and composition parameters
+src/scene2/boot2.js        scene-2 lifecycle: visibility, resize, render loop
+src/scene2/universe.js     transparent WebGL2 tool-card layer
 src/scene2/cards.js        measured card layout + per-frame pose
 src/scene2/ribbon.js       the red energy curve, split around the figure
 src/scene2/particles.js    embers and floating debris

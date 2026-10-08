@@ -149,6 +149,7 @@ uniform float uRadius;      // corner radius in local units
 uniform float uOpacity;
 uniform float uMat;         // materialisation 0..1
 uniform float uHover;
+uniform float uSideFace;    // dark extruded card backing
 uniform float uAspect;      // card w/h, to keep corners square
 uniform vec2  uLight;       // direction of the scene's red light, in card space
 uniform float uTime;
@@ -170,6 +171,17 @@ void main(){
   float soft = mix(0.075, 0.006, uMat);
   float face = smoothstep(soft, -soft, d);
   if(face <= 0.002) discard;
+
+  if(uSideFace > 0.5){
+    float sideRim = smoothstep(0.10, 0.0, abs(d));
+    float facing = clamp(dot(normalize(p + 1e-5), normalize(uLight)), 0.0, 1.0);
+    vec3 side = vec3(0.018, 0.006, 0.008);
+    side += vec3(0.48, 0.035, 0.026) * sideRim * (0.12 + 0.88 * facing);
+    side += vec3(0.025, 0.008, 0.010) * (0.5 - vP.y * 0.5);
+    float a = face * uOpacity;
+    frag = vec4(side * a, a);
+    return;
+  }
 
   // --- slab material -----------------------------------------------------
   vec3 col = vec3(0.055, 0.055, 0.066);

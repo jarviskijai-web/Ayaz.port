@@ -49,7 +49,7 @@ export async function initGallery() {
     el.type = 'button';
     el.className = 'g-card';
     el.dataset.i = String(i);
-    el.setAttribute('aria-label', `Project — ${c.title}`);
+    el.setAttribute('aria-label', `Portfolio visual ${i + 1}`);
     el.style.setProperty('--tint',
       `rgba(${c.tint.map((v, k) => k < 3 ? Math.round(v * 255) : v)}, 0.5)`);
     el.style.zIndex = String(10 + Math.round((1 - c.depth) * 20));

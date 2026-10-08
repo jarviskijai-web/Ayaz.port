@@ -1,15 +1,11 @@
 /* ==========================================================================
-   The finale — the closing shot.
-   Deep black + dark red + crimson + cream. The furnace canvas sits behind a
-   giant GIREESH set in real type (Anton, stretched to the reference's
-   ultra-tall poster proportions, wearing the extracted grunge), the man's
-   canvas rides in front of the title, and the editorial captions + the quiet
-   functional row hold the edges.
+   The finale — two original portraits, a crimson treatment, and editorial
+   captions over a pinned, scroll-driven transition.
    ========================================================================== */
 
 /* Two frames of one closing scene: the pinned stage holds frame 1 (the
-   GIREESH composition) while the extra scroll room drives frame 2 sliding in
-   from the left over it. */
+   red-wall portrait) while the extra scroll room brings frame 2 (the mirror
+   portrait) in from the left over it. */
 .fin {
   position: relative;
   height: 240svh;
@@ -21,25 +17,59 @@
   top: 0;
   height: 100svh;
   overflow: hidden;
-  background: #000;
+  background: radial-gradient(ellipse at 88% 40%, rgba(101, 9, 13, 0.2), transparent 56%), #030303;
 }
 
 .fin__stage1 {
   position: absolute;
   inset: 0;
+  z-index: 1;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 78% 36%, rgba(107, 12, 17, 0.2), transparent 58%), #080707;
   will-change: transform;
 }
 
-#finBack,
-#finMan {
+.fin__photo-backdrop,
+.fin__photo-main {
   position: absolute;
   inset: 0;
+  display: block;
   width: 100%;
   height: 100%;
-  display: block;
+  user-select: none;
+  pointer-events: none;
 }
-#finBack { z-index: 1; }
-#finMan { z-index: 3; pointer-events: none; }
+
+.fin__photo-backdrop {
+  z-index: 0;
+  object-fit: cover;
+  filter: blur(28px) brightness(0.32) saturate(0.72);
+  transform: scale(1.08);
+}
+
+.fin__photo-main {
+  z-index: 1;
+  object-fit: contain;
+  object-position: center;
+}
+
+.fin.is-landscape .fin__photo-backdrop,
+.fin.is-landscape .fin__photo-main,
+.fin.is-landscape .fin__frame2 .fin__photo-backdrop,
+.fin.is-landscape .fin__frame2 .fin__photo-main {
+  object-fit: cover;
+}
+
+.fin__stage1::after {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  background: #bd111a;
+  content: "";
+  mix-blend-mode: color;
+  opacity: 0.22;
+  pointer-events: none;
+}
 
 /* dims frame 1 as frame 2 advances over it */
 .fin__dim {
@@ -51,11 +81,8 @@
   pointer-events: none;
 }
 
-/* --------------------------------------------------------------------------
-   Frame 2 — the supplied still, full-bleed, entering from the LEFT under
-   scroll control (boot6 writes its transform). Its leading edge throws a
-   soft shadow onto frame 1, and a grain veil keeps it in the film's stock.
-   -------------------------------------------------------------------------- */
+/* Frame 2 enters from the left under scroll control. Blurred photo fill keeps
+   the original portrait fully visible at both portrait and landscape ratios. */
 .fin__frame2 {
   position: absolute;
   inset: 0;
@@ -67,17 +94,38 @@
   box-shadow: 42px 0 110px rgba(0, 0, 0, 0.62);
   background: #0a0203;
 }
-.fin__frame2 img {
+.fin__frame2 .fin__photo-backdrop,
+.fin__frame2 .fin__photo-main {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
+}
+.fin__frame2 .fin__photo-backdrop {
+  z-index: 0;
   object-fit: cover;
-  object-position: 50% 42%;
-  display: block;
-  user-select: none;
+  filter: blur(28px) brightness(0.32) saturate(0.72);
+  transform: scale(1.08);
+}
+.fin__frame2 .fin__photo-main {
+  z-index: 1;
+  object-fit: contain;
+  object-position: center;
+}
+.fin__frame2::before {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  background: #bd111a;
+  opacity: 0.22;
+  mix-blend-mode: color;
+  pointer-events: none;
 }
 .fin__frame2::after {
   content: '';
   position: absolute;
+  z-index: 3;
   inset: 0;
   background: url('../../public/tex/grain.png') repeat;
   background-size: 340px;
@@ -155,48 +203,308 @@
 }
 
 /* --------------------------------------------------------------------------
-   The functional row — a real footer, whispering. Sits on the bottom edge
-   without breaking the frame.
+   Contact + footer — the final, independent editorial composition.
    -------------------------------------------------------------------------- */
 
-.fin__bar {
+.fin__contact {
   position: absolute;
   z-index: 7;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto auto;
+  gap: 22px;
+  padding: clamp(24px, 4vh, 42px) clamp(24px, 5vw, 88px) max(18px, env(safe-area-inset-bottom));
+  isolation: isolate;
+  color: #ededed;
+  font-family: var(--ui);
+}
+.fin__contact::before,
+.fin__contact::after {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+}
+.fin__contact::before {
+  background:
+    radial-gradient(ellipse 38% 40% at 96% 96%, rgba(156, 18, 25, 0.2), transparent 74%),
+    radial-gradient(ellipse 72% 62% at 10% 43%, rgba(0, 0, 0, 0.68), transparent 96%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.02) 32%, rgba(0, 0, 0, 0.78) 57%, #030303 100%);
+}
+.fin__contact::after {
+  background: url('../../public/tex/grain.png') repeat;
+  background-size: 280px;
+  mix-blend-mode: soft-light;
+  opacity: 0.07;
+}
+.fin__contact > * { position: relative; z-index: 1; }
+
+.fin__contact-intro {
+  align-self: center;
+  width: min(100%, 760px);
+  padding-top: 5vh;
+}
+.fin__contact-kicker {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  padding: 14px clamp(20px, 3.6vw, 62px) 16px;
-  font-family: var(--ui);
-  font-size: clamp(8px, 0.66vw, 11px);
-  letter-spacing: 0.3em;
+  gap: 12px;
+  margin: 0 0 18px;
+  color: rgba(237, 237, 237, 0.82);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  line-height: 1.4;
   text-transform: uppercase;
-  color: rgba(216, 186, 174, 0.5);
-  opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 1s ease, transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.fin.is-bar .fin__bar { opacity: 1; transform: none; }
-
-.fin__bar a {
-  color: rgba(233, 220, 208, 0.7);
+.fin__section-number { color: #ededed; }
+.fin__contact-kicker i {
+  width: 38px;
+  height: 1px;
+  background: rgba(237, 237, 237, 0.42);
+}
+.fin__contact-kicker strong {
+  color: #ededed;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+}
+.fin__contact-intro h2 {
+  margin: 0;
+  font-family: var(--disp);
+  font-size: 68px;
+  font-weight: 400;
+  line-height: 0.98;
+  text-transform: uppercase;
+}
+.fin__headline-line {
+  display: block;
+  overflow: hidden;
+}
+.fin__headline-line > span {
+  display: block;
+  transition: transform 760ms var(--ease-out);
+}
+.fin__headline-line--accent { color: #ef4136; }
+.fin__description {
+  max-width: 48ch;
+  margin: 16px 0 16px;
+  color: rgba(237, 237, 237, 0.78);
+  font-family: var(--ui);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.55;
+  letter-spacing: 0.015em;
+}
+.fin__email {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  padding: 8px 0 7px;
+  border-bottom: 1px solid rgba(239, 65, 54, 0.75);
+  color: #f4f0ec;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.07em;
   text-decoration: none;
-  transition: color 0.35s ease, text-shadow 0.35s ease;
+  transition: color 180ms ease, border-color 180ms ease;
 }
-.fin__bar a:hover,
-.fin__bar a:focus-visible {
-  color: #f4ecdd;
-  text-shadow: 0 0 14px rgba(220, 60, 40, 0.55);
-  outline: none;
+.fin__email svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.7;
 }
+.fin__email-arrow { color: #ef4136; transition: transform 180ms ease; }
+.fin__email:hover,
+.fin__email:focus-visible { border-color: #ff5147; color: #fff; }
+.fin__email:hover .fin__email-arrow { transform: translate(2px, -2px); }
+
+.fin__connect {
+  width: min(100%, 1480px);
+  justify-self: center;
+  padding-top: 16px;
+  border-top: 1px solid rgba(237, 237, 237, 0.16);
+}
+.fin__social-kicker {
+  gap: 13px;
+  margin-bottom: 14px;
+  color: rgba(237, 237, 237, 0.72);
+}
+.fin__social-kicker strong { color: #f3eeea; }
 .fin__soc {
-  display: flex;
-  gap: 2.4em;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
 }
-.fin__c { font-size: inherit; letter-spacing: 0.24em; }
+.fin__social-card {
+  display: grid;
+  grid-template-columns: 25px minmax(0, 1fr) 16px;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  min-height: 78px;
+  padding: 13px 15px;
+  border: 1px solid rgba(237, 237, 237, 0.18);
+  border-radius: 4px;
+  background: rgba(4, 4, 4, 0.36);
+  color: rgba(237, 237, 237, 0.8);
+  text-decoration: none;
+  transition: border-color 200ms ease, background-color 200ms ease, color 200ms ease, box-shadow 200ms ease, transform 200ms ease;
+}
+.fin__social-card:hover,
+.fin__social-card:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(239, 65, 54, 0.72);
+  background-color: rgba(28, 8, 8, 0.7);
+  color: #fff;
+  box-shadow: 0 0 18px rgba(180, 22, 24, 0.12);
+}
+.fin__social-card:focus-visible,
+.fin__email:focus-visible,
+.fin__meta a:focus-visible { outline: 2px solid #ef5548; outline-offset: 4px; }
+.fin__social-icon {
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.65;
+}
+.fin__social-icon path { vector-effect: non-scaling-stroke; }
+.fin__social-icon .fin__icon-dot { fill: currentColor; stroke: none; }
+.fin__social-copy {
+  display: grid;
+  min-width: 0;
+  gap: 4px;
+}
+.fin__social-copy strong {
+  overflow: hidden;
+  color: #f2eeea;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.fin__social-copy small {
+  overflow-wrap: anywhere;
+  color: rgba(237, 237, 237, 0.56);
+  font-family: var(--ui);
+  font-size: 10px;
+  font-weight: 300;
+  letter-spacing: 0.035em;
+  line-height: 1.25;
+}
+.fin__social-arrow { justify-self: end; color: #ef4136; transition: transform 180ms ease; }
+.fin__social-card:hover .fin__social-arrow,
+.fin__social-card:focus-visible .fin__social-arrow { transform: translate(2px, -2px); }
+
+.fin__meta {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 18px;
+  width: min(100%, 1480px);
+  justify-self: center;
+  padding-top: 16px;
+  border-top: 1px solid rgba(237, 237, 237, 0.15);
+  color: rgba(237, 237, 237, 0.58);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.fin__meta a {
+  color: rgba(237, 237, 237, 0.76);
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+.fin__meta a:hover,
+.fin__meta a:focus-visible { color: #fff; }
+.fin__signature {
+  justify-self: start;
+  font-family: var(--disp);
+  font-size: 20px;
+  letter-spacing: 0.04em;
+}
+.fin__signature span { color: #ef4136; }
+.fin__meta small { font: inherit; text-align: center; }
+.fin__meta small span { padding: 0 7px; color: #ef4136; }
+.fin__top {
+  display: inline-flex;
+  align-items: center;
+  justify-self: end;
+  gap: 14px;
+}
+.fin__top-label { white-space: nowrap; }
+.fin__top-button {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid rgba(239, 65, 54, 0.48);
+  border-radius: 50%;
+  color: #f4f0ec;
+  transition: border-color 180ms ease, background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+}
+.fin__top-button svg {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.6;
+}
+.fin__top:hover .fin__top-button,
+.fin__top:focus-visible .fin__top-button {
+  transform: translateY(-2px);
+  border-color: #ef4136;
+  background: rgba(190, 24, 27, 0.22);
+  box-shadow: 0 0 16px rgba(190, 24, 27, 0.24);
+}
+
+.fin.has-finale-js .fin__contact-intro,
+.fin.has-finale-js .fin__connect,
+.fin.has-finale-js .fin__email,
+.fin.has-finale-js .fin__meta {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 600ms ease, transform 760ms var(--ease-out);
+}
+.fin.has-finale-js .fin__headline-line > span { transform: translateY(110%); }
+.fin.has-finale-js .fin__social-card {
+  opacity: 0;
+  transform: translateY(10px);
+  transition-delay: 0s;
+}
+.fin.is-bar .fin__contact-intro,
+.fin.is-bar .fin__connect,
+.fin.is-bar .fin__email,
+.fin.is-bar .fin__meta {
+  opacity: 1;
+  transform: none;
+}
+.fin.is-bar .fin__contact-intro { transition-delay: 0s; }
+.fin.is-bar .fin__headline-line > span { transform: none; }
+.fin.is-bar .fin__headline-line:first-child > span { transition-delay: 80ms; }
+.fin.is-bar .fin__headline-line--accent > span { transition-delay: 180ms; }
+.fin.is-bar .fin__email { transition-delay: 320ms; }
+.fin.is-bar .fin__connect { transition-delay: 260ms; }
+.fin.is-bar .fin__social-card { opacity: 1; transform: none; }
+.fin.is-bar .fin__social-card:nth-child(1) { transition-delay: 360ms; }
+.fin.is-bar .fin__social-card:nth-child(2) { transition-delay: 430ms; }
+.fin.is-bar .fin__social-card:nth-child(3) { transition-delay: 500ms; }
+.fin.is-bar .fin__social-card:nth-child(4) { transition-delay: 570ms; }
+.fin.is-bar .fin__meta { transition-delay: 680ms; }
+.fin.is-bar .fin__email:hover,
+.fin.is-bar .fin__email:focus-visible,
+.fin.is-bar .fin__social-card:hover,
+.fin.is-bar .fin__social-card:focus-visible { transition-delay: 0s; }
+.fin.is-bar .f-cap { opacity: 0; transform: translateY(-8px); transition-delay: 0s; }
 
 /* --------------------------------------------------------------------------
    Portrait + fallbacks
@@ -206,20 +514,86 @@
 .fin.is-portrait .f-cap--tl,
 .fin.is-portrait .f-cap--blw { display: none; }
 .fin.is-portrait .f-cap--quote { top: auto; bottom: 24vh; }
-.fin.is-portrait .fin__bar {
-  flex-direction: column;
-  gap: 10px;
-  padding-bottom: 20px;
+.fin.is-set .f-cap,
+.fin.is-set .fin__contact-intro,
+.fin.is-set .fin__connect,
+.fin.is-set .fin__email,
+.fin.is-set .fin__meta { opacity: 1; transform: none; filter: none; }
+.fin.is-set .fin__headline-line > span { transform: none; }
+.fin.is-set .fin__social-card { opacity: 1; transform: none; }
+
+@media (max-width: 700px) {
+  .fin__contact {
+    gap: 14px;
+    padding: 16px 18px max(14px, env(safe-area-inset-bottom));
+    background-color: #030303;
+  }
+  .fin__contact::before {
+    background:
+      radial-gradient(ellipse 70% 32% at 92% 96%, rgba(156, 18, 25, 0.2), transparent 76%),
+      linear-gradient(180deg, rgba(0, 0, 0, 0.02) 0%, rgba(0, 0, 0, 0.12) 27%, rgba(0, 0, 0, 0.88) 52%, #030303 100%);
+  }
+  .fin__contact-intro {
+    align-self: end;
+    width: 100%;
+    padding-top: 0;
+  }
+  .fin__contact-kicker { gap: 9px; margin-bottom: 10px; font-size: 9px; letter-spacing: 0.22em; }
+  .fin__contact-kicker i { width: 26px; }
+  .fin__contact-intro h2 { font-size: 34px; }
+  .fin__description { max-width: 42ch; margin: 10px 0; font-size: 12px; line-height: 1.42; }
+  .fin__email { gap: 8px; padding-block: 6px; font-size: 12px; }
+  .fin__email svg { width: 15px; height: 15px; }
+  .fin__connect { width: 100%; padding-top: 11px; }
+  .fin__social-kicker { margin-bottom: 10px; }
+  .fin__soc { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .fin__social-card {
+    grid-template-columns: 20px minmax(0, 1fr) 12px;
+    gap: 7px;
+    min-height: 64px;
+    padding: 9px 8px;
+    border-radius: 3px;
+  }
+  .fin__social-icon { width: 19px; height: 19px; }
+  .fin__social-copy { gap: 3px; }
+  .fin__social-copy strong { font-size: 10px; }
+  .fin__social-copy small { font-size: 9px; }
+  .fin__social-arrow { font-size: 12px; }
+  .fin__meta {
+    grid-template-columns: 1fr auto;
+    gap: 8px 10px;
+    padding-top: 10px;
+    font-size: 8px;
+    letter-spacing: 0.1em;
+  }
+  .fin__signature { font-size: 16px; }
+  .fin__meta small { grid-column: 1 / -1; grid-row: 2; text-align: left; }
+  .fin__top { grid-column: 2; grid-row: 1; gap: 8px; }
+  .fin__top-label { font-size: 7px; }
+  .fin__top-button { width: 34px; height: 34px; }
 }
 
-.fin.is-fallback #finBack,
-.fin.is-fallback #finMan { display: none; }
-.fin.is-fallback {
-  background: #000 url('../../public/fin/plate.jpg') center / cover no-repeat;
+@media (max-width: 360px) {
+  .fin__contact { padding-right: 16px; padding-left: 16px; gap: 12px; }
+  .fin__contact-intro h2 { font-size: 31px; }
+  .fin__description { font-size: 11px; }
+  .fin__social-card { min-height: 60px; padding-inline: 7px; }
+  .fin__social-copy small { font-size: 8px; }
+  .fin__meta { font-size: 7px; }
+  .fin__signature { font-size: 14px; }
 }
-.fin.is-set .f-cap,
-.fin.is-set .fin__bar { opacity: 1; transform: none; filter: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  .f-cap, .fin__bar { transition-duration: 0.01ms; transition-delay: 0s; }
+  .fin__contact::before { animation: none; }
+  .fin__contact-intro,
+  .fin__headline-line > span,
+  .fin__email,
+  .fin__connect,
+  .fin__social-card,
+  .fin__meta,
+  .fin__top-button,
+  .f-cap {
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
 }

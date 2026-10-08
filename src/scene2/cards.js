@@ -61,6 +61,9 @@ export function buildCards() {
     launch: 0.85 + rnd() * 0.5,     // multiplier on the group's rise distance
     spin: (rnd() - 0.5) * 0.5,
     hover: 0,
+    hoverTarget: 0,
+    hoverX: 0,
+    hoverY: 0,
     screen: null,
   }));
 }
@@ -153,19 +156,19 @@ export function poseCard(c, t, s, pointer) {
   const pos = [
     hx + fx + px,
     y + fy + over + py,
-    hz + fz + c.hover * 0.18,
+    hz + fz + c.hover * 0.28,
   ];
 
   const rot = [
     c.rest[0] + Math.sin(p * 0.63) * c.swing * s.float
-      - pointer.y * 0.07 * near + c.hover * 0.06,
+      - pointer.y * 0.07 * near + c.hover * c.hoverY * 0.16,
     c.rest[1] + Math.cos(p * 0.55 + 0.7) * c.swing * s.float
-      + pointer.x * 0.10 * near - c.hover * 0.07,
-    c.rest[2] + c.spin * lag,
+      + pointer.x * 0.10 * near + c.hover * c.hoverX * 0.18,
+    c.rest[2] + c.spin * lag - c.hover * c.hoverX * 0.07,
   ];
 
   // materialising cards arrive slightly small, so the group lands with a push
-  const grow = (0.88 + 0.12 * s.mat) * (1 + c.hover * 0.04);
+  const grow = (0.88 + 0.12 * s.mat) * (1 + c.hover * 0.10);
   return { pos, rot, scale: [c.size[0] * grow, c.size[1] * grow] };
 }
 

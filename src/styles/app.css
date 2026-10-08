@@ -1,8 +1,7 @@
 /* ==========================================================================
-   GIREESH — hero
-   The artwork itself (background, wordmark, the three people) is drawn on the
-   WebGL canvas. Everything in this file is the furniture layered over it:
-   header, welcome strip, chips, arrows, dot grids.
+   AYAZ — shared typography and interface styles
+   The live, responsive hero composition is defined in hero.css. This file
+   provides its shared palette, type, header, and navigation foundations.
    ========================================================================== */
 
 @font-face {
@@ -72,8 +71,7 @@ html, body {
   text-rendering: optimizeLegibility;
 }
 
-/* nothing may paint before the sequence is ready to start on true black */
-html.is-booting .furniture,
+/* Keep the shared header hidden until the hero artwork and fonts are ready. */
 html.is-booting .hdr { opacity: 0; }
 
 .sr-only {

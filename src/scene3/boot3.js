@@ -74,7 +74,7 @@ export async function initChrono() {
     el.className = 'yr-tag';
     el.textContent = String(y.year);
     el.tabIndex = -1;                 // the cards already carry the tab order
-    el.setAttribute('aria-label', `Show ${y.year}`);
+    el.setAttribute('aria-label', `Show ${y.year}: ${y.key}`);
     el.addEventListener('click', () => setTarget(i));
     el.addEventListener('pointerenter', () => { if (!coarseMQ.matches) setTarget(i); });
     deck.appendChild(el);
@@ -101,7 +101,7 @@ export async function initChrono() {
       el.style.width = `${w}px`;
       el.style.left = `${c.x}px`;
       el.style.top = `${c.y}px`;
-      // cards lean with the rail; the tangent at 2021 is steep and at 2026
+      // cards lean with the rail; the tangent at 2022 is steep and at 2026
       // almost flat, which is exactly the lean the reference has
       const tilt = portrait ? 0 : (L.angles[i] - L.angles[L.angles.length - 1]) * 14;
       el.style.setProperty('--tilt', `${tilt.toFixed(2)}deg`);
@@ -152,7 +152,13 @@ export async function initChrono() {
     if (!state.running) return;
     const dt = Math.min(0.05, (now - state.last) / 1000 || 0.016);
     state.last = now;
-    const t = reduced ? T3.live + 2 : (now - state.started) / 1000;
+    const rect = section.getBoundingClientRect();
+    const pinRoom = section.offsetHeight - window.innerHeight;
+    const scrollProgress = pinRoom > 4
+      ? Math.min(1, Math.max(0, -rect.top / pinRoom))
+      : 0;
+    const elapsed = (now - state.started) / 1000;
+    const t = reduced ? T3.live + 2 : Math.max(elapsed, scrollProgress * (T3.live + 0.4));
     const s = chrono.render(t, dt);
 
     if (s) {

@@ -1,6 +1,6 @@
 // Geometry for the time machine.
 //
-// Every number here was measured off the supplied reference. The six timeline
+// Every number here was measured off the supplied reference. The timeline
 // nodes were located by detecting their glow, and a least-squares circle fit
 // through them closed to within +/-3px — so the timeline really is a circular
 // arc, and it is rebuilt here as one rather than approximated by a spline
@@ -11,34 +11,29 @@
 
 export const YEARS = [
   {
-    year: 2021,
-    key: 'Beginning',
-    lines: ['New city', 'New chapter', 'Bigger dreams'],
-  },
-  {
     year: 2022,
-    key: 'Exploration',
-    lines: ['Learned design', 'Found direction'],
+    key: 'First Curiosity',
+    lines: ['Computers & technology', 'Ideas beyond class'],
   },
   {
     year: 2023,
-    key: 'Practice',
-    lines: ['Built skills', 'Made projects', 'Kept going'],
+    key: 'Learning to Build',
+    lines: ['Coding', 'Interfaces', 'Small projects'],
   },
   {
     year: 2024,
-    key: 'Growth',
-    lines: ['Real projects', 'Real people', 'Real learning'],
+    key: 'Design Meets Code',
+    lines: ['Visual design', 'Development', 'Creative technology'],
   },
   {
     year: 2025,
-    key: 'Opportunities',
-    lines: ['Collaborated', 'Solved problems', 'Stepped up'],
+    key: 'Experiments to Products',
+    lines: ['AI', 'Digital experiences', 'Bigger ideas'],
   },
   {
     year: 2026,
-    key: 'Next chapter',
-    lines: ['Bigger goals', 'More impact', 'Still designing'],
+    key: 'Still Building',
+    lines: ['Gharonix', 'Aris One', 'Revix One'],
   },
 ];
 
@@ -76,6 +71,9 @@ const REF = {
   figure: [0.3900, 0.9740, 0.412],  // centre x, feet y, height as frac of frame
   floor: [0.4900, 0.9550],   // centre of the ring system, at his feet
 };
+
+const TIMELINE_NODES = REF.nodes.slice(1);
+const TIMELINE_CARDS = REF.cards.slice(1);
 
 /**
  * Fit the reference composition to the current viewport.
@@ -119,17 +117,17 @@ export function fitScene(w, h) {
     const railX = w * 0.155;
     const top = h * 0.255;
     const step = h * 0.088;
-    nodes = REF.nodes.map((_, i) => [railX + i * w * 0.006, top + i * step]);
+    nodes = TIMELINE_NODES.map((_, i) => [railX + i * w * 0.006, top + i * step]);
     const cw = Math.min(w * 0.62, 330);
-    cards = REF.nodes.map((_, i) => ({
+    cards = TIMELINE_NODES.map((_, i) => ({
       x: w * 0.60, y: h * 0.50, w: cw, i,
     }));
     pivot = [w * 0.52, h * 0.075];
     floor = [w * 0.5, h * 0.965];
     figure = { cx: w * 0.5, feet: h * 0.965, h: h * 0.30 };
   } else {
-    nodes = REF.nodes.map(P);
-    cards = REF.cards.map(([fx, fy, fw], i) => {
+    nodes = TIMELINE_NODES.map(P);
+    cards = TIMELINE_CARDS.map(([fx, fy, fw], i) => {
       const [x, y] = P([fx, fy]);
       return { x, y, w: fw * 1280 * scale, i };
     });

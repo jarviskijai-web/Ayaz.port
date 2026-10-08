@@ -3,136 +3,121 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>GIREESH — Artist · Creative · Storyteller</title>
-<meta name="description" content="Welcome to my world. Portfolio of Gireesh — artist, creative, storyteller.">
+<title>Ayaz Ahmad — Creative Developer · UI/UX Designer · AI Builder</title>
+<meta name="description" content="Ayaz Ahmad is a student, creative developer, UI/UX designer and AI enthusiast from Lucknow, India. Designing digital experiences that feel alive.">
 <meta name="theme-color" content="#000000">
 
 <link rel="preload" href="public/fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="public/fonts/oswald-500.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="public/fonts/oswald-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="src/styles/app.css">
+<link rel="stylesheet" href="src/styles/hero.css">
 <link rel="stylesheet" href="src/styles/universe.css">
 <link rel="stylesheet" href="src/styles/chrono.css">
 <link rel="stylesheet" href="src/styles/projects.css">
+<link rel="stylesheet" href="src/styles/photoshoot.css">
 <link rel="stylesheet" href="src/styles/finale.css">
 </head>
 <body>
 
-<!-- the real heading, for search engines and screen readers; the visible
-     wordmark is drawn on the canvas so video can be clipped inside its letters -->
-<h1 class="sr-only">GIREESH — Artist, Creative, Storyteller. Welcome to my world.</h1>
+<section class="stage-wrap hero" id="home" aria-labelledby="heroTitle">
+  <div class="hero__shell">
+    <picture class="hero__media" aria-hidden="true">
+      <source media="(max-width: 760px)" srcset="public/hero/hero-phone.png">
+      <img src="public/hero/hero-desktop.png" alt="" fetchpriority="high">
+    </picture>
+    <video class="hero__video" aria-hidden="true" muted loop playsinline preload="auto" poster="public/hero/hero-desktop.png">
+      <source src="public/hero/hero-background.mp4" type="video/mp4">
+    </video>
+    <div class="hero__shade" aria-hidden="true"></div>
 
-<div class="stage-wrap">
-  <canvas id="stage" aria-hidden="true"></canvas>
+    <header class="hdr" id="hdr">
+      <a class="hdr__mark" href="#home" aria-label="Ayaz, home">
+        <span class="mark-word">AYAZ</span>
+      </a>
+      <span class="hdr__div" aria-hidden="true"></span>
+      <p class="hdr__roles">
+        <span>Creative Developer</span><span>UI/UX Designer</span><span>AI Builder</span>
+      </p>
+      <nav class="hdr__nav" aria-label="Primary">
+        <ul>
+          <li><a href="#home" class="is-active" data-nav>Home</a></li>
+          <li><a href="#gallery" data-nav>Work</a></li>
+          <li><a href="#photoshoot" data-nav>Photos</a></li>
+          <li><a href="#chrono" data-nav>About</a></li>
+          <li><a href="#fin" data-nav>Contact</a></li>
+        </ul>
+      </nav>
+      <div class="hdr__meta">
+        <span class="hdr__metaLabel">Portfolio — MMXXVI</span>
+        <span class="hdr__pips" aria-hidden="true"><i></i><i></i><i></i></span>
+      </div>
+      <button class="hdr__burger" id="burger" aria-expanded="false" aria-controls="menu"
+              aria-label="Open navigation">
+        <span aria-hidden="true"></span><span aria-hidden="true"></span>
+      </button>
+    </header>
 
-  <!-- ------------------------------------------------------------------ -->
-  <header class="hdr" id="hdr">
-    <svg class="hdr__rule" id="hdrRule" aria-hidden="true" preserveAspectRatio="none">
-      <polyline id="hdrRulePath" fill="none" stroke="currentColor" stroke-width="1.25"
-                vector-effect="non-scaling-stroke"/>
-    </svg>
+    <div class="hero__copy">
+      <p class="hero__welcome"><span aria-hidden="true">•••</span> Welcome to my world <span aria-hidden="true">•••</span></p>
+      <h1 class="hero__name" id="heroTitle" aria-label="AYAZ">
+        <span class="hero__name-ink">AYAZ</span>
+        <span class="hero__name-reveal" aria-hidden="true">AYAZ</span>
+      </h1>
+      <p class="hero__role">Designer <span aria-hidden="true">×</span> Developer</p>
+      <p class="hero__intro">Designing digital experiences that feel alive.</p>
+      <p class="hero__body">I build digital experiences that blend design, technology and real ideas.</p>
+      <a class="hero__cta" href="#gallery">
+        <span>View my work</span><span class="hero__ctaArrow" aria-hidden="true">↗</span>
+      </a>
+    </div>
 
-    <a class="hdr__mark" href="#" aria-label="Gireesh, home">
-      <span class="mark-word">GIREESH</span>
-    </a>
+    <p class="hero__location">Lucknow,<br>India</p>
+    <a class="hero__scroll" href="#universe"><span aria-hidden="true"></span>Scroll to explore</a>
 
-    <span class="hdr__div" aria-hidden="true"></span>
-
-    <p class="hdr__roles">
-      <span>Artist</span><span>Creative</span><span>Storyteller</span>
-    </p>
-
-    <nav class="hdr__nav" aria-label="Primary">
+    <nav class="menu" id="menu" aria-label="Primary, expanded" hidden>
       <ul>
-        <li><a href="#" class="is-active" data-nav>Home</a></li>
-        <li><a href="#" data-nav>Work</a></li>
-        <li><a href="#" data-nav>About</a></li>
-        <li><a href="#" data-nav>Journal</a></li>
-        <li><a href="#" data-nav>Contact</a></li>
+        <li><a href="#home" class="is-active" data-nav>Home</a></li>
+        <li><a href="#gallery" data-nav>Work</a></li>
+        <li><a href="#photoshoot" data-nav>Photos</a></li>
+        <li><a href="#chrono" data-nav>About</a></li>
+        <li><a href="#fin" data-nav>Contact</a></li>
       </ul>
+      <p class="menu__tag">••• Welcome to my world •••</p>
     </nav>
 
-    <div class="hdr__meta">
-      <span class="hdr__metaLabel">Portfolio — MMXXVI</span>
-      <span class="hdr__pips" aria-hidden="true"><i></i><i></i><i></i></span>
-    </div>
-
-    <button class="hdr__burger" id="burger" aria-expanded="false" aria-controls="hdrNavMobile">
-      <span aria-hidden="true"></span><span aria-hidden="true"></span>
-      <span class="sr-only">Menu</span>
-    </button>
-  </header>
-
-  <!-- ------------------------------------------------------------------ -->
-  <div class="furniture" aria-hidden="true">
-    <p class="welcome" id="welcome">
-      <b class="welcome__dots">•••</b>
-      <span class="welcome__text">Welcome to my world</span>
-      <b class="welcome__dots">•••</b>
-    </p>
-
-    <p class="chip chip--artist" id="chipArtist"><span>•Artist Gireesh•</span></p>
-    <p class="chip chip--legend" id="chipLegend"><span>•Legend•</span></p>
-
-    <div class="arrows arrows--l" id="arrowsL"></div>
-    <div class="arrows arrows--r" id="arrowsR"></div>
-    <!-- only the bottom-right grid remains: the top-left one sat under the
-         navigation and fought with it -->
-    <div class="grid-dots grid-dots--br" id="dotsBR"></div>
+    <noscript>
+      <style>
+        html.is-booting .hdr,
+        html.is-booting .hero__copy,
+        html.is-booting .hero__location,
+        html.is-booting .hero__scroll,
+        html.is-booting .hdr__mark,
+        html.is-booting .hdr__div,
+        html.is-booting .hdr__roles,
+        html.is-booting .hdr__nav li,
+        html.is-booting .hdr__meta {
+          opacity: 1;
+          transform: none;
+        }
+        .hero__media img { opacity: 1; transform: none; }
+      </style>
+    </noscript>
   </div>
-
-  <!-- ------------------------------------------------------------------ -->
-  <nav class="menu" id="menu" aria-label="Primary, expanded" hidden>
-    <ul>
-      <li><a href="#" class="is-active" data-nav>Home</a></li>
-      <li><a href="#" data-nav>Work</a></li>
-      <li><a href="#" data-nav>About</a></li>
-      <li><a href="#" data-nav>Journal</a></li>
-      <li><a href="#" data-nav>Contact</a></li>
-    </ul>
-    <p class="menu__tag">••• Welcome to my world •••</p>
-  </nav>
-
-  <!-- ------------------------------------------------------------------ -->
-  <div class="boot" id="boot">
-    <div class="boot__bar"><i id="bootFill"></i></div>
-    <button class="boot__enter" id="bootEnter" hidden>
-      <span>Enter</span>
-    </button>
-  </div>
-
-  <noscript>
-    <div class="fallback">
-      <p>GIREESH</p>
-      <small>This opening is an animated experience. Please enable JavaScript.</small>
-    </div>
-  </noscript>
-</div>
+</section>
 
 <main class="flow">
   <!-- the hero above is position:fixed, so this reserves its scroll height -->
   <div class="hero-spacer" aria-hidden="true"></div>
 
   <!-- ==================================================================== -->
-  <!-- The creative-universe film itself, played as supplied. All labels and
-       cards are part of the footage; the DOM adds only what a screen reader
-       needs and a veil that breathes over the loop seam. -->
-  <section class="universe" id="universe" aria-labelledby="uniTitle">
-    <header class="universe__title" id="uniTitle">
-      <p class="universe__over">Scene 02</p>
-      <h2 class="universe__name">The Creative<br>Universe</h2>
-      <p class="universe__sub">Tools · Ideas · People · Impact</p>
-    </header>
-    <ul class="sr-only">
-      <li>Figma</li><li>Photoshop</li><li>After Effects</li><li>Premiere Pro</li>
-      <li>Lightroom</li><li>Notion</li><li>Framer</li><li>Webflow</li>
-      <li>Spline</li><li>Claude</li><li>ChatGPT</li><li>Midjourney</li>
-    </ul>
-    <video id="uniFilm" muted playsinline loop preload="metadata"
-           poster="public/media/universe.jpg" aria-hidden="true">
-      <source src="public/media/universe.mp4" type="video/mp4">
-    </video>
-    <div class="universe__veil" id="uniVeil" aria-hidden="true"></div>
+  <!-- Scene 2 combines the cinematic image plate with interactive 3D tool tiles. -->
+  <section class="universe" id="universe">
+    <img class="universe__background" id="uniBackground"
+         src="public/media/universe-background.png" alt="" aria-hidden="true"
+         fetchpriority="high" decoding="async">
+    <iframe class="universe__demo" id="uniDemo"
+            src="src/scene2/tools-3d.html" title="Interactive 3D creative tool tiles"></iframe>
   </section>
 
   <!-- ==================================================================== -->
@@ -145,8 +130,8 @@
       </h2>
       <p class="chrono__rail" aria-hidden="true">
         <i></i>
-        <span>Ideas</span><span>Experiences</span><span>People</span>
-        <span>Projects</span><span>Me</span>
+        <span>Design</span><span>Build</span><span>Learn</span>
+        <span>Experiment</span><span>Me</span>
         <i></i>
       </p>
 
@@ -154,10 +139,10 @@
         Move<br>to travel<br>through time<i></i>
       </p>
       <p class="chrono__note chrono__note--bl" aria-hidden="true">
-        Same<br>curiosity<br>a brighter<br>tomorrow
+        Curiosity<br>turned into<br>things you<br>can explore
       </p>
       <p class="chrono__note chrono__note--br" aria-hidden="true">
-        Still<br>designing<br>what's<br>next<i></i>
+        Still<br>learning<br>building<br>what's next<i></i>
       </p>
 
       <div class="chrono__deck" id="chronoDeck"></div>
@@ -170,30 +155,523 @@
 
   <!-- ==================================================================== -->
   <section class="gallery" id="gallery" aria-labelledby="galleryTitle">
-    <div class="gallery__pin">
-      <canvas id="galleryStage" aria-hidden="true"></canvas>
+    <canvas id="gl" aria-hidden="true"></canvas>
+    <div class="vig" aria-hidden="true"></div>
+    <div class="page gallery__page">
+      <header class="top">
+        <a class="logo" href="#home" aria-label="Ayaz, home">AYAZ<b>.</b></a>
+        <nav aria-label="Main">
+          <a href="#home">Home</a>
+          <a href="#gallery" aria-current="page">Work</a>
+          <a href="#photoshoot">Photos</a>
+          <a href="#chrono">About</a>
+          <a href="#fin">Contact</a>
+        </nav>
+        <a class="build" href="#fin">Let's build</a>
+      </header>
 
-      <div class="gallery__world">
-        <div class="gallery__deck" id="galleryDeck"></div>
-        <img class="gallery__person" id="galleryPerson"
-             src="public/projects/person.png" alt="" draggable="false">
+      <main class="hero">
+        <section class="gallery__intro">
+          <h1>Projects<br>that matter<i>.</i></h1>
+          <p class="lead">Real products I've designed and built, solving actual problems with design, technology and AI.</p>
+          <a class="cta" href="#index">Explore projects <span><svg viewBox="0 0 12 12"><path d="M2 10 10 2M4 2h6v6"/></svg></span></a>
+          <dl class="facts">
+            <div><dt>Main projects</dt><dd>3</dd></div>
+            <div><dt>Tools used</dt><dd>12+</dd></div>
+            <div><dt>Self built</dt><dd>100%</dd></div>
+          </dl>
+          <div class="cue"><i></i>Scroll</div>
+        </section>
+
+        <div class="stage" aria-hidden="true"></div>
+
+        <aside class="index" id="index" aria-label="Projects">
+          <article class="row on">
+            <button class="rh" aria-expanded="true" aria-controls="p0">
+              <span><span class="nm">GHARONIX</span><span class="ds">Real estate platform</span></span>
+              <svg viewBox="0 0 18 18"><path d="M9 2v14M2 9h14"/></svg>
+            </button>
+            <div class="rb" id="p0"><div>
+              <p>A premium real-estate platform for Lucknow, with its visual identity, interface and experience designed end to end.</p>
+              <ul class="tags"><li>Web</li><li>UI/UX</li><li>Visual identity</li></ul>
+              <a class="visit" href="https://gharonix.com" target="_blank" rel="noopener">Visit gharonix.com <svg viewBox="0 0 12 12"><path d="M2 10 10 2M4 2h6v6"/></svg></a>
+            </div></div>
+          </article>
+
+          <article class="row">
+            <button class="rh" aria-expanded="false" aria-controls="p1">
+              <span><span class="nm">REVIX ONE</span><span class="ds">Music streaming app</span></span>
+              <svg viewBox="0 0 18 18"><path d="M9 2v14M2 9h14"/></svg>
+            </button>
+            <div class="rb" id="p1"><div>
+              <p>A premium music app built around smooth playback, clean screens and a modern interface.</p>
+              <ul class="tags"><li>Mobile app</li><li>UX</li><li>Interface design</li></ul>
+            </div></div>
+          </article>
+
+          <article class="row">
+            <button class="rh" aria-expanded="false" aria-controls="p2">
+              <span><span class="nm">ARIS ONE</span><span class="ds">Creative brand</span></span>
+              <svg viewBox="0 0 18 18"><path d="M9 2v14M2 9h14"/></svg>
+            </button>
+            <div class="rb" id="p2"><div>
+              <p>My digital platform and brand for innovative web experiences.</p>
+              <ul class="tags"><li>Web</li><li>Brand</li></ul>
+              <a class="visit" href="https://arisone.in" target="_blank" rel="noopener">Visit arisone.in <svg viewBox="0 0 12 12"><path d="M2 10 10 2M4 2h6v6"/></svg></a>
+            </div></div>
+          </article>
+
+          <p class="note">Every project is built around clean design, a smooth experience and real-world use.</p>
+        </aside>
+      </main>
+
+      <footer class="filters">
+        <div class="tabs" role="group" aria-label="Filter projects">
+          <button class="tab" data-f="all" aria-pressed="true">All projects</button>
+          <button class="tab" data-f="web" aria-pressed="false">Web</button>
+          <button class="tab" data-f="app" aria-pressed="false">Mobile app</button>
+          <i class="ind"></i>
+        </div>
+        <div class="fr"><span id="cnt" aria-live="polite">3 projects</span><a class="all" href="#index">Browse project list</a></div>
+      </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+      window.ayaz = { hover: -1, sel: 0, vis: [1, 1, 1], change: function () {} };
+      (function () {
+        var canvas = document.getElementById('gl');
+        var renderer;
+        try {
+          renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+        } catch (e) {
+          return;
+        }
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+        renderer.setClearColor(0x000000, 0);
+
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(40, 1, .1, 100);
+        var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        function glowTex() {
+          var c = document.createElement('canvas');
+          c.width = c.height = 128;
+          var x = c.getContext('2d');
+          var g = x.createRadialGradient(64, 64, 0, 64, 64, 64);
+          g.addColorStop(0, 'rgba(255,255,255,1)');
+          g.addColorStop(.12, 'rgba(255,190,150,.95)');
+          g.addColorStop(.32, 'rgba(255,50,25,.4)');
+          g.addColorStop(1, 'rgba(255,0,0,0)');
+          x.fillStyle = g;
+          x.fillRect(0, 0, 128, 128);
+          return new THREE.CanvasTexture(c);
+        }
+        var GT = glowTex();
+        function sprite(s, o, col) {
+          var m = new THREE.SpriteMaterial({ map: GT, color: col || 0xffffff, transparent: true, opacity: o, blending: THREE.AdditiveBlending, depthWrite: false });
+          var sp = new THREE.Sprite(m);
+          sp.scale.set(s, s, 1);
+          return sp;
+        }
+
+        var noiseGLSL = [
+          'float hash(vec3 p){p=fract(p*.3183099+.1);p*=17.;return fract(p.x*p.y*p.z*(p.x+p.y+p.z));}',
+          'float noise(vec3 x){vec3 i=floor(x),f=fract(x);f=f*f*(3.-2.*f);',
+          'return mix(mix(mix(hash(i),hash(i+vec3(1,0,0)),f.x),mix(hash(i+vec3(0,1,0)),hash(i+vec3(1,1,0)),f.x),f.y),',
+          'mix(mix(hash(i+vec3(0,0,1)),hash(i+vec3(1,0,1)),f.x),mix(hash(i+vec3(0,1,1)),hash(i+vec3(1,1,1)),f.x),f.y),f.z);}',
+          'float fbm(vec3 p){float a=.5,s=0.;for(int i=0;i<5;i++){s+=a*noise(p);p=p*2.03+vec3(1.7,9.2,3.1);a*=.5;}return s;}'
+        ].join('\n');
+
+        var sphereMat = new THREE.ShaderMaterial({
+          uniforms: { uTime: { value: 0 } },
+          vertexShader: 'varying vec3 vP;varying vec3 vN;varying vec3 vV;void main(){vP=position;vN=normalize(normalMatrix*normal);vec4 mv=modelViewMatrix*vec4(position,1.);vV=normalize(-mv.xyz);gl_Position=projectionMatrix*mv;}',
+          fragmentShader: [
+            'precision highp float;varying vec3 vP;varying vec3 vN;varying vec3 vV;uniform float uTime;', noiseGLSL,
+            'float rock(vec3 p){return fbm(p*6.);}',
+            'void main(){',
+            ' float a=uTime*.1;mat3 R=mat3(cos(a),0.,-sin(a),0.,1.,0.,sin(a),0.,cos(a));',
+            ' vec3 p=R*normalize(vP);',
+            ' vec3 q=p*1.8;q+=.5*vec3(fbm(q*1.3),fbm(q*1.3+5.),fbm(q*1.3+9.));',
+            ' float r=1.-abs(fbm(q)*2.-1.);',
+            ' float core=smoothstep(.95,.99,r),glow=smoothstep(.82,.99,r);',
+            ' float e=.012,h0=rock(p);',
+            ' vec3 g=vec3(rock(p+vec3(e,0,0)),rock(p+vec3(0,e,0)),rock(p+vec3(0,0,e)))-h0;g/=e;',
+            ' vec3 N0=normalize(vN);',
+            ' vec3 V=normalize(vV);vec3 L=normalize(vec3(-.55,.6,.75));',
+            ' float d=max(dot(N0,L),0.);',
+            ' vec3 base=mix(vec3(.012,.01,.011),vec3(.13,.1,.1),smoothstep(.35,.7,h0));',
+            ' float stain=smoothstep(.55,.8,fbm(p*2.6+4.));',
+            ' vec3 col=base*(.3+d*2.2);',
+            ' col+=pow(max(dot(reflect(-L,N0),V),0.),24.)*.45*(.4+h0);',
+            ' float fr=pow(1.-max(dot(N0,V),0.),2.5);',
+            ' col+=vec3(.9,.07,.04)*fr*.75;',
+            ' float c=pow(max(dot(N0,V),0.),5.);',
+            ' float pulse=.88+.12*sin(uTime*1.6);',
+            ' vec3 lava=vec3(1.,.2,.04)*core*3.2+vec3(.85,.07,.02)*glow*.7+vec3(.5,.04,.01)*stain*.35;',
+            ' col+=lava*(1.+c*1.8)*pulse;',
+            ' col+=vec3(1.,.28,.1)*c*.55*pulse;',
+            ' gl_FragColor=vec4(pow(col,vec3(.92)),1.);',
+            '}'
+          ].join('\n')
+        });
+        var sphere = new THREE.Mesh(new THREE.SphereGeometry(1.2, 128, 96), sphereMat);
+        scene.add(sphere);
+
+        var atmo = new THREE.Mesh(new THREE.SphereGeometry(1.42, 64, 48), new THREE.ShaderMaterial({
+          transparent: true, side: THREE.BackSide, blending: THREE.AdditiveBlending, depthWrite: false,
+          vertexShader: 'varying vec3 vN;void main(){vN=normalize(normalMatrix*normal);gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',
+          fragmentShader: 'varying vec3 vN;void main(){float i=pow(max(.62-dot(vN,vec3(0,0,1)),0.),3.);gl_FragColor=vec4(1.,.1,.05,1.)*i*3.2;}'
+        }));
+        scene.add(atmo);
+        var halo = sprite(8, .28, 0xff2010); halo.position.z = -1; scene.add(halo);
+        var coreS = sprite(2.4, .95, 0xffffff); coreS.position.set(0, 0, 1.3); scene.add(coreS);
+        var streak = sprite(1, .9, 0xff6a40); streak.scale.set(9, .22, 1); streak.position.set(0, 0, 1.3); scene.add(streak);
+
+        scene.add(new THREE.AmbientLight(0x3a0a0a, .9));
+        var pl = new THREE.PointLight(0xff2a10, 2.2, 14); pl.position.set(0, 0, 2.2); scene.add(pl);
+        var dl = new THREE.DirectionalLight(0xffd0c0, .7); dl.position.set(-3, 4, 5); scene.add(dl);
+
+        var master = new THREE.Group(); scene.add(master);
+        var pivots = [];
+        function ring(r, tube, rx, rz, speed, opacity, beads, dots) {
+          var g = new THREE.Group(); g.rotation.set(rx, 0, rz); master.add(g);
+          var pivot = new THREE.Group(); g.add(pivot); pivots.push({ p: pivot, s: speed });
+          var line = new THREE.Mesh(new THREE.TorusGeometry(r, tube, 8, 256), new THREE.MeshBasicMaterial({ color: 0xff3a22, transparent: true, opacity: opacity, blending: THREE.AdditiveBlending, depthWrite: false }));
+          line.rotation.x = Math.PI / 2; g.add(line);
+          var glow = new THREE.Mesh(new THREE.TorusGeometry(r, tube * 5, 8, 256), new THREE.MeshBasicMaterial({ color: 0xff1408, transparent: true, opacity: opacity * .14, blending: THREE.AdditiveBlending, depthWrite: false }));
+          glow.rotation.x = Math.PI / 2; g.add(glow);
+          for (var i = 0; i < beads; i++) {
+            var a = i / beads * 6.283 + Math.random();
+            var bead = new THREE.Mesh(new THREE.SphereGeometry(.07 + Math.random() * .05, 24, 16), new THREE.MeshPhongMaterial({ color: 0x1a0505, specular: 0xff8070, shininess: 120, emissive: 0x2a0402 }));
+            bead.position.set(Math.cos(a) * r, 0, Math.sin(a) * r); pivot.add(bead);
+          }
+          for (var j = 0; j < dots; j++) {
+            var angle = Math.random() * 6.283, flare = sprite(.55, 1, 0xff5030);
+            flare.position.set(Math.cos(angle) * r, 0, Math.sin(angle) * r); pivot.add(flare);
+          }
+        }
+        ring(2.05, .014, 0, -.1, .35, .95, 1, 3);
+        ring(3.0, .006, .18, .35, -.2, .55, 2, 2);
+        ring(3.7, .006, -.25, -.55, .14, .45, 1, 2);
+        ring(4.4, .005, .5, .15, -.1, .4, 2, 1);
+        ring(2.7, .005, .1, 1.0, .25, .35, 1, 1);
+
+        var emberCount = 260, emberPositions = new Float32Array(emberCount * 3), emberSpeeds = new Float32Array(emberCount);
+        for (var emberIndex = 0; emberIndex < emberCount; emberIndex++) {
+          emberPositions[emberIndex * 3] = (Math.random() - .5) * 28;
+          emberPositions[emberIndex * 3 + 1] = (Math.random() - .5) * 14;
+          emberPositions[emberIndex * 3 + 2] = (Math.random() - .5) * 6;
+          emberSpeeds[emberIndex] = .05 + Math.random() * .15;
+        }
+        var emberGeometry = new THREE.BufferGeometry();
+        emberGeometry.setAttribute('position', new THREE.BufferAttribute(emberPositions, 3));
+        var embers = new THREE.Points(emberGeometry, new THREE.PointsMaterial({ size: .09, map: GT, color: 0xff4020, transparent: true, opacity: .8, blending: THREE.AdditiveBlending, depthWrite: false }));
+        scene.add(embers);
+
+        var mx = 0, my = 0, tx = 0, ty = 0;
+        window.addEventListener('pointermove', function (e) {
+          mx = (e.clientX / innerWidth - .5) * 2;
+          my = (e.clientY / innerHeight - .5) * 2;
+        });
+
+        var stageEl = document.querySelector('.gallery .stage');
+        function resize() {
+          renderer.setSize(innerWidth, innerHeight, false);
+          if (window.__ready) camUpdate();
+        }
+        window.addEventListener('resize', resize); resize();
+
+        var A = window.ayaz;
+        var cardsRoot = new THREE.Group(); scene.add(cardsRoot);
+
+        function logo(x, k, ox, oy, S) {
+          x.save();
+          x.translate(ox, oy); x.scale(S, S); x.lineJoin = 'round'; x.lineCap = 'round';
+          if (k === 'house') {
+            x.strokeStyle = '#e8a622'; x.lineWidth = .052; x.shadowColor = 'rgba(232,166,34,.6)'; x.shadowBlur = 36;
+            x.beginPath(); x.moveTo(.03, .98); x.lineTo(.03, .4); x.lineTo(.5, .03); x.lineTo(.97, .4); x.lineTo(.97, .98); x.stroke();
+            x.beginPath(); x.moveTo(.22, .98); x.lineTo(.22, .5); x.lineTo(.5, .27); x.lineTo(.78, .5); x.lineTo(.78, .98); x.stroke();
+            x.beginPath(); x.moveTo(.4, .98); x.lineTo(.4, .7); x.quadraticCurveTo(.5, .52, .6, .7); x.lineTo(.6, .98); x.stroke();
+          } else if (k === 'wave') {
+            var h = [.22, .5, .86, .6, 1, .55, .8, .4, .18];
+            var gr = x.createLinearGradient(0, 0, 1, 1); gr.addColorStop(0, '#ff5468'); gr.addColorStop(1, '#c4122a');
+            x.strokeStyle = gr; x.lineWidth = .07; x.shadowColor = 'rgba(255,50,70,.6)'; x.shadowBlur = 36;
+            h.forEach(function(v, i) { var px = .06 + i * .11; x.beginPath(); x.moveTo(px, .5 - v * .5); x.lineTo(px, .5 + v * .5); x.stroke(); });
+          } else {
+            var g = x.createLinearGradient(0, 0, 1, 1); g.addColorStop(0, '#ffffff'); g.addColorStop(1, '#8a8184');
+            x.shadowColor = 'rgba(255,255,255,.25)'; x.shadowBlur = 30; x.fillStyle = g;
+            x.beginPath(); x.moveTo(.5, .02); x.lineTo(.98, .98); x.lineTo(.74, .98); x.lineTo(.5, .45); x.lineTo(.26, .98); x.lineTo(.02, .98); x.closePath(); x.fill();
+            x.shadowBlur = 0; x.fillStyle = 'rgba(0,0,0,.38)';
+            x.beginPath(); x.moveTo(.5, .02); x.lineTo(.98, .98); x.lineTo(.74, .98); x.closePath(); x.fill();
+          }
+          x.restore();
+        }
+        function paint(s) {
+          var c = s.cv, x = s.cx, W = c.width, H = c.height, wide = W > H;
+          x.clearRect(0, 0, W, H);
+          if (s.image && s.image.complete && s.image.naturalWidth) {
+            x.drawImage(s.image, 0, 0, W, H);
+          } else {
+            function setLetterSpacing(value) { if ('letterSpacing' in x) x.letterSpacing = value + 'px'; }
+            var nameSz = wide ? 150 : 104, nx = wide ? 132 : 96, ny = wide ? 612 : 770;
+            var g = x.createLinearGradient(0, ny - nameSz, 0, ny); g.addColorStop(0, '#ffffff'); g.addColorStop(1, '#cbbdb6');
+            x.font = '600 ' + nameSz + 'px "Hanken Grotesk",system-ui,sans-serif';
+            setLetterSpacing(wide ? 8 : 6);
+            x.fillStyle = g; x.fillText(s.name, nx, ny);
+            x.font = '400 ' + (wide ? 62 : 54) + 'px "Hanken Grotesk",system-ui,sans-serif'; setLetterSpacing(1); x.fillStyle = '#c9bdb8'; x.fillText(s.sub, nx, ny + (wide ? 100 : 88));
+            setLetterSpacing(0);
+            if (wide) logo(x, s.logo, 1450, 295, 430); else logo(x, s.logo, 96, 110, 320);
+          }
+          s.tex.needsUpdate = true;
+        }
+
+        var specs = [
+          { name: 'GHARONIX', sub: 'Real estate platform', logo: 'house', src: 'public/projects/ghar-card.png', w: 3.6, h: 2.025, cw: 1672, ch: 941, pos: [.1, 2.75, .7], rot: [-.1, -.1, .06] },
+          { name: 'REVIX ONE', sub: 'Music streaming app', logo: 'wave', src: 'public/projects/revix-card.png', w: 3.0, h: 1.688, cw: 1672, ch: 941, pos: [3.5, -1.15, .5], rot: [.05, -.42, .36] },
+          { name: 'ARIS ONE', sub: 'Creative brand', logo: 'aris', src: 'public/projects/aris-card.png', w: 3.0, h: 1.688, cw: 1672, ch: 941, pos: [-3.5, -1.15, .5], rot: [.05, .42, -.36] }
+        ];
+        specs.forEach(function (s) {
+          s.image = new Image();
+          s.image.onload = function () { paint(s); };
+          s.image.onerror = function () { s.image = null; paint(s); };
+          s.image.src = s.src;
+        });
+        var VS = 'varying vec2 vUv;void main(){vUv=uv;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}';
+        var FS = [
+          'precision highp float;',
+          'uniform sampler2D map;uniform vec2 uCard,uPlane;uniform float uHover,uDim,uTime,uBack,uFade;varying vec2 vUv;',
+          'float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}',
+          'void main(){',
+          ' vec2 p=(vUv-.5)*uPlane;vec2 hb=uCard*.5;float r=.18;',
+          ' vec2 q=abs(p)-(hb-r);',
+          ' float d=length(max(q,0.))+min(max(q.x,q.y),0.)-r;',
+          ' float mask=1.-smoothstep(-.005,.005,d);',
+          ' float ins=max(-d,0.);',
+          ' vec2 uc=p/uCard+.5;',
+          ' vec3 body=mix(vec3(.022,.017,.019),vec3(.12,.088,.094),smoothstep(0.,1.,uc.y*.75+uc.x*.25));',
+          ' float sh=(uc.x*.8+uc.y*.6)-.62-.12*sin(uTime*.3);',
+          ' body+=vec3(1.,.82,.78)*exp(-sh*sh*55.)*.075;',
+          ' float hl=pow(max(dot(normalize(p+1e-4),normalize(vec2(-.6,.8))),0.),3.);',
+          ' float rim=exp(-ins*34.);',
+          ' vec3 rc=mix(vec3(1.,.13,.07),vec3(1.,.82,.76),hl*.5);',
+          ' float act=.3+.8*uHover;',
+          ' vec3 col=body+rc*rim*act*(.45+hl);',
+          ' col+=vec3(1.,.9,.86)*exp(-ins*260.)*(.1+.3*hl);',
+          ' float inUv=step(0.,uc.x)*step(uc.x,1.)*step(0.,uc.y)*step(uc.y,1.);',
+          ' vec4 tx=texture2D(map,uc);',
+          ' col=mix(col,tx.rgb,tx.a*inUv*(1.-uBack));',
+          ' col+=(hash(vUv*700.+fract(uTime))-.5)*.022;',
+          ' if(uBack>.5)col=vec3(.03,.012,.014)+vec3(.9,.1,.05)*rim*.35*uFade;',
+          ' float og=exp(-max(d,0.)*8.)*step(0.,d)*(.16+.6*uHover)*(1.-uBack);',
+          ' vec3 rgb=col*mask+vec3(1.,.12,.06)*og;',
+          ' float a=mask+og*.85*(1.-mask);',
+          ' gl_FragColor=vec4(rgb*uDim,a*uDim);',
+          '}'
+        ].join('\n');
+
+        var faces = [];
+        specs.forEach(function (s, i) {
+          s.cv = document.createElement('canvas');
+          s.cv.width = s.cw; s.cv.height = s.ch; s.cx = s.cv.getContext('2d');
+          s.tex = new THREE.CanvasTexture(s.cv); s.tex.anisotropy = 4;
+          var g = new THREE.Group(); g.position.fromArray(s.pos); g.rotation.set(s.rot[0], s.rot[1], s.rot[2]);
+          s.base = { p: s.pos.slice(), r: s.rot.slice() }; s.layers = [];
+          for (var k = 0; k < 4; k++) {
+            var mat = new THREE.ShaderMaterial({ transparent: true, depthWrite: k === 0, vertexShader: VS, fragmentShader: FS, uniforms: {
+              map: { value: s.tex }, uCard: { value: new THREE.Vector2(s.w, s.h) }, uPlane: { value: new THREE.Vector2(s.w + .9, s.h + .9) },
+              uHover: { value: 0 }, uDim: { value: 1 }, uTime: { value: 0 }, uBack: { value: k ? 1 : 0 }, uFade: { value: 1 - k * .22 }
+            }});
+            var m = new THREE.Mesh(new THREE.PlaneGeometry(s.w + .9, s.h + .9), mat);
+            m.position.z = -k * .035; m.renderOrder = 10 - k; m.userData.i = i; g.add(m); s.layers.push(mat); if (!k) faces.push(m);
+          }
+          cardsRoot.add(g); s.g = g; s.hv = 0; s.dm = 1; s.lift = 0;
+        });
+        function paintAll() { specs.forEach(paint); }
+        paintAll();
+        if (document.fonts && document.fonts.load) document.fonts.load('600 40px "Hanken Grotesk"').then(paintAll, paintAll);
+
+        function camUpdate() {
+          var W = innerWidth, H = innerHeight, r = stageEl.getBoundingClientRect();
+          var sx = r.left + r.width / 2, sy = r.top + r.height / 2, vis = W < 700 ? 8.4 : 10.6, upp = vis / Math.max(r.width, 1);
+          var a = Math.max(sx, W - sx), b = Math.max(sy, H - sy), fw = 2 * a, fh = 2 * b, Z = 12;
+          camera.position.set(0, 0, Z);
+          camera.fov = 2 * Math.atan(upp * fh / (2 * Z)) * 180 / Math.PI; camera.aspect = fw / fh;
+          camera.setViewOffset(fw, fh, a - sx, b - sy, W, H);
+          cardsRoot.scale.setScalar(Math.min(1, vis / 10.6));
+        }
+
+        function cardsUpdate(dt, t) {
+          specs.forEach(function (s, i) {
+            var th = Math.min(1, (A.hover === i ? 1 : 0) + (A.sel === i ? .75 : 0));
+            var k = Math.min(1, dt * 9);
+            s.hv += (th - s.hv) * k; s.dm += ((A.vis[i] ? 1 : .22) - s.dm) * Math.min(1, dt * 6); s.lift += ((A.sel === i ? .35 : 0) + (A.hover === i ? .2 : 0) - s.lift) * Math.min(1, dt * 6);
+            var b = s.base, g = s.g;
+            g.position.set(b.p[0], b.p[1] + Math.sin(t * .8 + i * 2.1) * .09, b.p[2] + s.lift);
+            g.rotation.set(b.r[0] + Math.sin(t * .6 + i) * .02 - my * .06, b.r[1] + mx * .12, b.r[2] + Math.sin(t * .5 + i * 1.7) * .015);
+            g.scale.setScalar(1 + s.hv * .05);
+            s.layers.forEach(function (m) {
+              var u = m.uniforms; u.uHover.value = s.hv; u.uDim.value = s.dm; u.uTime.value = t;
+            });
+          });
+        }
+
+        var ray = new THREE.Raycaster(), nd = new THREE.Vector2();
+        function pickAt(e) {
+          if (e.target.closest && e.target.closest('a,button')) return -1;
+          nd.set(e.clientX / innerWidth * 2 - 1, -(e.clientY / innerHeight) * 2 + 1);
+          ray.setFromCamera(nd, camera);
+          var h = ray.intersectObjects(faces, false);
+          for (var k = 0; k < h.length; k++) {
+            var i = h[k].object.userData.i, s = specs[i], uv = h[k].uv;
+            var qx = Math.abs((uv.x - .5) * (s.w + .9)) - (s.w / 2 - .18), qy = Math.abs((uv.y - .5) * (s.h + .9)) - (s.h / 2 - .18);
+            var d = Math.hypot(Math.max(qx, 0), Math.max(qy, 0)) + Math.min(Math.max(qx, qy), 0) - .18;
+            if (d < 0) return i;
+          }
+          return -1;
+        }
+        window.addEventListener('pointermove', function (e) {
+          if (e.target.closest && e.target.closest('.index')) return;
+          var i = pickAt(e); document.documentElement.style.cursor = i >= 0 ? 'pointer' : '';
+          if (i !== A.hover) { A.hover = i; A.change(); }
+        });
+        window.addEventListener('click', function (e) {
+          var i = pickAt(e); if (i >= 0 && A.vis[i]) { A.sel = i; A.change(); }
+        });
+        window.__ready = true; camUpdate();
+
+        var clock = new THREE.Clock(), t = 0;
+        function frame() {
+          var dt = Math.min(clock.getDelta(), .05) * (reduce ? .15 : 1); t += dt;
+          sphereMat.uniforms.uTime.value = t;
+          pivots.forEach(function (o) { o.p.rotation.y += o.s * dt; });
+          tx += (mx - tx) * .04; ty += (my - ty) * .04;
+          master.rotation.x = .3 + ty * .12; master.rotation.y = tx * .25;
+          var f = .9 + .1 * Math.sin(t * 1.6); coreS.material.opacity = .85 * f; coreS.scale.setScalar(2.4 * f); streak.material.opacity = .7 * f; pl.intensity = 2.2 * f;
+          var emberAttribute = emberGeometry.attributes.position;
+          for (var i = 0; i < emberCount; i++) {
+            var y = emberAttribute.array[i * 3 + 1] + emberSpeeds[i] * dt;
+            if (y > 7) y = -7;
+            emberAttribute.array[i * 3 + 1] = y;
+          }
+          emberAttribute.needsUpdate = true;
+          camUpdate(); cardsUpdate(dt, t); renderer.render(scene, camera); requestAnimationFrame(frame);
+        }
+        frame();
+      })();
+
+      (function () {
+        var A = window.ayaz;
+        var rows = Array.prototype.slice.call(document.querySelectorAll('.row'));
+        var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+        var ind = document.querySelector('.ind');
+        var cnt = document.getElementById('cnt');
+        var sets = { all: [1, 1, 1], web: [1, 0, 1], app: [0, 1, 0] };
+        var cur = tabs[0];
+
+        function render() {
+          rows.forEach(function (r, i) {
+            r.classList.toggle('on', A.sel === i);
+            r.classList.toggle('hot', A.hover === i && A.sel !== i);
+            r.classList.toggle('off', !A.vis[i]);
+            r.querySelector('.rh').setAttribute('aria-expanded', String(A.sel === i));
+          });
+        }
+        A.change = render;
+
+        rows.forEach(function (r, i) {
+          r.querySelector('.rh').addEventListener('click', function () {
+            A.sel = A.sel === i ? -1 : i;
+            render();
+          });
+          r.addEventListener('pointerenter', function () {
+            A.hover = i; render();
+          });
+          r.addEventListener('pointerleave', function () {
+            A.hover = -1; render();
+          });
+        });
+
+        function mark() {
+          ind.style.left = cur.offsetLeft + 'px';
+          ind.style.width = cur.offsetWidth + 'px';
+        }
+
+        tabs.forEach(function (t) {
+          t.addEventListener('click', function () {
+            cur = t;
+            tabs.forEach(function (x) { x.setAttribute('aria-pressed', String(x === t)); });
+            A.vis = sets[t.dataset.f].slice();
+            if (A.sel >= 0 && !A.vis[A.sel]) A.sel = A.vis.indexOf(1);
+            var n = A.vis.filter(Boolean).length;
+            cnt.textContent = n + (n === 1 ? ' project' : ' projects');
+            mark(); render();
+          });
+        });
+
+        mark();
+        window.addEventListener('resize', mark);
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(mark);
+        render();
+      })();
+    </script>
+  </section>
+
+  <!-- ==================================================================== -->
+  <section class="photoshoot" id="photoshoot" aria-labelledby="photoshootTitle">
+    <div class="photoshoot__shell">
+      <header class="photoshoot__header">
+        <div class="photoshoot__title-block">
+          <p class="photoshoot__eyebrow"><span></span>Behind the code</p>
+          <h2 class="photoshoot__title" id="photoshootTitle">
+            <span>Developer</span><em>Photoshoot</em>
+          </h2>
+        </div>
+        <p class="photoshoot__intro">
+          A glimpse behind the screen —<br>
+          photos that capture the mind,<br>
+          the process, and the person<br>
+          building it all.
+        </p>
+        <div class="photoshoot__actions">
+          <button class="photoshoot__action photoshoot__action--primary" type="button" data-gallery-slideshow>
+            View slideshow <span aria-hidden="true">→</span>
+          </button>
+        </div>
+        <div class="photoshoot__orbit" aria-hidden="true">
+          <span>Code<br>Design<br>Create<br>Repeat</span>
+        </div>
+      </header>
+
+      <div class="photoshoot__toolbar">
+        <p class="photoshoot__count" id="photoshootCount">9 PHOTOS</p>
       </div>
 
-      <h2 class="g-label g-label--projects" id="galleryTitle">Projects</h2>
-      <p class="g-label g-label--ideas" aria-hidden="true">
-        Ideas<br>Interfaces<br>Experiences<br><b>Real Impact</b>
-      </p>
-      <p class="g-label g-label--scroll" aria-hidden="true">
-        Scroll<br>Explore<br>Interact
-      </p>
-      <p class="g-label g-label--real" aria-hidden="true">
-        Real<br>Projects<br>Real<br>Stories
-      </p>
-      <p class="g-label g-label--tomorrow" aria-hidden="true">
-        Designing<br>A Brighter<br>Tomorrow
-      </p>
-      <span class="g-label g-label--num" id="galleryNum" aria-hidden="true">01</span>
+      <div class="photoshoot__grid" id="photoshootGrid" aria-live="polite"></div>
+
+      <footer class="photoshoot__footer">
+        <div class="photoshoot__signature">
+          <strong>AYAZ</strong><span></span>
+          <small>Creative developer&nbsp; / &nbsp;UI/UX designer&nbsp; / &nbsp;AI builder</small>
+        </div>
+        <p class="photoshoot__edition"><i></i>Portfolio — MMXXVI</p>
+        <nav class="photoshoot__pagination" id="photoshootPagination" aria-label="Photo pages"></nav>
+      </footer>
     </div>
+    <dialog class="photo-viewer" id="photoViewer" aria-labelledby="photoViewerTitle">
+      <div class="photo-viewer__panel">
+        <button class="photo-viewer__close" type="button" data-viewer-close aria-label="Close viewer">×</button>
+        <div class="photo-viewer__art" id="photoViewerArt"></div>
+        <div class="photo-viewer__info">
+          <p class="photo-viewer__number" id="photoViewerNumber">01 / 09</p>
+          <h3 id="photoViewerTitle">Between Rides</h3>
+          <nav class="photo-viewer__controls" aria-label="Viewer controls">
+            <button type="button" data-viewer-prev aria-label="Previous photo">←</button>
+            <button type="button" data-viewer-next aria-label="Next photo">→</button>
+          </nav>
+        </div>
+      </div>
+    </dialog>
   </section>
 
 </main>
@@ -201,42 +679,80 @@
 <!-- ====================================================================== -->
 <footer class="fin" id="fin" aria-label="Closing">
   <div class="fin__pin">
-  <h2 class="sr-only">Gireesh</h2>
+  <h2 class="sr-only">Ayaz Ahmad</h2>
 
   <div class="fin__stage1" id="finStage1">
-    <canvas id="finBack" aria-hidden="true"></canvas>
-    <canvas id="finMan" aria-hidden="true"></canvas>
+    <img class="fin__photo-backdrop" src="public/photoshoot/photo-02.jpeg" data-portrait-src="public/photoshoot/photo-02.jpeg" data-landscape-src="public/photoshoot/landscape-taj.png" alt="" aria-hidden="true" draggable="false">
+    <img class="fin__photo-main" id="finFrame1Img" src="public/photoshoot/photo-02.jpeg" data-portrait-src="public/photoshoot/photo-02.jpeg" data-landscape-src="public/photoshoot/landscape-taj.png" alt="" aria-hidden="true" draggable="false" decoding="async">
 
     <p class="f-cap f-cap--tl" aria-hidden="true">
-      Ideas<br>Designs<br>Experiences<br>Real Impact
+      Design<br>Technology<br>AI<br>Digital Products
     </p>
     <blockquote class="f-cap f-cap--quote">
-      &ldquo;Good<br>Design<br>Smokes<br>Louder.&rdquo;
+      &ldquo;Build what<br>you wish<br>existed.&rdquo;
     </blockquote>
-    <p class="f-cap f-cap--blw" aria-hidden="true">A<br>Designer&rsquo;s<br>World</p>
+    <p class="f-cap f-cap--blw" aria-hidden="true">A<br>Builder&rsquo;s<br>World</p>
     <p class="f-cap f-cap--tr" aria-hidden="true">
-      Same<br>Passion<br>A Brighter<br>Tomorrow
+      Curiosity<br>Design<br>A Brighter<br>Tomorrow
     </p>
-    <p class="f-cap f-cap--br" aria-hidden="true">Design<br>Build<br>Explore<br>Repeat</p>
+    <p class="f-cap f-cap--br" aria-hidden="true">Learn<br>Build<br>Experiment<br>Repeat</p>
   </div>
 
   <div class="fin__dim" id="finDim" aria-hidden="true"></div>
 
-  <!-- the second frame of the finale: slides in from the left on scroll.
-       Dormant until its image exists (see boot6's candidate list). -->
+  <!-- The mirror portrait replaces the red-wall portrait as the page scrolls. -->
   <figure class="fin__frame2" id="finFrame2" aria-hidden="true" hidden>
-    <img id="finFrame2Img" alt="" draggable="false" decoding="async">
+    <img class="fin__photo-backdrop" src="public/photoshoot/photo-08.jpeg" data-portrait-src="public/photoshoot/photo-08.jpeg" data-landscape-src="public/photoshoot/landscape-riverside.jpg" alt="" aria-hidden="true" draggable="false">
+    <img class="fin__photo-main" id="finFrame2Img" src="public/photoshoot/photo-08.jpeg" data-portrait-src="public/photoshoot/photo-08.jpeg" data-landscape-src="public/photoshoot/landscape-riverside.jpg" alt="" aria-hidden="true" draggable="false" decoding="async">
   </figure>
 
-  <div class="fin__bar">
-    <a href="#" data-nav>Contact</a>
-    <nav class="fin__soc" aria-label="Social">
-      <a href="#" rel="me">Instagram</a>
-      <a href="#" rel="me">Behance</a>
-      <a href="#" rel="me">LinkedIn</a>
-    </nav>
-    <small class="fin__c">&copy; 2026 Gireesh &mdash; All rights reserved</small>
-  </div>
+  <section class="fin__contact" aria-labelledby="finContactTitle">
+    <div class="fin__contact-intro">
+      <p class="fin__contact-kicker"><span class="fin__section-number">04</span><i aria-hidden="true"></i>Contact</p>
+      <h2 id="finContactTitle">
+        <span class="fin__headline-line"><span>Have a good idea?</span></span>
+        <span class="fin__headline-line fin__headline-line--accent"><span>Let&rsquo;s build it.</span></span>
+      </h2>
+      <p class="fin__description">Have a project, idea, or just want to say hi? I&rsquo;m always open to meaningful conversations about design, technology and creative work.</p>
+      <a class="fin__email" href="mailto:hello@arisone.in?subject=Project%20inquiry">
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.5 6.5h17v11h-17zM4 7l8 6 8-6" /></svg>
+        <span>hello@arisone.in</span><span class="fin__email-arrow" aria-hidden="true">↗</span>
+      </a>
+    </div>
+    <div class="fin__connect">
+      <p class="fin__contact-kicker fin__social-kicker">Find me as <strong>RUSTAM PARVEZ</strong></p>
+      <nav class="fin__soc" aria-label="Social links">
+        <a class="fin__social-card" href="https://www.instagram.com/rustam_parvez" target="_blank" rel="noopener noreferrer" aria-label="Instagram, @rustam_parvez">
+          <svg class="fin__social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="5" /><circle cx="12" cy="12" r="4" /><circle class="fin__icon-dot" cx="17.7" cy="6.6" r=".9" /></svg>
+          <span class="fin__social-copy"><strong>Instagram</strong><small>@rustam_parvez</small></span>
+          <span class="fin__social-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="fin__social-card" href="https://www.linkedin.com/in/rustam-parvez-5668ab32a" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn, Rustam Parvez">
+          <svg class="fin__social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="3.5" y="3.5" width="17" height="17" rx="2" /><path d="M8 10v7M8 7v.1M12 17v-7h3v1.2c.5-.9 1.1-1.4 2.3-1.4 1.6 0 2.7 1.1 2.7 3.3V17" /></svg>
+          <span class="fin__social-copy"><strong>LinkedIn</strong><small>Rustam Parvez</small></span>
+          <span class="fin__social-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="fin__social-card" href="https://github.com/TheRustamDev" target="_blank" rel="noopener noreferrer" aria-label="GitHub, TheRustamDev">
+          <svg class="fin__social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.9a3.4 3.4 0 0 0-.9-2.4c3-.3 6.1-1.5 6.1-6.7a5.2 5.2 0 0 0-1.4-3.6 4.8 4.8 0 0 0-.1-3.6s-1.2-.4-3.8 1.4a13 13 0 0 0-6.9 0C6.4 1.4 5.2 1.8 5.2 1.8a4.8 4.8 0 0 0-.1 3.6 5.2 5.2 0 0 0-1.4 3.6c0 5.2 3.1 6.4 6.1 6.7a3.4 3.4 0 0 0-.9 2.4V22" /></svg>
+          <span class="fin__social-copy"><strong>GitHub</strong><small>TheRustamDev</small></span>
+          <span class="fin__social-arrow" aria-hidden="true">↗</span>
+        </a>
+        <a class="fin__social-card" href="https://wa.me/917355779499" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp, let's chat">
+          <svg class="fin__social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.2 11.8a8.2 8.2 0 0 1-12.1 7.3L3 20l.9-4.9a8.2 8.2 0 1 1 16.3-3.3Z" /><path d="M8.2 7.8c.2-.5.4-.5.8-.5h.5c.2 0 .4.1.5.4l.8 1.8c.1.2.1.4-.1.6l-.6.7c-.2.2-.2.4 0 .7a7.2 7.2 0 0 0 2.7 2.7c.3.2.5.2.7 0l.8-1c.2-.2.4-.3.6-.2l1.8.9c.3.1.4.3.4.5 0 .4-.2 1.2-.7 1.6-.6.5-1.4.8-2.3.6-1-.2-2.3-.7-4-2.2-1.4-1.2-2.3-2.7-2.6-3.7-.3-1 .1-1.9.7-2.9Z" /></svg>
+          <span class="fin__social-copy"><strong>WhatsApp</strong><small>Let&rsquo;s chat</small></span>
+          <span class="fin__social-arrow" aria-hidden="true">↗</span>
+        </a>
+      </nav>
+    </div>
+    <div class="fin__meta">
+      <a class="fin__signature" href="#home" aria-label="Ayaz Ahmad, back to home"><span>AYAZ</span> AHMAD</a>
+      <small>&copy; 2026 AYAZ AHMAD <span aria-hidden="true">/</span> LUCKNOW, INDIA</small>
+      <a class="fin__top" href="#home" aria-label="Back to top">
+        <span class="fin__top-label">Back to top</span>
+        <span class="fin__top-button" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M12 18V6m-5 5 5-5 5 5" /></svg></span>
+      </a>
+    </div>
+  </section>
   </div>
 </footer>
 
