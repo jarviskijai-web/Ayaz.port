@@ -1,5 +1,6 @@
 {
-  "framework": null,
-  "buildCommand": "echo \"Ready\"",
-  "outputDirectory": "."
+  "framework": "vite",
+  "buildCommand": "npm run build",
+  "installCommand": "npm install",
+  "outputDirectory": "dist"
 }
