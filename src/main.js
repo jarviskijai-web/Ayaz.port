@@ -8,6 +8,8 @@ import { initHeroInk } from './scene/hero-ink.js';
 const root = document.documentElement;
 const hero = document.querySelector('.stage-wrap');
 const heroImage = document.querySelector('.hero__media img');
+const heroVideo = document.querySelector('.hero__video');
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const burger = document.getElementById('burger');
 const menu = document.getElementById('menu');
 
@@ -60,6 +62,14 @@ if (hero && 'IntersectionObserver' in window) {
       hero.style.setProperty('--hero-scroll-opacity', progress.toFixed(3));
       hero.classList.toggle('is-offstage', offstage);
       hero.inert = offstage;
+      if (heroVideo && !reducedMotion) {
+        if (offstage) heroVideo.pause();
+        else if (heroVideo.paused) {
+          Promise.resolve(heroVideo.play())
+            .then(() => heroVideo.classList.add('is-playing'))
+            .catch(() => {});
+        }
+      }
     };
     window.addEventListener('scroll', updateHeroHandoff, { passive: true });
     window.addEventListener('resize', updateHeroHandoff, { passive: true });
@@ -101,6 +111,11 @@ async function main() {
 
   root.classList.remove('is-booting');
   root.classList.add('is-header', 'is-hero-ready');
+  if (heroVideo && !reducedMotion) {
+    Promise.resolve(heroVideo.play())
+      .then(() => heroVideo.classList.add('is-playing'))
+      .catch(() => {});
+  }
   initializeSections();
 }
 
