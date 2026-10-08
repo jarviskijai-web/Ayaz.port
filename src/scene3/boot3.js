@@ -85,7 +85,8 @@ export async function initChrono() {
 
   // ---- placement ---------------------------------------------------------
   function place() {
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = Math.min(window.devicePixelRatio || 1,
+      window.innerWidth <= 760 ? 1.35 : 1.75);
     const L = chrono.resize(window.innerWidth, window.innerHeight, dpr);
     const portrait = L.portrait;
 

@@ -55,7 +55,8 @@ function glowTex(){const cv=document.createElement('canvas');cv.width=cv.height=
  const g=c.createRadialGradient(64,64,0,64,64,64);g.addColorStop(0,'rgba(255,60,30,.9)');g.addColorStop(1,'rgba(255,60,30,0)');c.fillStyle=g;c.fillRect(0,0,128,128);return new THREE.CanvasTexture(cv)}
 
 const cv=document.getElementById('c')||document.body.appendChild(document.createElement('canvas'));
-const R=new THREE.WebGLRenderer({canvas:cv,antialias:true,alpha:true});R.setPixelRatio(Math.min(devicePixelRatio,2));R.setClearColor(0x000000,0);
+const mobile=matchMedia('(max-width: 760px)').matches;
+const R=new THREE.WebGLRenderer({canvas:cv,antialias:!mobile,alpha:true});R.setPixelRatio(Math.min(devicePixelRatio||1,mobile?1.35:1.75));R.setClearColor(0x000000,0);
 const S=new THREE.Scene(),Cam=new THREE.PerspectiveCamera(45,1,.1,100);Cam.position.z=14;
 S.add(new THREE.AmbientLight(0xffffff,.45));
 const key=new THREE.DirectionalLight(0xffffff,.9);key.position.set(3,5,7);S.add(key);
@@ -112,9 +113,16 @@ addEventListener('message',e=>{
  if(active&&!parentActive)activeSince=performance.now();
  else if(!active&&parentActive){activeElapsed+=(performance.now()-activeSince)/1000;activeSince=0;}
  parentActive=active;
+ if(parentActive)startRendering();else stopRendering();
 });
 const calm=matchMedia('(prefers-reduced-motion:reduce)').matches,clk=new THREE.Clock();
-(function loop(){requestAnimationFrame(loop);const dt=Math.min(clk.getDelta(),.05),visibleTime=activeElapsed+(parentActive?(performance.now()-activeSince)/1000:0),T=parentConnected?Math.max(visibleTime,parentProgress*7.4):clk.elapsedTime,m=calm?0:1;
+let renderFrameId=0;
+function stopRendering(){if(renderFrameId){cancelAnimationFrame(renderFrameId);renderFrameId=0}}
+function startRendering(){if(!renderFrameId&&!document.hidden&&(!parentConnected||parentActive))renderFrameId=requestAnimationFrame(renderFrame)}
+function renderFrame(){
+ renderFrameId=0;
+ if(document.hidden||(parentConnected&&!parentActive))return;
+ const dt=Math.min(clk.getDelta(),.05),visibleTime=activeElapsed+(parentActive?(performance.now()-activeSince)/1000:0),T=parentConnected?Math.max(visibleTime,parentProgress*7.4):clk.elapsedTime,m=calm?0:1;
  tiles.forEach((t,i)=>{const on=i===hov?1:0;t.hov+=(on-t.hov)*.14;t.pop=Math.max(0,t.pop-dt*2.4);
   const motion=t.hov,f=Math.sin(T*.8+t.ph);
   let tiltX=0,tiltY=0;
@@ -129,7 +137,11 @@ const calm=matchMedia('(prefers-reduced-motion:reduce)').matches,clk=new THREE.C
   t.g.rotation.x=t.rx+Math.cos(T*.7+t.ph)*.28*motion*m;
   t.g.rotation.z=Math.sin(T*.55+t.ph)*.08*motion*m+Math.sin(t.pop*Math.PI)*.22;
   t.g.scale.setScalar(t.k*(1+t.hov*.2+Math.sin(t.pop*Math.PI)*.22));t.s.material.opacity=.28+t.hov*.45+t.pop*.3});
- R.render(S,Cam)})();
+ R.render(S,Cam);
+ startRendering();
+}
+document.addEventListener('visibilitychange',()=>document.hidden?stopRendering():startRendering());
+startRendering();
 })();
 </script>
 </body>

@@ -9,8 +9,27 @@ const root = document.documentElement;
 const hero = document.querySelector('.stage-wrap');
 const heroImage = document.querySelector('.hero__media img');
 const heroVideo = document.querySelector('.hero__video');
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const lowData = navigator.connection?.saveData === true;
+const allowHeroVideo = Boolean(heroVideo)
+  && !reducedMotion
+  && !lowData
+  && !matchMedia('(max-width: 760px)').matches;
 const burger = document.getElementById('burger');
 const menu = document.getElementById('menu');
+
+function syncHeroVideo(visible) {
+  if (!heroVideo) return;
+  if (!visible || !allowHeroVideo) {
+    heroVideo.pause();
+    return;
+  }
+  if (heroVideo.paused) {
+    Promise.resolve(heroVideo.play())
+      .then(() => heroVideo.classList.add('is-playing'))
+      .catch(() => {});
+  }
+}
 
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 menu?.querySelectorAll('a').forEach((link, index) => {
@@ -42,6 +61,41 @@ function initializeScrollTransitions() {
   observer.observe(gallery);
 }
 
+function initializeDeferredScenes() {
+  const scenes = [
+    ['chrono', initChrono, 'timeline'],
+    ['gallery', initGallery, 'projects'],
+    ['fin', initFinale, 'finale'],
+  ].map(([id, initialize, label]) => ({
+    element: document.getElementById(id),
+    initialize,
+    label,
+  })).filter((scene) => scene.element);
+
+  const start = ({ initialize, label }) => {
+    Promise.resolve().then(initialize).catch((error) =>
+      console.warn(`[portfolio] ${label} unavailable:`, error.message));
+  };
+
+  if (!('IntersectionObserver' in window)) {
+    scenes.forEach(start);
+    return;
+  }
+
+  const pending = new Map(scenes.map((scene) => [scene.element, scene]));
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      observer.unobserve(entry.target);
+      const scene = pending.get(entry.target);
+      pending.delete(entry.target);
+      if (scene) start(scene);
+    });
+  }, { rootMargin: `${Math.max(window.innerHeight, 640)}px 0px` });
+
+  scenes.forEach(({ element }) => observer.observe(element));
+}
+
 burger?.addEventListener('click', () =>
   setMenu(burger.getAttribute('aria-expanded') !== 'true'));
 menu?.addEventListener('click', (event) => {
@@ -61,17 +115,18 @@ if (hero && 'IntersectionObserver' in window) {
       hero.style.setProperty('--hero-scroll-opacity', progress.toFixed(3));
       hero.classList.toggle('is-offstage', offstage);
       hero.inert = offstage;
-      if (heroVideo) {
-        if (offstage) heroVideo.pause();
-        else if (heroVideo.paused) {
-          Promise.resolve(heroVideo.play())
-            .then(() => heroVideo.classList.add('is-playing'))
-            .catch(() => {});
-        }
-      }
+      syncHeroVideo(!offstage);
     };
-    window.addEventListener('scroll', updateHeroHandoff, { passive: true });
-    window.addEventListener('resize', updateHeroHandoff, { passive: true });
+    let handoffFrame = 0;
+    const scheduleHeroHandoff = () => {
+      if (handoffFrame) return;
+      handoffFrame = requestAnimationFrame(() => {
+        handoffFrame = 0;
+        updateHeroHandoff();
+      });
+    };
+    window.addEventListener('scroll', scheduleHeroHandoff, { passive: true });
+    window.addEventListener('resize', scheduleHeroHandoff, { passive: true });
     updateHeroHandoff();
   }
 }
@@ -81,14 +136,9 @@ function initializeSections() {
   initializeScrollTransitions();
   initUniverse().catch((error) =>
     console.warn('[portfolio] universe unavailable:', error.message));
-  initChrono().catch((error) =>
-    console.warn('[portfolio] timeline unavailable:', error.message));
-  initGallery().catch((error) =>
-    console.warn('[portfolio] projects unavailable:', error.message));
   initPhotoshoot().catch((error) =>
     console.warn('[portfolio] photoshoot unavailable:', error.message));
-  initFinale().catch((error) =>
-    console.warn('[portfolio] finale unavailable:', error.message));
+  initializeDeferredScenes();
 }
 
 async function main() {
@@ -110,11 +160,7 @@ async function main() {
 
   root.classList.remove('is-booting');
   root.classList.add('is-header', 'is-hero-ready');
-  if (heroVideo) {
-    Promise.resolve(heroVideo.play())
-      .then(() => heroVideo.classList.add('is-playing'))
-      .catch(() => {});
-  }
+  syncHeroVideo(true);
   initializeSections();
 }
 

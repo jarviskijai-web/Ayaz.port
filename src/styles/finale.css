@@ -526,7 +526,6 @@
   .fin__contact {
     gap: 14px;
     padding: 16px 18px max(14px, env(safe-area-inset-bottom));
-    background-color: #030303;
   }
   .fin__contact::before {
     background:
