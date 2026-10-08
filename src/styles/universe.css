@@ -1,0 +1,74 @@
+/* ==========================================================================
+   Scene two — cinematic image plate with a transparent 3D tool layer.
+   ========================================================================== */
+
+.flow {
+  position: relative;
+  z-index: 2;
+}
+
+/* The hero is position:fixed, so its scroll height has to be reserved here or
+   the universe would start at the top of the document and sit on top of it. */
+.hero-spacer {
+  height: 100svh;
+  pointer-events: none;
+}
+
+.universe {
+  position: relative;
+  height: 100svh;
+  background: #000;
+  overflow: hidden;
+  transition: background-color 720ms ease;
+}
+
+.universe__background,
+.universe__demo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.universe__background {
+  z-index: 0;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+}
+
+.universe__demo {
+  z-index: 1;
+  display: block;
+  border: 0;
+  background: transparent;
+}
+
+.universe.is-motion-ready:not(.is-on) { background: transparent; }
+.universe__background,
+.universe__demo {
+  transition: opacity 720ms ease, transform 1000ms cubic-bezier(.16, 1, .3, 1);
+}
+.universe.is-motion-ready:not(.is-on) .universe__background,
+.universe.is-motion-ready:not(.is-on) .universe__demo {
+  opacity: 0;
+  transform: scale(1.025);
+}
+.universe.is-motion-ready.is-on { background: #000; }
+.universe.is-motion-ready.is-on .universe__background,
+.universe.is-motion-ready.is-on .universe__demo {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .universe,
+  .universe__background,
+  .universe__demo { transition-duration: .01ms; }
+  .universe.is-motion-ready:not(.is-on) .universe__background,
+  .universe.is-motion-ready:not(.is-on) .universe__demo { transform: none; }
+}
+
+@media (max-width: 760px) {
+  .universe__background { object-position: 50% 50%; }
+}
