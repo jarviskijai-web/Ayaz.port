@@ -141,13 +141,13 @@
   padding: 20px 0 36px;
 }
 
-.gallery h1 {
+.gallery .gallery-title {
   margin: 0 0 26px;
   font: 400 clamp(54px, 6.2vw, 100px)/.93 var(--serif);
   letter-spacing: -.02em;
 }
 
-.gallery h1 i { font-style: normal; color: var(--ember); }
+.gallery .gallery-title i { font-style: normal; color: var(--ember); }
 
 .gallery .lead {
   max-width: 31ch;
@@ -456,7 +456,7 @@
   .gallery .facts div { flex-direction: row; align-items: baseline; justify-content: space-between; padding-top: 7px; }
   .gallery .facts dd { font-size: 21px; }
   .gallery .facts dt { margin-top: 0; font-size: 9px; }
-  .gallery h1 { margin-bottom: 12px; font-size: clamp(34px, 9vw, 48px); }
+  .gallery .gallery-title { margin-bottom: 12px; font-size: clamp(34px, 9vw, 48px); }
   .gallery .lead { margin-bottom: 14px; font-size: 12px; line-height: 1.4; }
   .gallery .cue { display: none; }
   .gallery .cta { gap: 8px; padding: 5px 5px 5px 12px; font-size: 11px; }
