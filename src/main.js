@@ -101,8 +101,8 @@ function initializeSnapNavigation() {
     releaseTimer = window.setTimeout(() => { locked = false; }, 620);
   };
 
-  const step = (direction) => {
-    if (locked || !direction) return;
+  const step = (direction, { touch = false } = {}) => {
+    if ((locked && !touch) || !direction) return;
     let current = 0;
     let nearest = Infinity;
     panels.forEach((panel, index) => {
@@ -115,7 +115,7 @@ function initializeSnapNavigation() {
 
     const next = Math.max(0, Math.min(panels.length - 1, current + Math.sign(direction)));
     if (next === current) return;
-    holdInput();
+    if (!touch) holdInput();
     const top = window.scrollY + panels[next].getBoundingClientRect().top;
     slideTo(top);
     playReveal(panels[next], Math.sign(direction));
@@ -138,7 +138,7 @@ function initializeSnapNavigation() {
     const deltaY = event.clientY - touchStart.y;
     touchStart = null;
     if (Math.abs(deltaY) > 48 && Math.abs(deltaY) > Math.abs(deltaX) * 1.2) {
-      step(deltaY < 0 ? 1 : -1);
+      step(deltaY < 0 ? 1 : -1, { touch: true });
     }
   }, { passive: true });
   window.addEventListener('pointercancel', () => { touchStart = null; }, { passive: true });
@@ -159,7 +159,7 @@ function initializeSnapNavigation() {
   });
 
   window.addEventListener('portfolio:section-step', (event) => {
-    step(event.detail?.direction);
+    step(event.detail?.direction, { touch: event.detail?.input === 'touch' });
   });
 }
 
