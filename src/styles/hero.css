@@ -168,7 +168,7 @@
 .hero__name-ink {
   color: transparent;
   background-image:
-    url('../../public/tex/grunge.png'),
+    url('/tex/grunge.png'),
     radial-gradient(ellipse at 24% 58%, rgba(255, 73, 61, .76) 0%, rgba(167, 11, 22, .42) 26%, transparent 58%),
     radial-gradient(ellipse at 78% 40%, rgba(48, 3, 9, .88) 0%, rgba(123, 7, 17, .5) 36%, transparent 71%),
     linear-gradient(174deg, #d63232 0%, #a9151f 28%, #510911 61%, #a71922 82%, #35070d 100%);

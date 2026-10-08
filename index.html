@@ -7,9 +7,9 @@
 <meta name="description" content="Ayaz Ahmad is a student, creative developer, UI/UX designer and AI enthusiast from Lucknow, India. Designing digital experiences that feel alive.">
 <meta name="theme-color" content="#000000">
 
-<link rel="preload" href="public/fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="public/fonts/oswald-500.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="public/fonts/oswald-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/oswald-500.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/fonts/oswald-700.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="src/styles/app.css">
 <link rel="stylesheet" href="src/styles/hero.css">
 <link rel="stylesheet" href="src/styles/universe.css">
@@ -23,11 +23,11 @@
 <section class="stage-wrap hero" id="home" aria-labelledby="heroTitle">
   <div class="hero__shell">
     <picture class="hero__media" aria-hidden="true">
-      <source media="(max-width: 760px)" srcset="public/hero/hero-phone.png">
-      <img src="public/hero/hero-desktop.png" alt="" fetchpriority="high">
+      <source media="(max-width: 760px)" srcset="/hero/hero-phone.png">
+      <img src="/hero/hero-desktop.png" alt="" fetchpriority="high">
     </picture>
-    <video class="hero__video" aria-hidden="true" muted loop playsinline preload="auto" poster="public/hero/hero-desktop.png">
-      <source src="public/hero/hero-background.mp4" type="video/mp4">
+    <video class="hero__video" aria-hidden="true" muted loop playsinline preload="auto" poster="/hero/hero-desktop.png">
+      <source src="/hero/hero-background.mp4" type="video/mp4">
     </video>
     <div class="hero__shade" aria-hidden="true"></div>
 
@@ -114,7 +114,7 @@
   <!-- Scene 2 combines the cinematic image plate with interactive 3D tool tiles. -->
   <section class="universe" id="universe">
     <img class="universe__background" id="uniBackground"
-         src="public/media/universe-background.png" alt="" aria-hidden="true"
+         src="/media/universe-background.png" alt="" aria-hidden="true"
          fetchpriority="high" decoding="async">
     <iframe class="universe__demo" id="uniDemo"
             src="/tools-3d.html" title="Interactive 3D creative tool tiles"></iframe>
@@ -427,9 +427,9 @@
         }
 
         var specs = [
-          { name: 'GHARONIX', sub: 'Real estate platform', logo: 'house', src: 'public/projects/ghar-card.png', w: 3.6, h: 2.025, cw: 1672, ch: 941, pos: [.1, 2.75, .7], rot: [-.1, -.1, .06] },
-          { name: 'REVIX ONE', sub: 'Music streaming app', logo: 'wave', src: 'public/projects/revix-card.png', w: 3.0, h: 1.688, cw: 1672, ch: 941, pos: [3.5, -1.15, .5], rot: [.05, -.42, .36] },
-          { name: 'ARIS ONE', sub: 'Creative brand', logo: 'aris', src: 'public/projects/aris-card.png', w: 3.0, h: 1.688, cw: 1672, ch: 941, pos: [-3.5, -1.15, .5], rot: [.05, .42, -.36] }
+          { name: 'GHARONIX', sub: 'Real estate platform', logo: 'house', src: '/projects/ghar-card.png', w: 3.6, h: 2.025, cw: 1672, ch: 941, pos: [.1, 2.75, .7], rot: [-.1, -.1, .06] },
+          { name: 'REVIX ONE', sub: 'Music streaming app', logo: 'wave', src: '/projects/revix-card.png', w: 3.0, h: 1.688, cw: 1672, ch: 941, pos: [3.5, -1.15, .5], rot: [.05, -.42, .36] },
+          { name: 'ARIS ONE', sub: 'Creative brand', logo: 'aris', src: '/projects/aris-card.png', w: 3.0, h: 1.688, cw: 1672, ch: 941, pos: [-3.5, -1.15, .5], rot: [.05, .42, -.36] }
         ];
         specs.forEach(function (s) {
           s.image = new Image();
@@ -682,8 +682,8 @@
   <h2 class="sr-only">Ayaz Ahmad</h2>
 
   <div class="fin__stage1" id="finStage1">
-    <img class="fin__photo-backdrop" src="public/photoshoot/photo-02.jpeg" data-portrait-src="public/photoshoot/photo-02.jpeg" data-landscape-src="public/photoshoot/landscape-taj.png" alt="" aria-hidden="true" draggable="false">
-    <img class="fin__photo-main" id="finFrame1Img" src="public/photoshoot/photo-02.jpeg" data-portrait-src="public/photoshoot/photo-02.jpeg" data-landscape-src="public/photoshoot/landscape-taj.png" alt="" aria-hidden="true" draggable="false" decoding="async">
+    <img class="fin__photo-backdrop" src="/photoshoot/photo-02.jpeg" data-portrait-src="/photoshoot/photo-02.jpeg" data-landscape-src="/photoshoot/landscape-taj.png" alt="" aria-hidden="true" draggable="false">
+    <img class="fin__photo-main" id="finFrame1Img" src="/photoshoot/photo-02.jpeg" data-portrait-src="/photoshoot/photo-02.jpeg" data-landscape-src="/photoshoot/landscape-taj.png" alt="" aria-hidden="true" draggable="false" decoding="async">
 
     <p class="f-cap f-cap--tl" aria-hidden="true">
       Design<br>Technology<br>AI<br>Digital Products
@@ -702,8 +702,8 @@
 
   <!-- The mirror portrait replaces the red-wall portrait as the page scrolls. -->
   <figure class="fin__frame2" id="finFrame2" aria-hidden="true" hidden>
-    <img class="fin__photo-backdrop" src="public/photoshoot/photo-08.jpeg" data-portrait-src="public/photoshoot/photo-08.jpeg" data-landscape-src="public/photoshoot/landscape-riverside.jpg" alt="" aria-hidden="true" draggable="false">
-    <img class="fin__photo-main" id="finFrame2Img" src="public/photoshoot/photo-08.jpeg" data-portrait-src="public/photoshoot/photo-08.jpeg" data-landscape-src="public/photoshoot/landscape-riverside.jpg" alt="" aria-hidden="true" draggable="false" decoding="async">
+    <img class="fin__photo-backdrop" src="/photoshoot/photo-08.jpeg" data-portrait-src="/photoshoot/photo-08.jpeg" data-landscape-src="/photoshoot/landscape-riverside.jpg" alt="" aria-hidden="true" draggable="false">
+    <img class="fin__photo-main" id="finFrame2Img" src="/photoshoot/photo-08.jpeg" data-portrait-src="/photoshoot/photo-08.jpeg" data-landscape-src="/photoshoot/landscape-riverside.jpg" alt="" aria-hidden="true" draggable="false" decoding="async">
   </figure>
 
   <section class="fin__contact" aria-labelledby="finContactTitle">

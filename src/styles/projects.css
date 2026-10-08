@@ -16,7 +16,7 @@
   z-index: 1;
   background:
     radial-gradient(70% 60% at 50% 45%, #1d0507 0, #060405 70%) fixed,
-    url('../../public/projects/PROJECTS.png') center center / cover no-repeat;
+    url('/projects/PROJECTS.png') center center / cover no-repeat;
   color: var(--bone);
   font: 400 15px/1.55 var(--sans);
   overflow: hidden;
@@ -579,7 +579,7 @@
 
 .gallery.is-fallback #galleryStage { display: none; }
 .gallery.is-fallback .gallery__pin {
-  background: #000 url('../../public/projects/plate.jpg') center / cover no-repeat;
+  background: #000 url('/projects/plate.jpg') center / cover no-repeat;
 }
 .gallery.is-set .g-card,
 .gallery.is-set .gallery__person { opacity: 1; }

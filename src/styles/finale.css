@@ -127,7 +127,7 @@
   position: absolute;
   z-index: 3;
   inset: 0;
-  background: url('../../public/tex/grain.png') repeat;
+  background: url('/tex/grain.png') repeat;
   background-size: 340px;
   opacity: 0.06;
   mix-blend-mode: overlay;
@@ -233,7 +233,7 @@
     linear-gradient(180deg, rgba(0, 0, 0, 0.08) 0%, rgba(0, 0, 0, 0.02) 32%, rgba(0, 0, 0, 0.78) 57%, #030303 100%);
 }
 .fin__contact::after {
-  background: url('../../public/tex/grain.png') repeat;
+  background: url('/tex/grain.png') repeat;
   background-size: 280px;
   mix-blend-mode: soft-light;
   opacity: 0.07;

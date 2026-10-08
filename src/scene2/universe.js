@@ -38,8 +38,8 @@ export class Universe {
   async load() {
     const gl = this.gl;
     const [grain, ...images] = await Promise.all([
-      loadImage('public/tex/grain.png'),
-      ...TOOLS.map((name) => loadImage(`public/tools/${name}.png`)),
+      loadImage('/tex/grain.png'),
+      ...TOOLS.map((name) => loadImage(`/tools/${name}.png`)),
     ]);
     if (!upload(gl, this.tex.grain, grain)) {
       throw new Error('The grain texture has no decodable image dimensions.');
