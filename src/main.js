@@ -74,7 +74,7 @@ function initializeSnapNavigation() {
   const holdInput = () => {
     locked = true;
     window.clearTimeout(releaseTimer);
-    releaseTimer = window.setTimeout(() => { locked = false; }, 560);
+    releaseTimer = window.setTimeout(() => { locked = false; }, 620);
   };
 
   const step = (direction) => {
@@ -99,10 +99,7 @@ function initializeSnapNavigation() {
   window.addEventListener('wheel', (event) => {
     if (event.ctrlKey || Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
     event.preventDefault();
-    if (locked) {
-      holdInput();
-      return;
-    }
+    if (locked) return;
     step(event.deltaY);
   }, { passive: false });
 
