@@ -106,6 +106,129 @@ html {
   /* removed CSS scroll-snap-align to prevent browser conflict with custom fast scroll */
 }
 
+.scene-clock-reveal {
+  position: fixed;
+  z-index: 100;
+  inset: 0;
+  overflow: hidden;
+  visibility: hidden;
+  pointer-events: none;
+  color: var(--scene-accent, #ff4938);
+  mix-blend-mode: screen;
+}
+
+.scene-clock-reveal.is-running { visibility: visible; }
+
+.scene-clock-reveal__rays {
+  position: absolute;
+  inset: -45%;
+  background: repeating-conic-gradient(
+    from -6deg at 50% 50%,
+    transparent 0deg 13.8deg,
+    rgba(255, 79, 55, .38) 14deg 14.35deg,
+    transparent 14.55deg 18deg
+  );
+  mask-image: radial-gradient(ellipse at center, transparent 0 11%, #000 25% 50%, transparent 72%);
+  opacity: 0;
+  transform: scale(.28) rotate(-12deg);
+}
+
+.scene-clock-reveal.is-running .scene-clock-reveal__rays {
+  animation: clock-rays-expand 760ms cubic-bezier(.16, 1, .3, 1) both;
+}
+
+.scene-clock-reveal__dial {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(58vw, 620px);
+  aspect-ratio: 1;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  background: repeating-conic-gradient(
+    from 0deg,
+    transparent 0deg 29deg,
+    rgba(255, 255, 255, .52) 29.4deg 29.7deg,
+    transparent 30deg 30deg
+  );
+  mask-image: radial-gradient(circle, transparent 0 46%, #000 46.3% 47%, transparent 47.4%);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(.24) rotate(-32deg);
+}
+
+.scene-clock-reveal.is-running .scene-clock-reveal__dial {
+  animation: clock-dial-resolve 760ms cubic-bezier(.16, 1, .3, 1) both;
+}
+
+.scene-clock-reveal__hand {
+  position: absolute;
+  bottom: 50%;
+  left: calc(50% - 1px);
+  width: 2px;
+  height: 46vh;
+  background: linear-gradient(transparent, currentColor 72%, #fff 100%);
+  box-shadow: 0 0 14px currentColor;
+  opacity: 0;
+  transform: rotate(-104deg);
+  transform-origin: 50% 100%;
+}
+
+.scene-clock-reveal.is-running .scene-clock-reveal__hand {
+  animation: clock-hand-sweep 720ms cubic-bezier(.16, 1, .3, 1) both;
+}
+
+.scene-clock-reveal.is-reverse.is-running .scene-clock-reveal__hand {
+  animation-name: clock-hand-sweep-reverse;
+}
+
+.scene-clock-reveal__pin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 11px;
+  height: 11px;
+  border: 1px solid #fff;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 0 7px rgba(255, 255, 255, .08), 0 0 22px currentColor;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(.2);
+}
+
+.scene-clock-reveal.is-running .scene-clock-reveal__pin {
+  animation: clock-pin-flash 620ms ease-out both;
+}
+
+@keyframes clock-rays-expand {
+  0% { opacity: 0; transform: scale(.28) rotate(-12deg); }
+  24% { opacity: .74; }
+  100% { opacity: 0; transform: scale(1.14) rotate(10deg); }
+}
+
+@keyframes clock-dial-resolve {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(.24) rotate(-32deg); }
+  26% { opacity: .62; }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1) rotate(12deg); }
+}
+
+@keyframes clock-hand-sweep {
+  0% { opacity: 0; transform: rotate(-104deg); }
+  16% { opacity: .9; }
+  100% { opacity: 0; transform: rotate(282deg); }
+}
+
+@keyframes clock-hand-sweep-reverse {
+  0% { opacity: 0; transform: rotate(104deg); }
+  16% { opacity: .9; }
+  100% { opacity: 0; transform: rotate(-282deg); }
+}
+
+@keyframes clock-pin-flash {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(.2); }
+  22% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -50%) scale(1.7); }
+}
+
 .scroll-depth {
   transform-style: preserve-3d;
   backface-visibility: hidden;
@@ -204,6 +327,8 @@ html {
   .universe {
     animation: none;
   }
+
+  .scene-clock-reveal { display: none; }
 }
 
 /* Keep the shared header hidden until the hero artwork and fonts are ready. */

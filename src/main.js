@@ -66,6 +66,30 @@ function initializeSnapNavigation() {
   )];
   let locked = false;
   let releaseTimer = 0;
+  let revealTimer = 0;
+  const reveal = document.createElement('div');
+  reveal.className = 'scene-clock-reveal';
+  reveal.setAttribute('aria-hidden', 'true');
+  reveal.innerHTML = '<span class="scene-clock-reveal__rays"></span>'
+    + '<span class="scene-clock-reveal__dial"></span>'
+    + '<span class="scene-clock-reveal__hand"></span>'
+    + '<span class="scene-clock-reveal__pin"></span>';
+  document.body.append(reveal);
+
+  const playReveal = (panel, direction) => {
+    if (reducedMotion) return;
+    const style = getComputedStyle(panel);
+    const accent = ['--ember', '--photo-red', '--ink-hot', '--amber']
+      .map((name) => style.getPropertyValue(name).trim())
+      .find(Boolean) || '#ff4938';
+    reveal.style.setProperty('--scene-accent', accent);
+    reveal.classList.toggle('is-reverse', direction < 0);
+    reveal.classList.remove('is-running');
+    void reveal.offsetWidth;
+    reveal.classList.add('is-running');
+    window.clearTimeout(revealTimer);
+    revealTimer = window.setTimeout(() => reveal.classList.remove('is-running'), 780);
+  };
 
   const slideTo = (top) => {
     window.scrollTo({ top, behavior: 'instant' });
@@ -94,6 +118,7 @@ function initializeSnapNavigation() {
     holdInput();
     const top = window.scrollY + panels[next].getBoundingClientRect().top;
     slideTo(top);
+    playReveal(panels[next], Math.sign(direction));
   };
 
   window.addEventListener('wheel', (event) => {
