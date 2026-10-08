@@ -99,8 +99,8 @@ export async function initFinale() {
       : 0;
   };
   const revealAtProgress = (progress) => {
-    if (progress > 0.08) section.classList.add('is-caps');
-    if (reduced || progress > 0.3) section.classList.add('is-bar');
+    if (state.visible || progress > 0.08) section.classList.add('is-caps');
+    if (state.visible || reduced || progress > 0.3) section.classList.add('is-bar');
   };
   const onScroll = () => revealAtProgress(scrollProgress());
   window.addEventListener('scroll', onScroll, { passive: true });
@@ -134,6 +134,7 @@ export async function initFinale() {
 
   const start = () => {
     if (state.running) return;
+    revealAtProgress(scrollProgress());
     state.running = true;
     state.last = performance.now();
     state.raf = requestAnimationFrame(frame);

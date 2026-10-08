@@ -8,7 +8,9 @@
    portrait) in from the left over it. */
 .fin {
   position: relative;
-  height: 240svh;
+  height: 100svh;
+  min-height: 100svh;
+  overflow: hidden;
   background: #000;
 }
 

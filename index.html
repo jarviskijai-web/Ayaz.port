@@ -50,12 +50,12 @@
 <body>
 
 <section class="stage-wrap hero" id="home" aria-labelledby="heroTitle">
-  <div class="hero__shell">
+  <div class="hero__shell scroll-depth scroll-depth--hero">
     <picture class="hero__media" aria-hidden="true">
       <source media="(max-width: 760px)" srcset="/hero/hero-phone.png">
       <img src="/hero/hero-desktop.png" alt="" fetchpriority="high">
     </picture>
-    <video class="hero__video" aria-hidden="true" muted loop playsinline preload="none" poster="/hero/hero-desktop.png">
+    <video class="hero__video" aria-hidden="true" muted loop playsinline preload="metadata" poster="/hero/hero-desktop.png">
       <source src="/hero/hero-background.mp4" type="video/mp4">
     </video>
     <div class="hero__shade" aria-hidden="true"></div>
@@ -141,7 +141,7 @@
 
   <!-- ==================================================================== -->
   <!-- Scene 2 combines the cinematic image plate with interactive 3D tool tiles. -->
-  <section class="universe" id="universe">
+  <section class="universe scroll-depth" id="universe">
     <img class="universe__background" id="uniBackground"
          src="/media/universe-background.png" alt="" aria-hidden="true"
          fetchpriority="high" decoding="async">
@@ -151,7 +151,7 @@
 
   <!-- ==================================================================== -->
   <section class="chrono" id="chrono" aria-labelledby="chronoTitle">
-    <div class="chrono__pin">
+    <div class="chrono__pin scroll-depth" data-depth-timeline="chrono">
       <canvas id="chronoStage" aria-hidden="true"></canvas>
 
       <h2 class="chrono__title" id="chronoTitle">
@@ -186,7 +186,7 @@
   <section class="gallery" id="gallery" aria-labelledby="galleryTitle">
     <canvas id="gl" aria-hidden="true"></canvas>
     <div class="vig" aria-hidden="true"></div>
-    <div class="page gallery__page">
+    <div class="page gallery__page scroll-depth" data-depth-timeline="gallery">
       <header class="top">
         <a class="logo" href="#home" aria-label="Ayaz, home">AYAZ<b>.</b></a>
         <nav aria-label="Main">
@@ -648,7 +648,7 @@
 
   <!-- ==================================================================== -->
   <section class="photoshoot" id="photoshoot" aria-labelledby="photoshootTitle">
-    <div class="photoshoot__shell">
+    <div class="photoshoot__shell scroll-depth" data-depth-timeline="photoshoot">
       <header class="photoshoot__header">
         <div class="photoshoot__title-block">
           <p class="photoshoot__eyebrow"><span></span>Behind the code</p>
@@ -707,7 +707,7 @@
 
 <!-- ====================================================================== -->
 <footer class="fin" id="fin" aria-label="Closing">
-  <div class="fin__pin">
+  <div class="fin__pin scroll-depth" data-depth-timeline="fin">
   <h2 class="sr-only">Ayaz Ahmad</h2>
 
   <div class="fin__stage1" id="finStage1">

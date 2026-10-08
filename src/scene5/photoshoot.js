@@ -14,7 +14,7 @@ const PHOTOS = [
   },
 ];
 
-const PAGE_SIZE = 8;
+const PAGE_SIZE = 4;
 
 export async function initPhotoshoot() {
   const section = document.getElementById('photoshoot');

@@ -14,6 +14,8 @@
 .gallery {
   position: relative;
   z-index: 1;
+  height: 100svh;
+  min-height: 100svh;
   background:
     radial-gradient(70% 60% at 50% 45%, #1d0507 0, #060405 70%) fixed,
     url('/projects/PROJECTS.png') center center / cover no-repeat;
@@ -64,6 +66,9 @@
 .gallery__page {
   position: relative;
   z-index: 1;
+  display: grid;
+  height: 100%;
+  grid-template-rows: auto minmax(0, 1fr) auto;
   max-width: 1480px;
   margin: 0 auto;
   padding: 0 clamp(20px, 4.5vw, 72px);
@@ -130,7 +135,9 @@
   grid-template-columns: minmax(270px, .78fr) minmax(0, 1.5fr) minmax(290px, .72fr);
   gap: clamp(16px, 2vw, 32px);
   align-items: center;
-  min-height: calc(100svh - 170px);
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
   padding: 20px 0 36px;
 }
 
@@ -417,11 +424,46 @@
 @media (max-width: 1000px) {
   .gallery .top { grid-template-columns: 1fr auto; }
   .gallery nav { display: none; }
-  .gallery .hero { grid-template-columns: 1fr; min-height: 0; gap: 6px; }
-  .gallery .stage { min-height: 440px; }
+  .gallery .hero {
+    grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr);
+    grid-template-rows: minmax(0, 1fr) auto;
+    min-height: 0;
+    gap: 6px 12px;
+    padding: 0 0 10px;
+  }
+  .gallery__intro { grid-column: 1; grid-row: 1; }
+  .gallery .stage {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: stretch;
+    min-height: 0;
+  }
+  .gallery .index {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+  .gallery .row { min-width: 0; }
+  .gallery .rh { gap: 4px; padding: 10px 4px 10px 8px; }
+  .gallery .nm { font-size: clamp(13px, 3.6vw, 18px); }
+  .gallery .ds { font-size: 9px; line-height: 1.25; }
+  .gallery .rh svg { width: 13px; height: 13px; }
+  .gallery .row .rb,
+  .gallery .note { display: none; }
+  .gallery .facts { grid-template-columns: 1fr; gap: 8px; margin-top: 18px; }
+  .gallery .facts div { flex-direction: row; align-items: baseline; justify-content: space-between; padding-top: 7px; }
+  .gallery .facts dd { font-size: 21px; }
+  .gallery .facts dt { margin-top: 0; font-size: 9px; }
+  .gallery h1 { margin-bottom: 12px; font-size: clamp(34px, 9vw, 48px); }
+  .gallery .lead { margin-bottom: 14px; font-size: 12px; line-height: 1.4; }
   .gallery .cue { display: none; }
-  .gallery .facts { margin-top: 40px; }
-  .gallery .fr { margin-left: 0; width: 100%; justify-content: space-between; padding-bottom: 16px; }
+  .gallery .cta { gap: 8px; padding: 5px 5px 5px 12px; font-size: 11px; }
+  .gallery .cta span { width: 26px; height: 26px; }
+  .gallery .fr { margin-left: 0; width: 100%; justify-content: space-between; padding-bottom: 0; }
+  .gallery .filters { margin-bottom: 0; }
+  .gallery .tab { padding: 12px 9px; font-size: 11px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

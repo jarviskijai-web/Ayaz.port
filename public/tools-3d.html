@@ -100,7 +100,10 @@ cv.addEventListener('pointermove',e=>{setN(e);if(e.pointerType==='mouse'){hov=pi
 let down=null;
 cv.addEventListener('pointerdown',e=>{setN(e);down={x:e.clientX,y:e.clientY,i:pick()};hov=down.i;cv.setPointerCapture(e.pointerId)});
 cv.addEventListener('pointerup',e=>{if(!down)return;const moved=Math.hypot(e.clientX-down.x,e.clientY-down.y);
+ const dy=e.clientY-down.y,dx=e.clientX-down.x;
+ if(e.pointerType==='touch'&&Math.abs(dy)>48&&Math.abs(dy)>Math.abs(dx)*1.2){window.parent.postMessage({type:'portfolio:section-step',direction:dy<0?1:-1},location.origin);down=null;return}
  if(moved<10&&down.i>=0){const t=tiles[down.i];hov=down.i;t.pop=1;toast('Opening '+t.name);setTimeout(()=>window.open(t.url,'_blank','noopener'),320)}down=null});
+cv.addEventListener('wheel',e=>{if(Math.abs(e.deltaY)<=Math.abs(e.deltaX))return;e.preventDefault();window.parent.postMessage({type:'portfolio:section-step',direction:Math.sign(e.deltaY)},location.origin)},{passive:false});
 cv.addEventListener('pointerleave',()=>{hov=-1;cv.classList.remove('hot')});
 let to;function toast(m){const e=document.getElementById('toast');e.textContent=m;e.classList.add('on');clearTimeout(to);to=setTimeout(()=>e.classList.remove('on'),1400)}
 

@@ -13,8 +13,7 @@ const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const lowData = navigator.connection?.saveData === true;
 const allowHeroVideo = Boolean(heroVideo)
   && !reducedMotion
-  && !lowData
-  && !matchMedia('(max-width: 760px)').matches;
+  && !lowData;
 const burger = document.getElementById('burger');
 const menu = document.getElementById('menu');
 
@@ -59,6 +58,87 @@ function initializeScrollTransitions() {
     gallery.classList.toggle('is-in-view', entry.isIntersecting);
   }, { threshold: 0.08 });
   observer.observe(gallery);
+}
+
+function initializeSnapNavigation() {
+  const panels = [...document.querySelectorAll(
+    '.hero-spacer, #universe, #chrono, #gallery, #photoshoot, #fin',
+  )];
+  let locked = false;
+  let releaseTimer = 0;
+
+  const slideTo = (top) => {
+    window.scrollTo({ top, behavior: 'instant' });
+  };
+
+  const holdInput = () => {
+    locked = true;
+    window.clearTimeout(releaseTimer);
+    releaseTimer = window.setTimeout(() => { locked = false; }, 560);
+  };
+
+  const step = (direction) => {
+    if (locked || !direction) return;
+    let current = 0;
+    let nearest = Infinity;
+    panels.forEach((panel, index) => {
+      const distance = Math.abs(panel.getBoundingClientRect().top);
+      if (distance < nearest) {
+        current = index;
+        nearest = distance;
+      }
+    });
+
+    const next = Math.max(0, Math.min(panels.length - 1, current + Math.sign(direction)));
+    if (next === current) return;
+    holdInput();
+    const top = window.scrollY + panels[next].getBoundingClientRect().top;
+    slideTo(top);
+  };
+
+  window.addEventListener('wheel', (event) => {
+    if (event.ctrlKey || Math.abs(event.deltaY) <= Math.abs(event.deltaX)) return;
+    event.preventDefault();
+    if (locked) {
+      holdInput();
+      return;
+    }
+    step(event.deltaY);
+  }, { passive: false });
+
+  let touchStart = null;
+  window.addEventListener('pointerdown', (event) => {
+    if (event.pointerType === 'touch') touchStart = { x: event.clientX, y: event.clientY };
+  }, { passive: true });
+  window.addEventListener('pointerup', (event) => {
+    if (event.pointerType !== 'touch' || !touchStart) return;
+    const deltaX = event.clientX - touchStart.x;
+    const deltaY = event.clientY - touchStart.y;
+    touchStart = null;
+    if (Math.abs(deltaY) > 48 && Math.abs(deltaY) > Math.abs(deltaX) * 1.2) {
+      step(deltaY < 0 ? 1 : -1);
+    }
+  }, { passive: true });
+  window.addEventListener('pointercancel', () => { touchStart = null; }, { passive: true });
+
+  window.addEventListener('keydown', (event) => {
+    if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return;
+    if (event.target.closest('input, textarea, select, [contenteditable="true"]')) return;
+    if ((event.code === 'Space' || event.key === 'ArrowDown' || event.key === 'ArrowUp')
+        && event.target.closest('a, button, [role="button"]')) return;
+
+    if (event.code === 'Space' || event.key === 'PageDown' || event.key === 'ArrowDown') {
+      event.preventDefault();
+      step(1);
+    } else if (event.key === 'PageUp' || event.key === 'ArrowUp') {
+      event.preventDefault();
+      step(-1);
+    }
+  });
+
+  window.addEventListener('portfolio:section-step', (event) => {
+    step(event.detail?.direction);
+  });
 }
 
 function initializeDeferredScenes() {
@@ -113,6 +193,8 @@ if (hero && 'IntersectionObserver' in window) {
         spacer.getBoundingClientRect().bottom / Math.max(window.innerHeight, 1)));
       const offstage = progress <= 0.001;
       hero.style.setProperty('--hero-scroll-opacity', progress.toFixed(3));
+      hero.style.setProperty('--hero-scroll-tilt', `${((1 - progress) * 5).toFixed(2)}deg`);
+      hero.style.setProperty('--hero-scroll-scale', (1 + (1 - progress) * 0.035).toFixed(4));
       hero.classList.toggle('is-offstage', offstage);
       hero.inert = offstage;
       syncHeroVideo(!offstage);
@@ -134,6 +216,7 @@ if (hero && 'IntersectionObserver' in window) {
 function initializeSections() {
   initHeroInk();
   initializeScrollTransitions();
+  initializeSnapNavigation();
   initUniverse().catch((error) =>
     console.warn('[portfolio] universe unavailable:', error.message));
   initPhotoshoot().catch((error) =>
@@ -156,6 +239,7 @@ async function main() {
     console.error('[portfolio] hero image could not be loaded.');
     root.classList.add('is-hero-error');
   }
+  syncHeroVideo(true);
   if (document.fonts) await document.fonts.ready;
 
   root.classList.remove('is-booting');

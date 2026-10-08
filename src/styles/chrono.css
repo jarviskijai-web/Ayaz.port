@@ -18,7 +18,9 @@
   --cream: #f4e9dc;
 
   position: relative;
-  height: 240svh;              /* travel for the intro to breathe into */
+  height: 100svh;
+  min-height: 100svh;
+  overflow: hidden;
   background: #060505;
 }
 
@@ -332,7 +334,6 @@
 .chrono.is-portrait .chrono__hint { top: auto; bottom: clamp(18px, 4vh, 44px); }
 
 @media (max-width: 760px) {
-  .chrono { height: 200svh; }
   .chrono__rail { display: none; }
   .chrono__note--bl { display: none; }
 }
