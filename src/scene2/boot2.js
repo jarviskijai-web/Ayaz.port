@@ -6,6 +6,10 @@ export async function initUniverse() {
     throw new Error('Scene 2 is missing its background, 3D demo, or section.');
   }
 
+  if (!background.getAttribute('src') && background.dataset.src) {
+    background.src = background.dataset.src;
+  }
+
   if (!background.complete) {
     await new Promise((resolve) => {
       background.addEventListener('load', resolve, { once: true });

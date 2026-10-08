@@ -60,6 +60,23 @@ function initializeScrollTransitions() {
   observer.observe(gallery);
 }
 
+function initializeUniverseWhenNear() {
+  const section = document.getElementById('universe');
+  if (!section || !('IntersectionObserver' in window)) {
+    initUniverse().catch((error) =>
+      console.warn('[portfolio] universe unavailable:', error.message));
+    return;
+  }
+
+  const observer = new IntersectionObserver(([entry]) => {
+    if (!entry.isIntersecting || entry.intersectionRatio === 0) return;
+    observer.disconnect();
+    initUniverse().catch((error) =>
+      console.warn('[portfolio] universe unavailable:', error.message));
+  }, { threshold: 0.01 });
+  observer.observe(section);
+}
+
 function initializeSnapNavigation() {
   const panels = [...document.querySelectorAll(
     '.hero-spacer, #universe, #chrono, #gallery, #photoshoot, #fin',
@@ -85,8 +102,7 @@ function initializeSnapNavigation() {
     reveal.style.setProperty('--scene-accent', accent);
     reveal.classList.toggle('is-reverse', direction < 0);
     reveal.classList.remove('is-running');
-    void reveal.offsetWidth;
-    reveal.classList.add('is-running');
+    requestAnimationFrame(() => reveal.classList.add('is-running'));
     window.clearTimeout(revealTimer);
     revealTimer = window.setTimeout(() => reveal.classList.remove('is-running'), 780);
   };
@@ -193,7 +209,7 @@ function initializeDeferredScenes() {
       pending.delete(entry.target);
       if (scene) start(scene);
     });
-  }, { rootMargin: `${Math.max(window.innerHeight, 640)}px 0px` });
+  }, { rootMargin: `${Math.min(320, Math.round(window.innerHeight * 0.35))}px 0px` });
 
   scenes.forEach(({ element }) => observer.observe(element));
 }
@@ -239,8 +255,7 @@ function initializeSections() {
   initHeroInk();
   initializeScrollTransitions();
   initializeSnapNavigation();
-  initUniverse().catch((error) =>
-    console.warn('[portfolio] universe unavailable:', error.message));
+  initializeUniverseWhenNear();
   initPhotoshoot().catch((error) =>
     console.warn('[portfolio] photoshoot unavailable:', error.message));
   initializeDeferredScenes();
@@ -261,8 +276,8 @@ async function main() {
     console.error('[portfolio] hero image could not be loaded.');
     root.classList.add('is-hero-error');
   }
+  if (heroVideo && heroImage.currentSrc) heroVideo.poster = heroImage.currentSrc;
   syncHeroVideo(true);
-  if (document.fonts) await document.fonts.ready;
 
   root.classList.remove('is-booting');
   root.classList.add('is-header', 'is-hero-ready');

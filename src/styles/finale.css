@@ -53,7 +53,10 @@
   z-index: 1;
   object-fit: contain;
   object-position: center;
+  transition: opacity 360ms ease;
 }
+
+.fin__stage1.is-photo-changing .fin__photo-main { opacity: 0; }
 
 .fin.is-landscape .fin__photo-backdrop,
 .fin.is-landscape .fin__photo-main,

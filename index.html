@@ -17,12 +17,12 @@
 <meta property="og:title" content="Ayaz Ahmad &mdash; Creative Developer, UI/UX Designer &amp; AI Builder">
 <meta property="og:description" content="Designing digital experiences that feel alive.">
 <meta property="og:url" content="https://ayaz.arisone.in/">
-<meta property="og:image" content="https://ayaz.arisone.in/hero/hero-desktop.png">
+<meta property="og:image" content="https://ayaz.arisone.in/hero/hero-desktop.jpg">
 <meta property="og:image:alt" content="Ayaz Ahmad's creative developer portfolio">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Ayaz Ahmad &mdash; Creative Developer, UI/UX Designer &amp; AI Builder">
 <meta name="twitter:description" content="Designing digital experiences that feel alive.">
-<meta name="twitter:image" content="https://ayaz.arisone.in/hero/hero-desktop.png">
+<meta name="twitter:image" content="https://ayaz.arisone.in/hero/hero-desktop.jpg">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -55,6 +55,8 @@
 <link rel="preload" href="/fonts/anton-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/oswald-500.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/oswald-700.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" href="/hero/hero-phone.jpg" media="(max-width: 760px)" fetchpriority="high">
+<link rel="preload" as="image" href="/hero/hero-desktop.jpg" media="(min-width: 761px)" fetchpriority="high">
 <link rel="stylesheet" href="src/styles/app.css">
 <link rel="stylesheet" href="src/styles/hero.css">
 <link rel="stylesheet" href="src/styles/universe.css">
@@ -68,10 +70,10 @@
 <section class="stage-wrap hero" id="home" aria-labelledby="heroTitle">
   <div class="hero__shell scroll-depth scroll-depth--hero">
     <picture class="hero__media" aria-hidden="true">
-      <source media="(max-width: 760px)" srcset="/hero/hero-phone.png">
-      <img src="/hero/hero-desktop.png" alt="" fetchpriority="high">
+      <source media="(max-width: 760px)" srcset="/hero/hero-phone.jpg" width="941" height="1672">
+      <img src="/hero/hero-desktop.jpg" alt="" width="1672" height="941" fetchpriority="high" decoding="async">
     </picture>
-    <video class="hero__video" aria-hidden="true" muted loop playsinline preload="metadata" poster="/hero/hero-desktop.png">
+    <video class="hero__video" aria-hidden="true" muted loop playsinline preload="none">
       <source src="/hero/hero-background.mp4" type="video/mp4">
     </video>
     <div class="hero__shade" aria-hidden="true"></div>
@@ -159,9 +161,9 @@
   <!-- ==================================================================== -->
   <!-- Scene 2 combines the cinematic image plate with interactive 3D tool tiles. -->
   <section class="universe scroll-depth" id="universe">
-    <img class="universe__background" id="uniBackground"
-         src="/media/universe-background.png" alt="" aria-hidden="true"
-         fetchpriority="high" decoding="async">
+        <img class="universe__background" id="uniBackground"
+          data-src="/media/universe-background.jpg" alt="" aria-hidden="true"
+          loading="lazy" decoding="async">
     <iframe class="universe__demo" id="uniDemo"
           src="/tools-3d.html" title="Interactive 3D creative tool tiles" loading="lazy"></iframe>
   </section>
@@ -282,10 +284,13 @@
       </footer>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-      window.ayaz = { hover: -1, sel: 0, vis: [1, 1, 1], change: function () {} };
-      (function () {
+      (function deferProjectScene() {
+        var requested = false;
+        var observer;
+        function initializeProjectScene() {
+          window.ayaz = { hover: -1, sel: 0, vis: [1, 1, 1], change: function () {} };
+          (function () {
         var canvas = document.getElementById('gl');
         var renderer;
         try {
@@ -473,9 +478,9 @@
         }
 
         var specs = [
-          { name: 'GHARONIX', sub: 'Real estate platform', logo: 'house', src: '/projects/ghar-card.png', w: 3.6, h: 2.025, cw: 1672, ch: 941, pos: [.1, 2.75, .7], rot: [-.1, -.1, .06] },
-          { name: 'REVIX ONE', sub: 'Music streaming app', logo: 'wave', src: '/projects/revix-card.png', w: 3.0, h: 1.688, cw: 1672, ch: 941, pos: [3.5, -1.15, .5], rot: [.05, -.42, .36] },
-          { name: 'ARIS ONE', sub: 'Creative brand', logo: 'aris', src: '/projects/aris-card.png', w: 3.0, h: 1.688, cw: 1672, ch: 941, pos: [-3.5, -1.15, .5], rot: [.05, .42, -.36] }
+          { name: 'GHARONIX', sub: 'Real estate platform', logo: 'house', src: '/projects/ghar-card.jpg', w: 3.6, h: 2.025, cw: 1672, ch: 941, pos: [.1, 2.75, .7], rot: [-.1, -.1, .06] },
+          { name: 'REVIX ONE', sub: 'Music streaming app', logo: 'wave', src: '/projects/revix-card.jpg', w: 3.0, h: 1.688, cw: 1672, ch: 941, pos: [3.5, -1.15, .5], rot: [.05, -.42, .36] },
+          { name: 'ARIS ONE', sub: 'Creative brand', logo: 'aris', src: '/projects/aris-card.jpg', w: 3.0, h: 1.688, cw: 1672, ch: 941, pos: [-3.5, -1.15, .5], rot: [.05, .42, -.36] }
         ];
         specs.forEach(function (s) {
           s.image = new Image();
@@ -659,6 +664,26 @@
         window.addEventListener('resize', mark);
         if (document.fonts && document.fonts.ready) document.fonts.ready.then(mark);
         render();
+          })();
+        }
+        function loadProjectScene() {
+          if (requested) return;
+          requested = true;
+          if (observer) observer.disconnect();
+          var library = document.createElement('script');
+          library.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+          library.onload = initializeProjectScene;
+          document.head.appendChild(library);
+        }
+        var section = document.getElementById('gallery');
+        if ('IntersectionObserver' in window && section) {
+          observer = new IntersectionObserver(function (entries) {
+            if (entries.some(function (entry) { return entry.isIntersecting; })) loadProjectScene();
+          }, { rootMargin: '260px 0px' });
+          observer.observe(section);
+        } else {
+          loadProjectScene();
+        }
       })();
     </script>
   </section>

@@ -2,6 +2,13 @@
 // Scrolling through the footer reveals the mirror portrait over the first.
 const damp = (v, to, k, dt) => v + (to - v) * (1 - Math.exp(-k * dt));
 const sstep = (v) => v * v * v * (v * (v * 6 - 15) + 10);
+const FOOTER_PHOTOS = [
+  '/photoshoot/photo-02.jpeg',
+  '/photoshoot/photo-04.jpeg',
+  '/photoshoot/photo-05.jpeg',
+  '/photoshoot/photo-06.jpeg',
+  '/photoshoot/photo-08.jpeg',
+];
 
 export async function initFinale() {
   const section = document.getElementById('fin');
@@ -26,6 +33,9 @@ export async function initFinale() {
 
   let frame2Ready = false;
   let p2 = 0;
+  let photoIndex = 0;
+  let photoTimer = 0;
+  let photoSwapTimer = 0;
   const revealFrame2 = () => {
     frame2.hidden = false;
   };
@@ -67,7 +77,9 @@ export async function initFinale() {
     [...frame1Images, ...frame2Images].forEach((image, index) => {
       const label = index < frame1Images.length ? 'red-wall' : 'mirror';
       reportImageError(image, label);
-      const source = landscape ? image.dataset.landscapeSrc : image.dataset.portraitSrc;
+      const source = index < frame1Images.length
+        ? FOOTER_PHOTOS[photoIndex]
+        : (landscape ? image.dataset.landscapeSrc : image.dataset.portraitSrc);
       if (!source) return;
       if (image.getAttribute('src') !== source) {
         image.src = source;
@@ -91,6 +103,40 @@ export async function initFinale() {
   });
 
   const state = { running: false, visible: false, raf: 0, last: 0 };
+
+  const rotateFooterPhoto = async () => {
+    const nextIndex = (photoIndex + 1) % FOOTER_PHOTOS.length;
+    const nextImage = new Image();
+    nextImage.src = FOOTER_PHOTOS[nextIndex];
+    try {
+      await nextImage.decode();
+    } catch {
+      return;
+    }
+    if (!state.visible) return;
+    stage1.classList.add('is-photo-changing');
+    photoSwapTimer = window.setTimeout(() => {
+      if (!state.visible) return;
+      photoIndex = nextIndex;
+      frame1Images.forEach((image) => { image.src = FOOTER_PHOTOS[photoIndex]; });
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => stage1.classList.remove('is-photo-changing'));
+      });
+    }, 260);
+  };
+
+  const startPhotoLoop = () => {
+    if (state.visible && !reduced && !photoTimer) {
+      photoTimer = window.setInterval(rotateFooterPhoto, 5000);
+    }
+  };
+
+  const stopPhotoLoop = () => {
+    window.clearInterval(photoTimer);
+    window.clearTimeout(photoSwapTimer);
+    photoTimer = 0;
+    photoSwapTimer = 0;
+  };
 
   const scrollProgress = () => {
     const room = section.offsetHeight - window.innerHeight;
@@ -138,8 +184,13 @@ export async function initFinale() {
     state.running = true;
     state.last = performance.now();
     state.raf = requestAnimationFrame(frame);
+    startPhotoLoop();
   };
-  const stop = () => { state.running = false; cancelAnimationFrame(state.raf); };
+  const stop = () => {
+    state.running = false;
+    cancelAnimationFrame(state.raf);
+    stopPhotoLoop();
+  };
 
   new IntersectionObserver((entries) => {
     for (const e of entries) {

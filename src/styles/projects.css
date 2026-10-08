@@ -18,7 +18,7 @@
   min-height: 100svh;
   background:
     radial-gradient(70% 60% at 50% 45%, #1d0507 0, #060405 70%) fixed,
-    url('/projects/PROJECTS.png') center center / cover no-repeat;
+    url('/projects/PROJECTS.jpg') center center / cover no-repeat;
   color: var(--bone);
   font: 400 15px/1.55 var(--sans);
   overflow: hidden;
@@ -414,11 +414,10 @@
 
 .gallery.has-scroll-motion .gallery__page {
   opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 680ms ease, transform 820ms cubic-bezier(.16, 1, .3, 1);
+  transition: opacity 680ms ease;
 }
 .gallery.has-scroll-motion #gl { opacity: 0; transition: opacity 720ms ease; }
-.gallery.is-in-view .gallery__page { opacity: 1; transform: none; }
+.gallery.is-in-view .gallery__page { opacity: 1; }
 .gallery.is-in-view #gl { opacity: 1; }
 
 @media (max-width: 1000px) {
