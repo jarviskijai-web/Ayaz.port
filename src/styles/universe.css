@@ -43,6 +43,13 @@
   display: block;
   border: 0;
   background: transparent;
+  pointer-events: none;
+}
+
+.universe:hover .universe__demo,
+.universe:focus-within .universe__demo,
+.universe.is-active .universe__demo {
+  pointer-events: auto;
 }
 
 .universe.is-motion-ready:not(.is-on) { background: transparent; }

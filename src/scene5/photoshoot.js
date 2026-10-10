@@ -1,16 +1,17 @@
 const PHOTOS = [
-  { title: 'Between Rides', src: '/photoshoot/photo-01.jpeg', featured: true },
-  { title: 'A Moment in Blue', src: '/photoshoot/photo-02.jpeg' },
-  { title: 'In the Mirror', src: '/photoshoot/photo-03.jpeg', focus: '50% 20%' },
-  { title: 'Among the Blooms', src: '/photoshoot/photo-04.jpeg', focus: '50% 0%' },
-  { title: 'A Different Chapter', src: '/photoshoot/photo-05.jpeg', focus: '50% 25%' },
-  { title: 'Golden Hour', src: '/photoshoot/photo-06.jpeg' },
-  { title: 'A Quiet Visit to the Taj', src: '/photoshoot/photo-07.jpeg' },
-  { title: 'The Everyday Edit', src: '/photoshoot/photo-08.jpeg', focus: '50% 16%' },
+  { title: 'Between Rides', src: '/photoshoot/photo-01.jpeg', featured: true, variant: 'wide' },
+  { title: 'A Moment in Blue', src: '/photoshoot/photo-02.jpeg', variant: 'portrait' },
+  { title: 'In the Mirror', src: '/photoshoot/photo-03.jpeg', focus: '50% 20%', variant: 'portrait' },
+  { title: 'Among the Blooms', src: '/photoshoot/photo-04.jpeg', focus: '50% 0%', variant: 'square' },
+  { title: 'A Different Chapter', src: '/photoshoot/photo-05.jpeg', focus: '50% 25%', variant: 'portrait' },
+  { title: 'Golden Hour', src: '/photoshoot/photo-06.jpeg', variant: 'square' },
+  { title: 'A Quiet Visit to the Taj', src: '/photoshoot/photo-07.jpeg', variant: 'wide' },
+  { title: 'The Everyday Edit', src: '/photoshoot/photo-08.jpeg', focus: '50% 16%', variant: 'portrait' },
   {
     title: 'Where the River Turns',
     src: '/photoshoot/landscape-riverside.jpg',
     focus: '82% 42%',
+    variant: 'wide',
   },
 ];
 
@@ -46,8 +47,10 @@ export async function initPhotoshoot() {
       card.type = 'button';
       card.className = 'photo-card';
       if (photo.featured) card.classList.add('photo-card--featured');
+      if (photo.variant) card.classList.add(`photo-card--${photo.variant}`);
       card.dataset.photoIndex = String(photoIndex);
       card.style.setProperty('--card-index', String(index));
+      card.style.setProperty('--photo-aspect', photo.variant === 'wide' ? '1.4' : photo.variant === 'portrait' ? '0.82' : '1');
       card.setAttribute('aria-label', `Open photo ${number}: ${photo.title}`);
 
       const indexLabel = document.createElement('span');

@@ -46,14 +46,6 @@ export async function initUniverse() {
   };
   window.addEventListener('scroll', updateProgress, { passive: true });
   window.addEventListener('resize', updateProgress, { passive: true });
-  window.addEventListener('message', (event) => {
-    if (event.source !== demo.contentWindow
-        || event.origin !== location.origin
-        || event.data?.type !== 'portfolio:section-step') return;
-    window.dispatchEvent(new CustomEvent('portfolio:section-step', {
-      detail: event.data,
-    }));
-  });
   updateProgress();
   return { section, background, demo };
 }

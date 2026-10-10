@@ -3,24 +3,24 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Ayaz Ahmad &mdash; Creative Developer, UI/UX Designer &amp; AI Builder</title>
-<meta name="description" content="Ayaz Ahmad is a creative developer, UI/UX designer and AI builder from Lucknow, India, creating immersive websites, digital products and AI-powered experiences.">
+<title>Rustam Parvez &mdash; Creative Developer, UI/UX Designer &amp; AI Builder</title>
+<meta name="description" content="Rustam Parvez is a creative developer, UI/UX designer and AI builder from Lucknow, India, creating immersive websites, digital products and AI-powered experiences.">
 <meta name="theme-color" content="#000000">
-<meta name="author" content="Ayaz Ahmad">
+<meta name="author" content="Rustam Parvez">
 <meta name="robots" content="index, follow">
 <link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
 <link rel="apple-touch-icon" sizes="192x192" href="/favicon.png">
 <link rel="canonical" href="https://ayaz.arisone.in/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_IN">
-<meta property="og:site_name" content="Ayaz Ahmad">
-<meta property="og:title" content="Ayaz Ahmad &mdash; Creative Developer, UI/UX Designer &amp; AI Builder">
+<meta property="og:site_name" content="Rustam Parvez">
+<meta property="og:title" content="Rustam Parvez &mdash; Creative Developer, UI/UX Designer &amp; AI Builder">
 <meta property="og:description" content="Designing digital experiences that feel alive.">
 <meta property="og:url" content="https://ayaz.arisone.in/">
 <meta property="og:image" content="https://ayaz.arisone.in/hero/hero-desktop.jpg">
-<meta property="og:image:alt" content="Ayaz Ahmad's creative developer portfolio">
+<meta property="og:image:alt" content="Rustam Parvez's creative developer portfolio">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Ayaz Ahmad &mdash; Creative Developer, UI/UX Designer &amp; AI Builder">
+<meta name="twitter:title" content="Rustam Parvez &mdash; Creative Developer, UI/UX Designer &amp; AI Builder">
 <meta name="twitter:description" content="Designing digital experiences that feel alive.">
 <meta name="twitter:image" content="https://ayaz.arisone.in/hero/hero-desktop.jpg">
 <script type="application/ld+json">
@@ -30,7 +30,7 @@
     {
       "@type": "Person",
       "@id": "https://ayaz.arisone.in/#person",
-      "name": "Ayaz Ahmad",
+      "name": "Rustam Parvez",
       "url": "https://ayaz.arisone.in/",
       "image": "https://ayaz.arisone.in/photoshoot/photo-02.jpeg",
       "jobTitle": "Creative Developer, UI/UX Designer & AI Builder",
@@ -43,7 +43,7 @@
     {
       "@type": "WebSite",
       "@id": "https://ayaz.arisone.in/#website",
-      "name": "Ayaz Ahmad",
+      "name": "Rustam Parvez",
       "url": "https://ayaz.arisone.in/",
       "inLanguage": "en-IN",
       "publisher": { "@id": "https://ayaz.arisone.in/#person" }
@@ -64,6 +64,8 @@
 <link rel="stylesheet" href="src/styles/projects.css">
 <link rel="stylesheet" href="src/styles/photoshoot.css">
 <link rel="stylesheet" href="src/styles/finale.css">
+<link rel="stylesheet" href="src/styles/sections.css">
+<link rel="stylesheet" href="src/styles/typography.css">
 </head>
 <body>
 
@@ -73,14 +75,12 @@
       <source media="(max-width: 760px)" srcset="/hero/hero-phone.jpg" width="941" height="1672">
       <img src="/hero/hero-desktop.jpg" alt="" width="1672" height="941" fetchpriority="high" decoding="async">
     </picture>
-    <video class="hero__video" aria-hidden="true" muted loop playsinline preload="none">
-      <source src="/hero/hero-background.mp4" type="video/mp4">
-    </video>
+    <canvas class="hero__sequence" aria-hidden="true"></canvas>
     <div class="hero__shade" aria-hidden="true"></div>
 
     <header class="hdr" id="hdr">
-      <a class="hdr__mark" href="#home" aria-label="Ayaz, home">
-        <span class="mark-word">AYAZ</span>
+      <a class="hdr__mark" href="#home" aria-label="Rustam, home">
+        <span class="mark-word">RUSTAM</span>
       </a>
       <span class="hdr__div" aria-hidden="true"></span>
       <p class="hdr__roles">
@@ -108,9 +108,9 @@
     <div class="hero__copy">
       <p class="hero__welcome"><span aria-hidden="true">•••</span> Welcome to my world <span aria-hidden="true">•••</span></p>
       <h1 class="hero__name" id="heroTitle">
-        <span class="sr-only">Ayaz Ahmad</span>
-        <span class="hero__name-ink" aria-hidden="true">AYAZ</span>
-        <span class="hero__name-reveal" aria-hidden="true">AYAZ</span>
+        <span class="sr-only">Rustam Parvez</span>
+        <span class="hero__name-ink" aria-hidden="true">RUSTAM</span>
+        <span class="hero__name-reveal" aria-hidden="true">RUSTAM</span>
       </h1>
       <p class="hero__role">Designer <span aria-hidden="true">×</span> Developer</p>
       <p class="hero__intro">Designing digital experiences that feel alive.</p>
@@ -169,6 +169,104 @@
   </section>
 
   <!-- ==================================================================== -->
+  <section class="services" id="services" aria-labelledby="servicesTitle">
+    <div class="services__content">
+      <p class="services__eyebrow">What I build</p>
+
+      <div class="services__header">
+        <div class="services__headline-wrap">
+          <h2 id="servicesTitle">
+            <span>I craft digital experiences</span>
+            <span>with <em>depth, precision</em>,</span>
+            <span>and <em>momentum.</em></span>
+          </h2>
+        </div>
+        <div class="services__summary">
+          <p>Brands, products, and AI systems designed to feel premium, clear, and impossible to ignore.</p>
+          <a href="#gallery" class="services__cta">See the work <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+
+      <div class="services__grid">
+        <article class="service-card service-card--featured">
+          <span>01</span>
+          <h3>Brand systems</h3>
+          <p>A clear point of view, visual identity, and language that makes your brand instantly recognizable.</p>
+        </article>
+        <article class="service-card">
+          <span>02</span>
+          <h3>Product design</h3>
+          <p>Interfaces and journeys that remove friction and help people reach value with confidence.</p>
+        </article>
+        <article class="service-card">
+          <span>03</span>
+          <h3>AI experiences</h3>
+          <p>Thoughtful AI products that make complex capabilities feel useful, intuitive, and human.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="impact" aria-labelledby="impactTitle">
+    <div class="impact__content">
+      <div class="impact__header">
+        <p class="impact__eyebrow">Why clients choose me</p>
+        <h2 id="impactTitle"><span>I turn</span><span><em>complexity</em> into</span><span><em>conviction.</em></span></h2>
+      </div>
+
+      <div class="impact__layout">
+        <div class="impact__statement">
+          <p class="impact__lede">Clients come to me when the idea is good, but the execution needs to feel premium, clear, and unmistakably ownable.</p>
+          <div class="impact__pills" aria-label="Core strengths">
+            <span>Strategy</span>
+            <span>Design</span>
+            <span>Web</span>
+            <span>AI</span>
+          </div>
+        </div>
+
+        <div class="impact__list" aria-label="Reasons clients choose me">
+          <article class="impact__criterion">
+            <span>01</span>
+            <div>
+              <h3>Design with intent</h3>
+              <p>I sharpen the positioning, story, and visual system so the value is instantly legible and the brand feels confident from the first click.</p>
+            </div>
+          </article>
+          <article class="impact__criterion">
+            <span>02</span>
+            <div>
+              <h3>Emotion without excess</h3>
+              <p>Every interaction is crafted to feel alive and memorable without slipping into generic fluff or overdesigned noise.</p>
+            </div>
+          </article>
+          <article class="impact__criterion">
+            <span>03</span>
+            <div>
+              <h3>Execution that stays true</h3>
+              <p>From early concept to final build, I stay close to the product so the look, message, and experience remain aligned all the way through launch.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+
+      <div class="impact__metrics" aria-label="Impact summary">
+        <article class="impact__metric">
+          <strong>03</strong>
+          <small>distinct creative directions shaped through strategy, story, and product thinking</small>
+        </article>
+        <article class="impact__metric">
+          <strong>12+</strong>
+          <small>design, product, and AI tools blended into a cohesive creative workflow</small>
+        </article>
+        <article class="impact__metric is-accent">
+          <strong>100%</strong>
+          <small>hands-on ownership from the first concept to the polished final experience</small>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="chrono" id="chrono" aria-labelledby="chronoTitle">
     <div class="chrono__pin scroll-depth" data-depth-timeline="chrono">
       <canvas id="chronoStage" aria-hidden="true"></canvas>
@@ -207,7 +305,7 @@
     <div class="vig" aria-hidden="true"></div>
     <div class="page gallery__page scroll-depth" data-depth-timeline="gallery">
       <header class="top">
-        <a class="logo" href="#home" aria-label="Ayaz, home">AYAZ<b>.</b></a>
+        <a class="logo" href="#home" aria-label="Rustam, home">RUSTAM<b>.</b></a>
         <nav aria-label="Main">
           <a href="#home">Home</a>
           <a href="#gallery" aria-current="page">Work</a>
@@ -289,7 +387,7 @@
         var requested = false;
         var observer;
         function initializeProjectScene() {
-          window.ayaz = { hover: -1, sel: 0, vis: [1, 1, 1], change: function () {} };
+          window.portfolioProjects = { hover: -1, sel: 0, vis: [1, 1, 1], change: function () {} };
           (function () {
         var canvas = document.getElementById('gl');
         var renderer;
@@ -433,7 +531,7 @@
         }
         window.addEventListener('resize', resize); resize();
 
-        var A = window.ayaz;
+        var A = window.portfolioProjects;
         var cardsRoot = new THREE.Group(); scene.add(cardsRoot);
 
         function logo(x, k, ox, oy, S) {
@@ -612,7 +710,7 @@
       })();
 
       (function () {
-        var A = window.ayaz;
+        var A = window.portfolioProjects;
         var rows = Array.prototype.slice.call(document.querySelectorAll('.row'));
         var tabs = Array.prototype.slice.call(document.querySelectorAll('.tab'));
         var ind = document.querySelector('.ind');
@@ -690,7 +788,7 @@
 
   <!-- ==================================================================== -->
   <section class="photoshoot" id="photoshoot" aria-labelledby="photoshootTitle">
-    <div class="photoshoot__shell scroll-depth" data-depth-timeline="photoshoot">
+    <div class="photoshoot__shell">
       <header class="photoshoot__header">
         <div class="photoshoot__title-block">
           <p class="photoshoot__eyebrow"><span></span>Behind the code</p>
@@ -722,7 +820,7 @@
 
       <footer class="photoshoot__footer">
         <div class="photoshoot__signature">
-          <strong>AYAZ</strong><span></span>
+          <strong>RUSTAM</strong><span></span>
           <small>Creative developer&nbsp; / &nbsp;UI/UX designer&nbsp; / &nbsp;AI builder</small>
         </div>
         <p class="photoshoot__edition"><i></i>Portfolio — MMXXVI</p>
@@ -750,7 +848,7 @@
 <!-- ====================================================================== -->
 <footer class="fin" id="fin" aria-label="Closing">
   <div class="fin__pin scroll-depth" data-depth-timeline="fin">
-  <h2 class="sr-only">Ayaz Ahmad</h2>
+  <h2 class="sr-only">Rustam Parvez</h2>
 
   <div class="fin__stage1" id="finStage1">
     <img class="fin__photo-backdrop" src="/photoshoot/photo-02.jpeg" data-portrait-src="/photoshoot/photo-02.jpeg" data-landscape-src="/photoshoot/landscape-taj.png" alt="" aria-hidden="true" draggable="false">
@@ -785,9 +883,9 @@
         <span class="fin__headline-line fin__headline-line--accent"><span>Let&rsquo;s build it.</span></span>
       </h2>
       <p class="fin__description">Have a project, idea, or just want to say hi? I&rsquo;m always open to meaningful conversations about design, technology and creative work.</p>
-      <a class="fin__email" href="mailto:hello@arisone.in?subject=Project%20inquiry">
+      <a class="fin__email" href="mailto:Rustamparvez785@gmail.com?subject=Project%20inquiry">
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3.5 6.5h17v11h-17zM4 7l8 6 8-6" /></svg>
-        <span>hello@arisone.in</span><span class="fin__email-arrow" aria-hidden="true">↗</span>
+        <span>Rustamparvez785@gmail.com</span><span class="fin__email-arrow" aria-hidden="true">↗</span>
       </a>
     </div>
     <div class="fin__connect">
@@ -816,8 +914,8 @@
       </nav>
     </div>
     <div class="fin__meta">
-      <a class="fin__signature" href="#home" aria-label="Ayaz Ahmad, back to home"><span>AYAZ</span> AHMAD</a>
-      <small>&copy; 2026 AYAZ AHMAD <span aria-hidden="true">/</span> LUCKNOW, INDIA</small>
+      <a class="fin__signature" href="#home" aria-label="Rustam Parvez, back to home"><span>RUSTAM</span> PARVEZ</a>
+      <small>&copy; 2026 RUSTAM PARVEZ <span aria-hidden="true">/</span> LUCKNOW, INDIA</small>
       <a class="fin__top" href="#home" aria-label="Back to top">
         <span class="fin__top-label">Back to top</span>
         <span class="fin__top-button" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M12 18V6m-5 5 5-5 5 5" /></svg></span>

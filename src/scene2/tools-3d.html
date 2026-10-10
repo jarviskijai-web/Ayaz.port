@@ -11,15 +11,26 @@ html,body{height:100%;margin:0;background:transparent;overflow:hidden;font-famil
 body{background:transparent url('/media/universe-background.jpg') center/cover no-repeat}
 canvas{position:fixed;inset:0;width:100%;height:100%;touch-action:none;display:block;cursor:grab}
 canvas.hot{cursor:pointer}
-h1{position:fixed;left:20px;top:calc(18px + env(safe-area-inset-top,0px));margin:0;font-size:15px;font-weight:600;letter-spacing:.02em;opacity:.8;pointer-events:none}
-#hint{position:fixed;left:0;right:0;bottom:calc(18px + env(safe-area-inset-bottom,0px));text-align:center;font-size:13px;opacity:.5;pointer-events:none}
+@font-face{font-family:Oswald;src:url('/fonts/oswald-500.woff2') format('woff2');font-weight:500;font-display:swap}
+@font-face{font-family:Bodoni;src:url('/fonts/bodonimoda-400.woff2') format('woff2');font-weight:400;font-display:swap}
+html,body{font-family:Oswald,'Arial Narrow',system-ui,sans-serif}
+.intro{position:fixed;z-index:2;left:clamp(20px,4.5vw,64px);top:clamp(18px,3.5vh,36px);max-width:min(440px,72vw);pointer-events:none;text-shadow:0 2px 18px #000}
+.intro__eyebrow{margin:0 0 3px;color:#ff9c60;font-size:10px;font-weight:500;letter-spacing:.28em;text-transform:uppercase}
+h1{margin:0;color:#f3e9e6;font-family:Bodoni,Georgia,serif;font-size:clamp(25px,4vw,42px);font-weight:400;letter-spacing:.015em;line-height:1.04}
+.intro__copy{max-width:38ch;margin:6px 0 0;color:rgba(243,233,230,.74);font-size:clamp(11px,1.3vw,14px);font-weight:300;letter-spacing:.045em;line-height:1.45}
+#hint{position:fixed;z-index:2;left:0;right:0;bottom:calc(12px + env(safe-area-inset-bottom,0px));display:flex;justify-content:center;gap:10px;color:rgba(243,233,230,.72);font-size:10px;font-weight:500;letter-spacing:.2em;text-align:center;text-transform:uppercase;text-shadow:0 1px 12px #000;pointer-events:none}
+#hint i{color:#ff583c;font-style:normal}
 #toast{position:fixed;left:50%;top:calc(60px + env(safe-area-inset-top,0px));transform:translate(-50%,-10px);background:#1b0b09;border:1px solid #ff3b2455;color:var(--ink);padding:9px 16px;border-radius:999px;font-size:14px;opacity:0;transition:.25s;pointer-events:none}
 #toast.on{opacity:1;transform:translate(-50%,0)}
 </style>
 </head>
 <body>
+<header class="intro">
+<p class="intro__eyebrow">The creative toolkit</p>
 <h1>Tools I build with</h1>
-<div id="hint">Move or drag to tilt. Tap a tile to open it.</div>
+<p class="intro__copy">Design, motion, 3D and AI—one connected workflow.</p>
+</header>
+<div id="hint"><span>Drag to explore</span><i aria-hidden="true">/</i><span>Scroll to continue</span></div>
 <div id="toast"></div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
@@ -89,7 +100,7 @@ function layout(){W=innerWidth;H=innerHeight;R.setSize(W,H,false);Cam.aspect=W/H
   [-.42,-.30],[-.28,-.30],[.28,-.30],[.42,-.30]
  ];
  tiles.forEach((t,i)=>{const [x,y]=positions[i];
-  t.base.set(x*vw,y*vh,0);t.k=cell*.56/(w+.14)})}
+  t.base.set(x*vw,(y-.08)*vh,0);t.k=cell*.56/(w+.14)})}
 addEventListener('resize',layout);layout();
 
 const ndc=new THREE.Vector2(),ray=new THREE.Raycaster(),projected=new THREE.Vector3();let hov=-1;
@@ -99,7 +110,10 @@ cv.addEventListener('pointermove',e=>{setN(e);if(e.pointerType==='mouse'){hov=pi
 let down=null;
 cv.addEventListener('pointerdown',e=>{setN(e);down={x:e.clientX,y:e.clientY,i:pick()};hov=down.i;cv.setPointerCapture(e.pointerId)});
 cv.addEventListener('pointerup',e=>{if(!down)return;const moved=Math.hypot(e.clientX-down.x,e.clientY-down.y);
+ const dy=e.clientY-down.y,dx=e.clientX-down.x;
+ if(e.pointerType==='touch'&&Math.abs(dy)>48&&Math.abs(dy)>Math.abs(dx)*1.2){window.parent.postMessage({type:'portfolio:universe-scroll',deltaY:-dy*2.2},location.origin);down=null;return}
  if(moved<10&&down.i>=0){const t=tiles[down.i];hov=down.i;t.pop=1;toast('Opening '+t.name);setTimeout(()=>window.open(t.url,'_blank','noopener'),320)}down=null});
+cv.addEventListener('wheel',e=>{if(Math.abs(e.deltaY)<=Math.abs(e.deltaX))return;e.preventDefault();window.parent.postMessage({type:'portfolio:universe-scroll',deltaY:e.deltaY},location.origin)},{passive:false});
 cv.addEventListener('pointerleave',()=>{hov=-1;cv.classList.remove('hot')});
 let to;function toast(m){const e=document.getElementById('toast');e.textContent=m;e.classList.add('on');clearTimeout(to);to=setTimeout(()=>e.classList.remove('on'),1400)}
 

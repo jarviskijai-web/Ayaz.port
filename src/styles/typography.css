@@ -1,0 +1,146 @@
+@font-face {
+  font-family: "Bodoni Moda";
+  src: url("/fonts/bodonimoda-400.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Bodoni Moda";
+  src: url("/fonts/bodonimoda-500.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+:root {
+  --paper: #f4eee7;
+  --paper-soft: #d8cec4;
+  --dim: #a79a90;
+  --dimmer: #746a63;
+  --ui: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --disp: "Bodoni Moda", Georgia, serif;
+  --sans: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Bodoni Moda", Georgia, serif;
+  --ink: #e64439;
+  --ink-hot: #ff6258;
+  --section-gold: #e64439;
+  --section-gold-bright: #ff6258;
+  --section-line: rgb(230 68 57 / 22%);
+}
+
+html,
+body {
+  color: var(--paper);
+  font-family: var(--ui);
+  font-weight: 400;
+  letter-spacing: 0.005em;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+.gallery {
+  --ink: #060405;
+  --bone: #f4eee7;
+  --mute: #a79a90;
+  --ember: #d94c36;
+  --sans: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Bodoni Moda", Georgia, serif;
+}
+
+.photoshoot {
+  --photo-cream: #f4eee7;
+  --photo-muted: #a79a90;
+}
+
+.photoshoot__intro,
+.photo-card__label,
+.photoshoot__count,
+.photoshoot__edition,
+.photoshoot__signature small {
+  letter-spacing: 0.08em;
+}
+
+.photoshoot__title,
+.photo-viewer__info h3,
+.services h2,
+.impact h2 {
+  font-family: var(--disp);
+}
+
+.services__eyebrow,
+.impact__eyebrow {
+  color: var(--paper-soft);
+}
+
+.services__eyebrow::before,
+.impact__eyebrow::before {
+  background: var(--ink);
+}
+
+.services__title em,
+.impact__title em,
+.services h2 em,
+.impact h2 em {
+  color: var(--ink-hot);
+}
+
+#chrono .yr__year,
+#chrono .chrono__title,
+#chrono .chrono__rail,
+#chrono .chrono__hint,
+#chrono .chrono__note {
+  color: var(--paper);
+}
+
+#chrono .yr.is-active .yr__year {
+  color: var(--ink-hot);
+}
+
+@supports (animation-timeline: view()) {
+  main.flow > #services,
+  main.flow > #impact,
+  main.flow > #gallery,
+  main.flow > #photoshoot {
+    view-timeline-axis: block;
+  }
+
+  .services__content,
+  .impact__content,
+  .gallery__page,
+  .photoshoot__shell,
+  .chrono__pin,
+  .fin__pin {
+    animation: section-flow-arrive 1s both;
+    animation-timing-function: linear;
+    animation-timeline: view(block);
+    animation-range: entry 0% entry 42%;
+  }
+}
+
+@keyframes section-flow-arrive {
+  from { opacity: 0.72; transform: translate3d(0, 28px, 0) scale(0.985); }
+  to { opacity: 1; transform: translate3d(0, 0, 0) scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services__content,
+  .impact__content,
+  .gallery__page,
+  .photoshoot__shell,
+  .chrono__pin,
+  .fin__pin {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 700px) {
+  .photoshoot { overflow: visible; }
+  .photoshoot__shell { min-height: 0; }
+}

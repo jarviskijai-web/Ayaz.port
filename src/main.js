@@ -4,31 +4,18 @@ import { initGallery } from './scene4/boot4.js';
 import { initFinale } from './scene6/boot6.js';
 import { initPhotoshoot } from './scene5/photoshoot.js';
 import { initHeroInk } from './scene/hero-ink.js';
+import { initHeroSequence } from './scene/hero-sequence.js';
 
 const root = document.documentElement;
 const hero = document.querySelector('.stage-wrap');
 const heroImage = document.querySelector('.hero__media img');
-const heroVideo = document.querySelector('.hero__video');
+const heroSequence = document.querySelector('.hero__sequence');
 const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-const lowData = navigator.connection?.saveData === true;
-const allowHeroVideo = Boolean(heroVideo)
-  && !reducedMotion
-  && !lowData;
 const burger = document.getElementById('burger');
 const menu = document.getElementById('menu');
-
-function syncHeroVideo(visible) {
-  if (!heroVideo) return;
-  if (!visible || !allowHeroVideo) {
-    heroVideo.pause();
-    return;
-  }
-  if (heroVideo.paused) {
-    Promise.resolve(heroVideo.play())
-      .then(() => heroVideo.classList.add('is-playing'))
-      .catch(() => {});
-  }
-}
+const updateHeroSequence = heroSequence
+  ? initHeroSequence(heroSequence)
+  : () => { };
 
 if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 menu?.querySelectorAll('a').forEach((link, index) => {
@@ -77,7 +64,11 @@ function initializeUniverseWhenNear() {
   observer.observe(section);
 }
 
+const ENABLE_SECTION_SNAP_SCROLL = false;
+
 function initializeSnapNavigation() {
+  if (!ENABLE_SECTION_SNAP_SCROLL) return;
+
   const panels = [...document.querySelectorAll(
     '.hero-spacer, #universe, #chrono, #gallery, #photoshoot, #fin',
   )];
@@ -129,6 +120,23 @@ function initializeSnapNavigation() {
       }
     });
 
+    const currentPanel = panels[current];
+    if (currentPanel && currentPanel.id === 'gallery' && window.portfolioProjects) {
+      const A = window.portfolioProjects;
+      const totalProjects = 3;
+      if (direction > 0 && A.sel < totalProjects - 1) {
+        A.sel = A.sel + 1;
+        if (typeof A.change === 'function') A.change();
+        holdInput();
+        return;
+      } else if (direction < 0 && A.sel > 0) {
+        A.sel = A.sel - 1;
+        if (typeof A.change === 'function') A.change();
+        holdInput();
+        return;
+      }
+    }
+
     const next = Math.max(0, Math.min(panels.length - 1, current + Math.sign(direction)));
     if (next === current) return;
     if (!touch) holdInput();
@@ -163,7 +171,7 @@ function initializeSnapNavigation() {
     if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return;
     if (event.target.closest('input, textarea, select, [contenteditable="true"]')) return;
     if ((event.code === 'Space' || event.key === 'ArrowDown' || event.key === 'ArrowUp')
-        && event.target.closest('a, button, [role="button"]')) return;
+      && event.target.closest('a, button, [role="button"]')) return;
 
     if (event.code === 'Space' || event.key === 'PageDown' || event.key === 'ArrowDown') {
       event.preventDefault();
@@ -176,6 +184,23 @@ function initializeSnapNavigation() {
 
   window.addEventListener('portfolio:section-step', (event) => {
     step(event.detail?.direction, { touch: event.detail?.input === 'touch' });
+  });
+}
+
+function initializeUniverseScrollBridge() {
+  const demo = document.getElementById('uniDemo');
+  if (!demo) return;
+  window.addEventListener('message', (event) => {
+    if (event.source !== demo.contentWindow
+        || event.origin !== location.origin
+        || event.data?.type !== 'portfolio:universe-scroll') return;
+    const deltaY = Number(event.data.deltaY);
+    if (!Number.isFinite(deltaY)) return;
+    window.scrollBy({
+      top: Math.max(-900, Math.min(900, deltaY)),
+      left: 0,
+      behavior: 'instant',
+    });
   });
 }
 
@@ -223,19 +248,19 @@ window.addEventListener('keydown', (event) => {
   if (event.key === 'Escape' && root.classList.contains('is-menu')) setMenu(false);
 });
 
-if (hero && 'IntersectionObserver' in window) {
+if (hero) {
   const spacer = document.querySelector('.hero-spacer');
   if (spacer) {
     const updateHeroHandoff = () => {
       const progress = Math.min(1, Math.max(0,
         spacer.getBoundingClientRect().bottom / Math.max(window.innerHeight, 1)));
+      updateHeroSequence(progress);
       const offstage = progress <= 0.001;
       hero.style.setProperty('--hero-scroll-opacity', progress.toFixed(3));
       hero.style.setProperty('--hero-scroll-tilt', `${((1 - progress) * 5).toFixed(2)}deg`);
       hero.style.setProperty('--hero-scroll-scale', (1 + (1 - progress) * 0.035).toFixed(4));
       hero.classList.toggle('is-offstage', offstage);
       hero.inert = offstage;
-      syncHeroVideo(!offstage);
     };
     let handoffFrame = 0;
     const scheduleHeroHandoff = () => {
@@ -251,10 +276,35 @@ if (hero && 'IntersectionObserver' in window) {
   }
 }
 
+function initializeServiceCards() {
+  document.querySelectorAll('.service-card').forEach((card) => {
+    card.addEventListener('pointermove', (event) => {
+      const rect = card.getBoundingClientRect();
+      const px = ((event.clientX - rect.left) / rect.width) * 100;
+      const py = ((event.clientY - rect.top) / rect.height) * 100;
+      const rotateY = ((px - 50) / 50) * 7;
+      const rotateX = ((50 - py) / 50) * 7;
+      card.style.setProperty('--rx', `${rotateX.toFixed(2)}deg`);
+      card.style.setProperty('--ry', `${rotateY.toFixed(2)}deg`);
+      card.style.setProperty('--mx', `${px.toFixed(2)}%`);
+      card.style.setProperty('--my', `${py.toFixed(2)}%`);
+    });
+
+    card.addEventListener('pointerleave', () => {
+      card.style.setProperty('--rx', '0deg');
+      card.style.setProperty('--ry', '0deg');
+      card.style.setProperty('--mx', '50%');
+      card.style.setProperty('--my', '50%');
+    });
+  });
+}
+
 function initializeSections() {
   initHeroInk();
   initializeScrollTransitions();
   initializeSnapNavigation();
+  initializeUniverseScrollBridge();
+  initializeServiceCards();
   initializeUniverseWhenNear();
   initPhotoshoot().catch((error) =>
     console.warn('[portfolio] photoshoot unavailable:', error.message));
@@ -276,12 +326,8 @@ async function main() {
     console.error('[portfolio] hero image could not be loaded.');
     root.classList.add('is-hero-error');
   }
-  if (heroVideo && heroImage.currentSrc) heroVideo.poster = heroImage.currentSrc;
-  syncHeroVideo(true);
-
   root.classList.remove('is-booting');
   root.classList.add('is-header', 'is-hero-ready');
-  syncHeroVideo(true);
   initializeSections();
 }
 
