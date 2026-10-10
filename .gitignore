@@ -2,3 +2,5 @@ shots/
 node_modules/
 dist/
 .vite/
+.vercel/
+.env*.local
